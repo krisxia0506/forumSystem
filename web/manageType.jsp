@@ -29,8 +29,8 @@
         <div class="news_list">
             <div class="top-bar">
                 <h1>我的帖子</h1>
-                <button style="margin-left: 450px;" value="发布新闻" onclick="window.location.href='addPost.jsp';">
-                    发布帖子
+                <button style="margin-left: 450px;" value="发布新闻" onclick="window.location.href='addType.jsp';">
+                    新增版块
                 </button>
             </div>
             <br>
@@ -38,27 +38,28 @@
                 <table class="listing" cellspacing="0" cellpadding="0">
                     <tr>
                         <th class="first" width="40">序号</th>
-                        <th>帖子标题</th>
-                        <th>发布时间</th>
+                        <th>版块标题</th>
+                        <th>版块简介</th>
                         <th style="width: 40px;">修改</th>
                         <th style="width: 40px;">删除</th>
                     </tr>
-                    <c:forEach var="post" items="${requestScope.postList}" varStatus="status">
+                    <c:forEach var="postType" items="${requestScope.postTypeList}" varStatus="status">
                         <tr>
                             <td>${status.count}</td>
                             <td class="title">
-                                <a href="post?action=displayPost&postId=${post.id}">
-                                        ${post.title}
+                                <a href="post?action=displayPostList&postTypeId=${postType.id}">
+                                        ${postType.postType}
                                 </a>
                             </td>
-                            <td class="ntime">${post.postTime}</td>
+                            <td class="ntime">${postType.typeIntroduction}</td>
                             <td>
-                                <button value="修改" onclick="window.location.href='modifyPost.jsp?id=${post.id}';">修改
+                                <button value="修改"
+                                        onclick="window.location.href='modifyType.jsp?postTypeId='+${postType.id};">修改
                                 </button>
 
                             </td>
                             <td>
-                                <button value="删除" onclick="deleteNews(${post.id});">删除</button>
+                                <button value="删除" onclick="deleteType(${postType.id});">删除</button>
 
                             </td>
                         </tr>

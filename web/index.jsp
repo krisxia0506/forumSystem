@@ -7,7 +7,7 @@
 <jsp:useBean id="newstypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
 
 <%
-    ArrayList<PostType> postTypeList = newstypeDAO.getAllNewstype();
+    ArrayList<PostType> postTypeList = newstypeDAO.getAllPostType();
     request.setAttribute("postTypeList", postTypeList);
 %>
 
@@ -32,7 +32,7 @@
                 <c:forEach items="${requestScope.postTypeList}" var="postType">
                     <li>
                         <div class="dd_bt">
-                            <a href="post?action=displayPostList&postTypeId=${postType.postTypeId}">${postType.postType}</a>
+                            <a href="post?action=displayPostList&postTypeId=${postType.id}">${postType.postType}</a>
                         </div>
                     </li>
                 </c:forEach>

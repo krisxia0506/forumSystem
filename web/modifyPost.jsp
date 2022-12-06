@@ -15,7 +15,7 @@
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
 <jsp:useBean id="newstypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
 <%
-    ArrayList<PostType> postTypeList = newstypeDAO.getAllNewstype();
+    ArrayList<PostType> postTypeList = newstypeDAO.getAllPostType();
     String id = request.getParameter("id");
     Post post = postDAO.getById(id);
     request.setAttribute("postTypeList", postTypeList);
@@ -50,13 +50,13 @@
                 类别：<select name="postType">
                 <c:forEach var="postType" items="${postTypeList}">
                     <c:choose>
-                        <c:when test="${postType.postTypeId==post.postType}">
-                            <option value="${postType.postTypeId}" selected="selected">
+                        <c:when test="${postType.id==post.postType}">
+                            <option value="${postType.id}" selected="selected">
                                     ${postType.postType}
                             </option>
                         </c:when>
                         <c:otherwise>
-                            <option value="${postType.postTypeId}">
+                            <option value="${postType.id}">
                                     ${postType.postType}
                             </option>
                         </c:otherwise>

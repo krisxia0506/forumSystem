@@ -26,6 +26,7 @@ public class PostServlet extends HttpServlet {
         HttpSession session = request.getSession();
         ArrayList<Post> postList = new ArrayList<Post>();
         PostDAO postDAO = new PostDAO();
+        UserDAO userDAO = new UserDAO();
         ReplyDAOImpl replyDAO = new ReplyDAOImpl();
         PostPageDAO postPageDAO = new PostPageDAO();
         int pageNo = 1;
@@ -106,6 +107,7 @@ public class PostServlet extends HttpServlet {
                 post.setKeyword(keyword);
                 post.setContent(content);
                 if (postDAO.addPost(post)) {
+                    userDAO.increasePostTimes(author);
                     String postId = postDAO.queryLastPost();
                     request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
                 } else {
@@ -162,7 +164,6 @@ public class PostServlet extends HttpServlet {
                         String[] parts = autologin.split("-");
                         String name = parts[0];
                         String pwd = parts[1];
-                        UserDAO userDAO = new UserDAO();
                         if (userDAO.queryByNamePwd(name, pwd) != "") {
                             response.sendRedirect("userLogin.jsp ");
                         } else {

@@ -6,11 +6,11 @@
 <%@ page language="java" contentType="text/html;charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
-<jsp:useBean id="newstypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
+<jsp:useBean id="postTypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
 <%
     ArrayList<Post> hotPostList = postDAO.getHotPost();
     request.setAttribute("hotPostList", hotPostList);
-    ArrayList<PostType> postTypeList = newstypeDAO.getAllNewstype();
+    ArrayList<PostType> postTypeList = postTypeDAO.getAllPostType();
     request.setAttribute("postTypeList", postTypeList);
     ReplyDAO replyDAO = new ReplyDAOImpl();
     request.setAttribute("hotReplyList", replyDAO.getTop5());

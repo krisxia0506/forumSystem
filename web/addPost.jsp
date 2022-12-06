@@ -12,7 +12,7 @@
 <jsp:useBean id="newstypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
 <%
     request.setCharacterEncoding("UTF-8");
-    ArrayList<PostType> postTypeList = newstypeDAO.getAllNewstype();
+    ArrayList<PostType> postTypeList = newstypeDAO.getAllPostType();
 %>
 <!DOCTYPE>
 <html>
@@ -42,7 +42,7 @@
                     <%
                         for (PostType postType : postTypeList) {
                     %>
-                    <option value="<%=postType.getPostTypeId()%>">
+                    <option value="<%=postType.getId()%>">
                         <%=postType.getPostType()%>
                     </option>
                     <%}%>

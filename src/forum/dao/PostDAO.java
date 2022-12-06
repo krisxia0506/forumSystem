@@ -293,9 +293,12 @@ public class PostDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "select * from post where post_keyword = ?";
+            String sql = "select * from post where post_keyword like ? or post_title like ? or post_content like ?";
             ps = conn.prepareStatement(sql);
+            keyword = "%" + keyword + "%";
             ps.setString(1, keyword);
+            ps.setString(2, keyword);
+            ps.setString(3, keyword);
             rs = ps.executeQuery();
             while (rs.next()) {
                 post = new Post();

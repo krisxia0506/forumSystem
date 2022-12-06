@@ -51,6 +51,12 @@ function deleteNews(postId) {
     }
 }
 
+function deleteType(postTypeId) {
+    if (confirm("确定删除吗？")) {
+        window.location.href = "type?action=delete&postTypeId=" + postTypeId;
+    }
+}
+
 function registerCheck () {
     var name = $("[name=username]").val();
     if (name===""){

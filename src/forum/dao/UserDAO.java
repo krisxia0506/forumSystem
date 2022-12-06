@@ -161,5 +161,25 @@ public class UserDAO {
 
         return user;
     }
+
+    /**
+     * 增加发帖次数
+     */
+    public void increasePostTimes(String author) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = DBGet.getConnection();
+            String sql = "update user set post_times = post_times+1 where username = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, author);
+            ps.executeUpdate();
+        } catch (SQLException e1) {
+            System.out.println("increaseAc" + e1);
+        } finally {
+            DBGet.closeConnection(conn);
+        }
+    }
+
 }
 

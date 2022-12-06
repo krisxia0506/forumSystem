@@ -5,6 +5,7 @@ import forum.beans.Reply;
 import forum.dao.PostDAO;
 import forum.dao.ReplyDAO;
 import forum.dao.ReplyDAOImpl;
+import forum.dao.UserDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,9 +24,11 @@ import java.util.Objects;
  */
 @WebServlet("/reply")
 public class ReplyServlet extends HttpServlet {
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         ReplyDAO replyDAO = new ReplyDAOImpl();
+        UserDAO userDAO = new UserDAO();
         ArrayList<Reply> replyList = new ArrayList<Reply>();
         ArrayList<Post> postList = new ArrayList<>();
         HttpSession session = request.getSession();
@@ -46,6 +49,7 @@ public class ReplyServlet extends HttpServlet {
                     reply.setAuthor(replyAuthor);
                     reply.setPostId(Integer.parseInt(postId));
                     if (replyDAO.insert(reply)) {
+                        userDAO.increasePostTimes(replyAuthor);
                         request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
 
                     } else {
@@ -56,14 +60,8 @@ public class ReplyServlet extends HttpServlet {
             }
             case "del" : {
                 String id = request.getParameter("id");
-                String username = request.getParameter("username");
                 if (replyDAO.deleteById(id)) {
-                    if ("admin".equals(username)) {
-                        request.getRequestDispatcher("reply?action=manage").forward(request, response);
-
-                    } else {
-                        request.getRequestDispatcher("reply?action=usermanage&username=" + username).forward(request, response);
-                    }
+                    request.getRequestDispatcher("reply?action=manage").forward(request, response);
                 } else {
                     request.getRequestDispatcher("index.jsp?error=1").forward(request, response);
                 }

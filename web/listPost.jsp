@@ -14,7 +14,7 @@
 <jsp:useBean id="newstypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
 
 <%
-    ArrayList<PostType> postTypeList = newstypeDAO.getAllNewstype();
+    ArrayList<PostType> postTypeList = newstypeDAO.getAllPostType();
     request.setAttribute("postTypeList", postTypeList);
 %>
 
@@ -33,7 +33,7 @@
     </div>
     <div id="main">
         <div class="news_list">
-            <h1 style="margin: 0 0 20px">新闻列表</h1>
+            <h1 style="margin: 0 0 20px">贴子列表</h1>
 
             <ul>
                 <c:forEach items="${requestScope.postList}" var="post">
@@ -41,7 +41,7 @@
                         <div class="dd_lm">[
                             <c:forEach var="postType" items="${postTypeList}">
                                 <c:choose>
-                                    <c:when test="${postType.postTypeId==post.postType}">
+                                    <c:when test="${postType.id==post.postType}">
                                         ${postType.postType}
                                     </c:when>
 
