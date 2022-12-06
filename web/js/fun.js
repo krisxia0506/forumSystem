@@ -45,9 +45,9 @@ function OnExit(field) {
 }
 
 //managePost.jsp
-function deleteNews(id) {
+function deleteNews(postId) {
     if (confirm("确定删除吗？")) {
-        window.location.href = "news?action=del&id=" + id;
+        window.location.href = "post?action=del&postId=" + postId;
     }
 }
 
@@ -58,15 +58,32 @@ function registerCheck () {
     }else {
     $.ajax({
         type:"get",
-        url:"checkName?username="+name,
-        dataType:"text",
-        success:function (data) {
+        url: "checkName?username=" + name,
+        dataType: "text",
+        success: function (data) {
             //alert(data);
-            if (data==="1"){
+            if (data === "1") {
                 $("#show").html("用户已存在！！！")
-            }else {
+            } else {
                 $("#show").html("用户名可用")
             }
         }
-    })}
+    })
+    }
 };
+
+function CheckReply() {
+    if (document.getElementById("replyContent").value.length === 0) {
+        alert('说点什么吧');
+        return false;
+    }
+    return true;
+}
+
+function CheckComment() {
+    if (document.getElementById("replyContent").value.length === 0) {
+        alert('说点什么吧');
+        return false;
+    }
+    return true;
+}

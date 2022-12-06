@@ -15,11 +15,11 @@ import java.util.ArrayList;
 public class PostDAO {
 
     /**
-     * 查看所有新闻
+     * 查看所有帖子
      *
-     * @return ArrayList<News>
+     * @return 所有帖子列表
      */
-    public ArrayList<Post> getAllNews() {
+    public ArrayList<Post> getAllPost() {
         Post post = null;
         ArrayList<Post> postList = new ArrayList<Post>();
         Connection conn = null;
@@ -27,7 +27,7 @@ public class PostDAO {
         try {
             conn = DBGet.getConnection();
             Statement stmt = conn.createStatement();
-            String sql = "select * from post";
+            String sql = "select * from post order by post_time desc ";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 post = new Post();
@@ -50,12 +50,12 @@ public class PostDAO {
     }
 
     /**
-     * 插入一条新闻
+     * 发帖
      *
-     * @param post 新闻对象
-     * @return boolean
+     * @param post 帖子对象
+     * @return 是否成功
      */
-    public boolean insertNews(Post post) {
+    public boolean addPost(Post post) {
 
         boolean result = false;
         int n = 0;
@@ -85,9 +85,9 @@ public class PostDAO {
     }
 
     /**
-     * 根据ID查询指定新闻
+     * 根据ID查询指定帖子
      *
-     * @param id 新闻id
+     * @param id 帖子id
      * @return News
      */
     public Post getById(String id) {
@@ -121,11 +121,11 @@ public class PostDAO {
     }
 
     /**
-     * 增加访问量
+     * 增加点击量
      *
-     * @param id 新闻id
+     * @param id 帖子id
      */
-    public void increaseAc(String id) {
+    public void increaseHits(String id) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -142,10 +142,10 @@ public class PostDAO {
     }
 
     /**
-     * 相关新闻
+     * 相关帖子
      *
-     * @param id 新闻id
-     * @return 相关新闻列表
+     * @param id 帖子id
+     * @return 相关帖子列表
      */
     public ArrayList<Post> getRelate(String id) {
         Post post = null;
@@ -179,7 +179,7 @@ public class PostDAO {
      * @param post 新闻对象
      * @return 是否成功
      */
-    public boolean modifyNews(Post post) {
+    public boolean modifyPost(Post post) {
         boolean result = false;
         int n = 0;
         Connection conn = null;
@@ -209,16 +209,16 @@ public class PostDAO {
     }
 
     /**
-     * 删除新闻
+     * 删除帖子
      *
-     * @param id 新闻id
+     * @param id 帖子id
      * @return 是否成功
      */
-    public boolean deleteById(String id) {
+    public boolean deletePostById(String id) {
         boolean result = false;
         Connection conn = null;
         PreparedStatement ps = null;
-        ReplyDAOImpl commentDAO = new ReplyDAOImpl();
+        ReplyDAOImpl replyDAO = new ReplyDAOImpl();
 
         try {
             conn = DBGet.getConnection();
@@ -226,8 +226,8 @@ public class PostDAO {
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             if (ps.executeUpdate() == 1) {
-                //删除对应新闻的评论
-                commentDAO.deleteByNewsId(id);
+                //删除对应帖子的回帖
+                replyDAO.deleteByNewsId(id);
                 result = true;
             }
         } catch (SQLException e) {
@@ -239,11 +239,11 @@ public class PostDAO {
     }
 
     /**
-     * 热点新闻
+     * 热贴
      *
-     * @return 热点新闻列表
+     * @return 热贴列表
      */
-    public ArrayList<Post> getHotNews() {
+    public ArrayList<Post> getHotPost() {
         Post post = null;
         ArrayList<Post> postList = new ArrayList<Post>();
         Connection conn = null;
@@ -258,7 +258,7 @@ public class PostDAO {
                 post = new Post();
                 post.setId(rs.getInt("post_id"));
                 String title = rs.getString("post_title");
-                //截取过长的新闻标题
+                //截取过长的帖子标题
                 if (title.length() > 18) {
                     title = title.substring(0, 18) + "......";
                 }
@@ -280,17 +280,16 @@ public class PostDAO {
     }
 
     /**
-     * 按关键字查询新闻
+     * 按关键字查询帖子
      *
      * @param keyword 关键字
-     * @return 新闻列表
+     * @return 帖子列表
      */
-    public ArrayList<Post> getNewsByKeyword(String keyword) {
+    public ArrayList<Post> getPostByKeyword(String keyword) {
         Post post = null;
         ArrayList<Post> postList = new ArrayList<Post>();
         Connection conn = null;
         ResultSet rs = null;
-        Statement stmt = null;
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
@@ -319,9 +318,12 @@ public class PostDAO {
     }
 
     /**
-     * 查询新闻条数
+     * 根据帖子类型查询帖子条数
+     *
+     * @param postTypeId 帖子类型id
+     * @return 该类型帖子的总数
      */
-    public int getNewsCount(String postTypeId) {
+    public int getPostCountByType(String postTypeId) {
         int count = 0;
         Connection conn = null;
         ResultSet rs = null;
@@ -349,7 +351,7 @@ public class PostDAO {
      * @param count      条数
      * @param postTypeId 类型
      */
-    public ArrayList<Post> getNewsByST(int start, int count, String postTypeId) {
+    public ArrayList<Post> getPostBySCT(int start, int count, String postTypeId) {
         Post post = null;
         ArrayList<Post> postList = new ArrayList<Post>();
         Connection conn = null;
@@ -384,34 +386,90 @@ public class PostDAO {
     }
 
     /**
-     * 相关新闻
-     *
-     * @param postTypeId 新闻id
-     * @return 相关新闻列表
+     * 找最新发布的一条新闻的id
      */
-    public ArrayList<Post> getPostByType(String postTypeId) {
+    public String queryLastPost() {
+        String postId = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        try {
+            conn = DBGet.getConnection();
+            String sql = "select * from post order by post_time desc limit 1";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                postId = rs.getString("post_id");
+            }
+        } catch (SQLException e1) {
+            System.out.println("getNewsByPage" + e1);
+        } finally {
+            DBGet.closeConnection(conn);
+        }
+        return postId;
+    }
+
+    public ArrayList<Post> getPostByAuthor() {
         Post post = null;
         ArrayList<Post> postList = new ArrayList<Post>();
         Connection conn = null;
         ResultSet rs = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "SELECT * from post where post_type_id=?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, postTypeId);
-            rs = ps.executeQuery();
+            Statement stmt = conn.createStatement();
+            String sql = "select * from post where post_author=? order by post_time desc  ";
+
+            rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 post = new Post();
                 post.setId(rs.getInt("post_id"));
                 post.setTitle(rs.getString("post_title"));
+                post.setContent(rs.getString("post_content"));
+                post.setAuthor(rs.getString("post_author"));
+                post.setPostTime(rs.getString("post_time"));
+                post.setKeyword(rs.getString("post_keyword"));
+                post.setHits(rs.getString("post_hits"));
+                post.setPostType(rs.getString("post_type_id"));
                 postList.add(post);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e1) {
+            System.out.println("getAllNews" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
         return postList;
     }
 
+    public ArrayList<Post> getPostByUsername(String username) {
+        Post post = null;
+        ArrayList<Post> postList = new ArrayList<Post>();
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        try {
+            conn = DBGet.getConnection();
+            String sql = "select * from post where post_author = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                post = new Post();
+                post.setId(rs.getInt("post_id"));
+                post.setTitle(rs.getString("post_title"));
+                post.setContent(rs.getString("post_content"));
+                post.setAuthor(rs.getString("post_author"));
+                post.setPostTime(rs.getString("post_time"));
+                post.setKeyword(rs.getString("post_keyword"));
+                post.setHits(rs.getString("post_hits"));
+                post.setPostType(rs.getString("post_type_id"));
+                postList.add(post);
+            }
+        } catch (SQLException e1) {
+            System.out.println("getNewsByKeyword" + e1);
+        } finally {
+            DBGet.closeConnection(conn);
+        }
+        return postList;
+
+    }
 }

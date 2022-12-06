@@ -9,60 +9,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb67749f-9fcc-4ef0-a7e5-6eff1e9e6692" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Forum_Web_exploded.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="eb67749f-9fcc-4ef0-a7e5-6eff1e9e6692" name="变更" comment="README.md">
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Forum.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/beans/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/beans/PostType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/beans/Reply.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/beans/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/dao/PostDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/dao/PostPageDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/dao/PostTypeDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/dao/ReplyDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/dao/ReplyDAOImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/dao/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/servlet/AjaxCheckServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/servlet/PostServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/servlet/ReplyServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/servlet/UserServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/util/DBGet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/util/DateTimeUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/jstl.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/mysql-connector-java-8.0.26.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/lib/standard.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/addNews.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/checkvaild.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/common/bottom.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/common/left.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/common/top.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/displayPost.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/images/topbarbackground.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/js/fun.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/listComment.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/listNews.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/managePost.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/manageReply.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/manageUser.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/modiNews.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/modiUser.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/userLogin.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/userRegister.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/userVeriRegister.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Forum.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Forum.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/PostDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/PostDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/PostPageDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/PostPageDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/PostTypeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/PostTypeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/ReplyDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/ReplyDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/ReplyDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/ReplyDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/servlet/PostServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/PostServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/servlet/ReplyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/ReplyServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/servlet/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/UserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/addNews.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/addNews.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/checkvaild.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/checkvaild.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/common/left.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/common/left.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/common/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/common/top.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/displayPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/displayPost.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/fun.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/fun.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/listComment.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/listNews.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/listPost.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/managePost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/managePost.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/modiNews.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/modifyPost.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,34 +58,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "import_schema_mapping": "<schema-mapping>\n  <databases>\n    <list>\n      <schema-mapping-item>\n        <source-data-source-id>38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea</source-data-source-id>\n        <source-path>schema/&quot;newsdb&quot;</source-path>\n        <target-data-source-id>38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea</target-data-source-id>\n        <target-path>schema/&quot;forumdb&quot;</target-path>\n      </schema-mapping-item>\n    </list>\n  </databases>\n</schema-mapping>",
-    "last_opened_file_path": "D:/java_web/forum",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "工件",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "inlay.hints",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;import_schema_mapping&quot;: &quot;&lt;schema-mapping&gt;\n  &lt;databases&gt;\n    &lt;list&gt;\n      &lt;schema-mapping-item&gt;\n        &lt;source-data-source-id&gt;38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea&lt;/source-data-source-id&gt;\n        &lt;source-path&gt;schema/&amp;quot;newsdb&amp;quot;&lt;/source-path&gt;\n        &lt;target-data-source-id&gt;38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea&lt;/target-data-source-id&gt;\n        &lt;target-path&gt;schema/&amp;quot;forumdb&amp;quot;&lt;/target-path&gt;\n      &lt;/schema-mapping-item&gt;\n    &lt;/list&gt;\n  &lt;/databases&gt;\n&lt;/schema-mapping&gt;&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/java_web/forum&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;工件&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.jarRepository.settings.RemoteRepositoriesConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0.64" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.64" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="UPDATING_POLICY" value="restart-server" />
+      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
+      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
         <artifact name="forum:Web exploded">
           <settings>
@@ -289,14 +264,47 @@
       <workItem from="1670202927859" duration="5213000" />
       <workItem from="1670220148910" duration="12209000" />
       <workItem from="1670233533609" duration="532000" />
+      <workItem from="1670234076512" duration="394000" />
+      <workItem from="1670287876851" duration="9937000" />
     </task>
+    <task id="LOCAL-00001" summary="1">
+      <created>1670234117707</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1670234117707</updated>
+    </task>
+    <task id="LOCAL-00002" summary="README.md">
+      <created>1670234418119</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1670234418119</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="1" />
+    <MESSAGE value="README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="README.md" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

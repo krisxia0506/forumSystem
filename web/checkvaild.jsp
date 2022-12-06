@@ -28,7 +28,7 @@
             String name = parts[0];
             String pwd = parts[1];
             UserDAO userDAO = new UserDAO();
-            if (!userDAO.queryByNamePwd(name, pwd)) {
+            if (userDAO.queryByNamePwd(name, pwd) != "") {
                 response.sendRedirect("userLogin.jsp ");
             } else {
                 session.setAttribute("username", name);

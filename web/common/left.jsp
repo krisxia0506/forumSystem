@@ -8,12 +8,12 @@
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
 <jsp:useBean id="newstypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
 <%
-    ArrayList<Post> hotPostList = postDAO.getHotNews();
-    request.setAttribute("hotNewsList", hotPostList);
+    ArrayList<Post> hotPostList = postDAO.getHotPost();
+    request.setAttribute("hotPostList", hotPostList);
     ArrayList<PostType> postTypeList = newstypeDAO.getAllNewstype();
     request.setAttribute("postTypeList", postTypeList);
     ReplyDAO replyDAO = new ReplyDAOImpl();
-    request.setAttribute("newComment", replyDAO.getTop5());
+    request.setAttribute("hotReplyList", replyDAO.getTop5());
 
 %>
 <div class="sidesec">
@@ -33,11 +33,11 @@
     </div>
 </div>
 <div class="sidesec">
-    <div class="sidesec_bt"><span>热点新闻</span></div>
+    <div class="sidesec_bt"><span>热点帖子</span></div>
     <hr>
     <div class="sidesec_list">
         <ul>
-            <c:forEach var="post" items="${hotNewsList}" varStatus="status">
+            <c:forEach var="post" items="${hotPostList}" varStatus="status">
                 <li>
                     .<a href="post?action=displayPost&postId=${post.id}">${post.title}</a>
                 </li>
@@ -46,11 +46,11 @@
     </div>
 </div>
 <div class="sidesec">
-    <div class="sidesec_bt"><span>最新评论</span></div>
+    <div class="sidesec_bt"><span>热门回帖</span></div>
     <hr>
     <div class="sidesec_list">
         <ul>
-            <c:forEach var="reply" items="${newComment}">
+            <c:forEach var="reply" items="${hotReplyList}">
                 <li>
                     .<a href="reply?action=displayPost&newsid=${reply.postId}">
                         ${reply.content}

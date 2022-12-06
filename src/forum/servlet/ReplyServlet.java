@@ -1,9 +1,10 @@
 package forum.servlet;
 
-import forum.beans.*;
+import forum.beans.Post;
+import forum.beans.Reply;
+import forum.dao.PostDAO;
 import forum.dao.ReplyDAO;
 import forum.dao.ReplyDAOImpl;
-import forum.dao.PostDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,33 +33,24 @@ public class ReplyServlet extends HttpServlet {
         if (func == null) {
             func = "";
         }
-        //按news id查询评论
         switch (func) {
-            case "disp" : {
-                PostDAO postDAO = new PostDAO();
-                String newsid = request.getParameter("newsid");
-                replyList = replyDAO.getByNewsId(Integer.parseInt(newsid));
-                request.setAttribute("commentList", replyList);
-                Post post = postDAO.getById(newsid);
-                request.setAttribute("news", post);
-                request.getRequestDispatcher("listComment.jsp").forward(request, response);
-
-
-                break;
-            }
             case "add" : {
-                Reply comm = new Reply();
-                String newsid = request.getParameter("newsid");
-                String commentauthor = request.getParameter("commentauthor");
-                String comment = request.getParameter("comment");
-                comm.setContent(comment);
-                comm.setAuthor(commentauthor);
-                comm.setPostId(Integer.parseInt(newsid));
-                if (replyDAO.insert(comm)) {
-                    request.getRequestDispatcher("comment?action=disp&newsid=" + newsid).forward(request, response);
-
+                Reply reply = new Reply();
+                String postId = request.getParameter("postId");
+                String replyAuthor = request.getParameter("replyAuthor");
+                String replyContent = request.getParameter("replyContent");
+                if (Objects.equals(replyAuthor, "")) {
+                    response.sendRedirect("userLogin.jsp");
                 } else {
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    reply.setContent(replyContent);
+                    reply.setAuthor(replyAuthor);
+                    reply.setPostId(Integer.parseInt(postId));
+                    if (replyDAO.insert(reply)) {
+                        request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
+
+                    } else {
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                    }
                 }
                 break;
             }
@@ -67,20 +59,26 @@ public class ReplyServlet extends HttpServlet {
                 String username = request.getParameter("username");
                 if (replyDAO.deleteById(id)) {
                     if ("admin".equals(username)) {
-                        request.getRequestDispatcher("comment?action=manage").forward(request, response);
+                        request.getRequestDispatcher("reply?action=manage").forward(request, response);
 
                     } else {
-                        request.getRequestDispatcher("comment?action=usermanage&username=" + username).forward(request, response);
+                        request.getRequestDispatcher("reply?action=usermanage&username=" + username).forward(request, response);
                     }
                 } else {
-                    request.getRequestDispatcher("listComment.jsp?error=1").forward(request, response);
+                    request.getRequestDispatcher("index.jsp?error=1").forward(request, response);
                 }
                 break;
             }
-            case "manage" : {//管理员评论管理
-                replyList = replyDAO.getAll();
+            case "manage": {//评论管理
+                String role = (String) session.getAttribute("role");
+                if (Objects.equals(role, "99")) {
+                    replyList = replyDAO.getAll();
+                } else {
+                    String username = (String) session.getAttribute("username");
+                    replyList = replyDAO.getByUsername(username);
+                }
                 PostDAO postDAO = new PostDAO();
-                postList = postDAO.getAllNews();
+                postList = postDAO.getAllPost();
                 //遍历
                 for (Reply reply : replyList) {
                     for (Post post : postList) {
@@ -91,31 +89,6 @@ public class ReplyServlet extends HttpServlet {
                 }
                 request.setAttribute("replyList", replyList);
                 request.getRequestDispatcher("manageReply.jsp").forward(request, response);
-                break;
-            }
-            case "usermanage" : {//用户评论管理
-                String username = request.getParameter("username");
-
-                if (session.getAttribute("username").equals(username)) {
-                    replyList = replyDAO.getByUsername(username);
-
-                    PostDAO postDAO = new PostDAO();
-                    postList = postDAO.getAllNews();
-
-                    //遍历
-                    for (Reply reply : replyList) {
-                        for (Post post : postList) {
-                            if (Objects.equals(post.getId(), reply.getPostId())) {
-                                reply.setPost(post);
-                            }
-                        }
-                    }
-                    request.setAttribute("commentList", replyList);
-                    request.getRequestDispatcher("manageReply.jsp").forward(request, response);
-
-                } else {
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
-                }
                 break;
             }
             default : request.getRequestDispatcher("index.jsp").forward(request, response);

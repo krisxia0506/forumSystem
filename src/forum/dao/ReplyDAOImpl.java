@@ -40,7 +40,7 @@ public class ReplyDAOImpl implements ReplyDAO {
         return result;
     }
 
-    public ArrayList<Reply> getByNewsId(int newsid) {
+    public ArrayList<Reply> getByNewsId(String postId) {
         Reply reply = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -50,7 +50,7 @@ public class ReplyDAOImpl implements ReplyDAO {
             conn = DBGet.getConnection();
             String sql = "select * from reply where post_id = ? order by reply_time desc";
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, newsid);
+            ps.setString(1, postId);
             rs = ps.executeQuery();
 
             while (rs.next()) {

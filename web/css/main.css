@@ -307,7 +307,7 @@ div#logo_main {
 
 .div624 {
     width: 624px;
-    margin: 0px auto;
+    margin: 15px auto;
     padding: 0;
 }
 
@@ -497,7 +497,7 @@ table.listing td {
     padding-right: 12px;
 }
 
-#commentMessage {
+#replyContent {
     border: 1px solid rgb(204, 204, 204);
     width: 567px;
     height: 70px;
@@ -524,6 +524,8 @@ table.listing td {
     border-bottom-color: rgb(125, 152, 174);
     border-bottom-width: 1px;
     border-bottom-style: dashed;
+    font-size: 11px;
+    text-align: left;
 }
 
 comment_p {

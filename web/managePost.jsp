@@ -28,9 +28,9 @@
     <div id="main">
         <div class="news_list">
             <div class="top-bar">
-                <h1>论坛管理</h1>
+                <h1>我的帖子</h1>
                 <button style="margin-left: 450px;" value="发布新闻" onclick="window.location.href='addNews.jsp';">
-                    发布新闻
+                    发布帖子
                 </button>
             </div>
             <br>
@@ -38,7 +38,7 @@
                 <table class="listing" cellspacing="0" cellpadding="0">
                     <tr>
                         <th class="first" width="40">序号</th>
-                        <th>新闻标题</th>
+                        <th>帖子标题</th>
                         <th>发布时间</th>
                         <th style="width: 40px;">修改</th>
                         <th style="width: 40px;">删除</th>
@@ -47,13 +47,13 @@
                         <tr>
                             <td>${status.count}</td>
                             <td class="title">
-                                <a href="post?action=disp&id=${post.id}">
+                                <a href="post?action=displayPost&postId=${post.id}">
                                         ${post.title}
                                 </a>
                             </td>
                             <td class="ntime">${post.postTime}</td>
                             <td>
-                                <button value="修改" onclick="window.location.href='modiNews.jsp?id=${post.id}';">修改
+                                <button value="修改" onclick="window.location.href='modifyPost.jsp?id=${post.id}';">修改
                                 </button>
 
                             </td>

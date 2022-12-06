@@ -17,7 +17,7 @@
 <%
     ArrayList<PostType> postTypeList = newstypeDAO.getAllNewstype();
     String id = request.getParameter("id");
-    Post forum = postDAO.getById(id);
+    Post post = postDAO.getById(id);
     request.setAttribute("postTypeList", postTypeList);
     request.setAttribute("post", post);
     request.setCharacterEncoding("UTF-8");
@@ -45,7 +45,7 @@
             <form action="post?action=modi" method="post">
                 <input type="hidden" name="author" value="${sessionScope.username}"/>
                 <input type="hidden" name="id" value="${post.id}"/><br>
-                <input type="hidden" name="pubtime" value="${post.pubtime}"/><br>
+                <input type="hidden" name="pubtime" value="${post.postTime}"/><br>
                 标题：<input type="text" name="title" id="title" value="${post.title}"><br><br>
                 类别：<select name="postType">
                 <c:forEach var="postType" items="${postTypeList}">

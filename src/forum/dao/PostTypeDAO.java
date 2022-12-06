@@ -3,10 +3,7 @@ package forum.dao;
 import forum.beans.PostType;
 import forum.util.DBGet;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -33,10 +30,33 @@ public class PostTypeDAO {
                 postTypeList.add(postType);
             }
         } catch (SQLException e1) {
-            System.out.println("getAllNewstype"+e1);
+            System.out.println("getAllNewstype" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
         return postTypeList;
+    }
+
+    public boolean addPostType(String postType) {
+
+        boolean result = false;
+        int n = 0;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = DBGet.getConnection();
+            String sql = "insert into post_type(post_type) value(?)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, postType);
+            n = ps.executeUpdate();
+        } catch (SQLException e1) {
+            System.out.println("insert" + e1);
+        } finally {
+            DBGet.closeConnection(conn);
+        }
+        if (n > 0) {
+            result = true;
+        }
+        return result;
     }
 }

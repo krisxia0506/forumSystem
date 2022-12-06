@@ -1,7 +1,7 @@
 package forum.servlet;
 
-import forum.dao.ReplyDAOImpl;
 import forum.beans.User;
+import forum.dao.ReplyDAOImpl;
 import forum.dao.UserDAO;
 
 import javax.servlet.ServletException;
@@ -60,8 +60,10 @@ public class UserServlet extends HttpServlet {
                 break;
             case "login":
                 String nopwd = request.getParameter("nopwd");
-                if (userDAO.queryByNamePwd(uname, pwd)) {
+                String role = userDAO.queryByNamePwd(uname, pwd);
+                if (role != "") {
                     session.setAttribute("username", uname);
+                    session.setAttribute("role", role);
                     if (nopwd != null) {
                         Cookie cookie = new Cookie("autologin", uname + "-" + pwd);
                         cookie.setMaxAge(Integer.parseInt(nopwd));

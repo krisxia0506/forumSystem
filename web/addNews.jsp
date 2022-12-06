@@ -13,9 +13,6 @@
 <%
     request.setCharacterEncoding("UTF-8");
     ArrayList<PostType> postTypeList = newstypeDAO.getAllNewstype();
-    if(!Objects.equals(session.getAttribute("username"), "admin")){
-        response.sendRedirect("index.jsp");
-    }
 %>
 <!DOCTYPE>
 <html>
@@ -33,7 +30,7 @@
     <div id="main">
         <div class="news_list">
             <div class="top-bar">
-                <h1>新闻发布</h1>
+                <h1>发新贴</h1>
             </div>
             <br>
             <form action="post?action=add" method="post" onsubmit="return CheckAddNews()">

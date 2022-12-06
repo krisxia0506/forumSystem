@@ -12,11 +12,12 @@ import java.util.ArrayList;
  * @author Xia Jiayi
  */
 public class UserDAO {
-    public boolean queryByNamePwd(String uName, String password) {
+    public String queryByNamePwd(String uName, String password) {
         boolean result = false;
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
+        String role = null;
         try {
             conn = DBGet.getConnection();
             String sql = "select * from user where username=? and password=?";
@@ -24,15 +25,17 @@ public class UserDAO {
             ps.setString(1, uName);
             ps.setString(2, password);
             rs = ps.executeQuery();
-            if (rs != null && rs.next()) {
-                result = true;
+            while (rs.next()) {
+                role = rs.getString("role");
             }
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             DBGet.closeConnection(conn);
         }
-        return result;
+        return role;
     }
 
     public boolean deleteById(String id) {

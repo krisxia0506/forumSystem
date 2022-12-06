@@ -24,18 +24,18 @@
         <ul>
             <c:if test="${!empty sessionScope.username}">
                 <c:choose>
-                    <c:when test="${sessionScope.username=='admin'}">
-                        <li><a href="post?action=manage">新闻管理</a></li>
+                    <c:when test="${sessionScope.role=='99'}">
+                        <li><a href="post?action=manage">帖子管理</a></li>
                         |
-                        <li><a href="reply?action=manage&username=${sessionScope.username}">评论管理</a></li>
+                        <li><a href="reply?action=manage">回帖管理</a></li>
                         |
                         <li><a href="user?action=manage">用户管理</a></li>
                         |
                     </c:when>
                     <c:otherwise>
-                        <li><a href="index.jsp">查看新闻</a></li>
+                        <li><a href="post?action=manage">我的帖子</a></li>
                         |
-                        <li><a href="reply?action=usermanage&username=${sessionScope.username}">评论管理</a></li>
+                        <li><a href="reply?action=manage">我的回帖</a></li>
                         |
                         <li><a href="user?action=modifyView&username=${sessionScope.username}">修改用户</a></li>
                         |

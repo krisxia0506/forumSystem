@@ -31,8 +31,6 @@
             <div class="news_time">
                 <span class="left-t">${requestScope.post.postTime}</span>
                 <span class="right-t">（单击：${requestScope.post.hits})
-                    <i class="iconfont">&#xe663;</i>
-                    <a href="reply?action=disp&newsid=${requestScope.post.id}">查看评论</a>
                 </span>
                 <div class="clear"></div>
             </div>
@@ -40,23 +38,59 @@
             <div class="left_zw" style="position: relative">
                 ${requestScope.post.content}
             </div>
-            <%--相关新闻--%>
-            <div class="div624 border-top-darshd">
-                <h4 class="padding-left20" style="margin-top: 0px;color: rgb(30,80,162);">
-                    相关新闻：
-                </h4>
-                <ul class="padding-left20" style="margin-top: -20px">
-                    <c:forEach items="${requestScope.relatePost}" var="rPost">
-                        <li>
-                            <a href="post?action=disp&id=${rPost.id}">${rPost.title}</a>
-                        </li>
-                    </c:forEach>
-                </ul>
+            <%--回帖--%>
+
+            <div class="reply">
+                    <span class="jjs">
+        网友回帖仅供网友表达个人看法，并不表名本网站同意其观点或证实其描述。
+      </span>
+
+                <div class="fbpl">
+
+                    <span class="fd"><i class="iconfont">&#xe663;</i>回帖</span>
+                    <span class="fdr">
+          <i class="iconfont">&#xe654;</i>
+          <button id="btnSubmitBottom" onclick="if (CheckReply()){form_pl.submit()}">回帖</button>
+        </span><br><br>
+                    <form action="reply?action=add" id="form_pl" method="post">
+                        <input type="hidden" name="postId" value="${requestScope.post.id}">
+                        <input type="hidden" name="replyAuthor" value="${sessionScope.username}">
+                        <textarea name="replyContent" id="replyContent"></textarea>
+                    </form>
+                    <div class="blank10"></div>
+                </div>
+
+            </div>
+            <div class="mian">
+                <c:forEach items="${requestScope.replyList}" var="reply">
+                    <div class="nr">
+                        <i class="iconfont">&#xe8c8;</i>
+                        <span>回帖人：[${reply.author}]</span>
+                        &nbsp;&nbsp;${reply.replyTime}&nbsp;&nbsp;
+                        <div class="clear"></div>
+                        <div class="blank20"></div>
+                        <div class="comment_p">${reply.content}</div>
+                    </div>
+                </c:forEach>
             </div>
         </div>
-
-
+        <%--相关新闻--%>
+        <div class="div624 border-top-darshd">
+            <h4 class="padding-left20" style="margin-top: 0px;color: rgb(30,80,162);">
+                相关新闻：
+            </h4>
+            <ul class="padding-left20" style="margin-top: -20px">
+                <c:forEach items="${requestScope.relatePost}" var="rPost">
+                    <li>
+                        <a href="post?action=disp&id=${rPost.id}">${rPost.title}</a>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
     </div>
+
+
+</div>
 
 
 </div>

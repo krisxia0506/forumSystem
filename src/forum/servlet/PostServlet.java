@@ -1,8 +1,10 @@
 package forum.servlet;
 
 import forum.beans.Post;
+import forum.beans.Reply;
 import forum.dao.PostDAO;
 import forum.dao.PostPageDAO;
+import forum.dao.ReplyDAOImpl;
 import forum.dao.UserDAO;
 
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created on 2022-11-09 16:27
@@ -23,6 +26,7 @@ public class PostServlet extends HttpServlet {
         HttpSession session = request.getSession();
         ArrayList<Post> postList = new ArrayList<Post>();
         PostDAO postDAO = new PostDAO();
+        ReplyDAOImpl replyDAO = new ReplyDAOImpl();
         PostPageDAO postPageDAO = new PostPageDAO();
         int pageNo = 1;
         int pageSize = 6;
@@ -38,9 +42,9 @@ public class PostServlet extends HttpServlet {
         switch (func) {
             case "query" : {
                 String keyword = request.getParameter("keyword");
-                postList = postDAO.getNewsByKeyword(keyword);
-                request.setAttribute("newsList", postList);
-                request.getRequestDispatcher("listNews.jsp").forward(request, response);
+                postList = postDAO.getPostByKeyword(keyword);
+                request.setAttribute("postList", postList);
+                request.getRequestDispatcher("listPost.jsp").forward(request, response);
                 break;
             }
             case "modi" : {
@@ -59,23 +63,31 @@ public class PostServlet extends HttpServlet {
                 post.setPostType(newstype);
                 post.setKeyword(keyword);
                 post.setContent(content);
-                if (postDAO.modifyNews(post)) {
-                    request.getRequestDispatcher("forum").forward(request, response);
+                if (postDAO.modifyPost(post)) {
+                    request.getRequestDispatcher("post?action=manage").forward(request, response);
                 } else {
-                    request.getRequestDispatcher("forum").forward(request, response);
+                    request.getRequestDispatcher("post?action=manage").forward(request, response);
                 }
                 break;
             }
             case "manage" : {
-                postList = postDAO.getAllNews();
+                String role = (String) session.getAttribute("role");
+                if (Objects.equals(role, "99")) {
+                    postList = postDAO.getAllPost();
+                } else {
+                    String username = (String) session.getAttribute("username");
+                    postList = postDAO.getPostByUsername(username);
+                }
+
                 request.setAttribute("postList", postList);
                 request.getRequestDispatcher("managePost.jsp").forward(request, response);
                 break;
             }
+
             case "del" : {
-                String newsId = request.getParameter("id");
-                if (postDAO.deleteById(newsId)) {
-                    request.getRequestDispatcher("forum").forward(request, response);
+                String postId = request.getParameter("postId");
+                if (postDAO.deletePostById(postId)) {
+                    request.getRequestDispatcher("post?action=manage").forward(request, response);
                 } else {
                     System.out.println();
                 }
@@ -85,28 +97,34 @@ public class PostServlet extends HttpServlet {
                 Post post = new Post();
                 String author = request.getParameter("author");
                 String title = request.getParameter("title");
-                String newstype = request.getParameter("newstype");
+                String postType = request.getParameter("postType");
                 String keyword = request.getParameter("keyword");
                 String content = request.getParameter("content");
                 post.setAuthor(author);
                 post.setTitle(title);
-                post.setPostType(newstype);
+                post.setPostType(postType);
                 post.setKeyword(keyword);
                 post.setContent(content);
-                if (postDAO.insertNews(post)) {
-                    request.getRequestDispatcher("forum").forward(request, response);
+                if (postDAO.addPost(post)) {
+                    String postId = postDAO.queryLastPost();
+                    request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
                 } else {
                     System.out.println("发布失败");
-                    request.getRequestDispatcher("forum").forward(request, response);
+                    request.getRequestDispatcher("post?action=manage").forward(request, response);
                 }
                 break;
             }
             case "displayPost" : {
                 String postId = request.getParameter("postId");
                 if (postDAO.getById(postId).getId() != null) {
-                    postDAO.increaseAc(postId);
+                    postDAO.increaseHits(postId);
+                    //获取帖子详情
                     Post post = postDAO.getById(postId);
+                    //获取回帖
+                    ArrayList<Reply> replyList = replyDAO.getByNewsId(postId);
+
                     request.setAttribute("post", post);
+                    request.setAttribute("replyList", replyList);
                     request.setAttribute("relatePost", postDAO.getRelate(postId));
                     request.getRequestDispatcher("displayPost.jsp").forward(request, response);
                 } else {
@@ -117,13 +135,13 @@ public class PostServlet extends HttpServlet {
             //根据模块查询该模块的帖子列表
             case "displayPostList" : {
                 String postTypeId = request.getParameter("postTypeId");
-                postList = postPageDAO.getNewsByPage(pageNo, pageSize,postTypeId);
-                Integer pageCount = postPageDAO.getPageCount(pageSize,postTypeId);
-                request.setAttribute("pageCount",pageCount);
-                request.setAttribute("pageNo",pageNo);
+                postList = postPageDAO.getNewsByPage(pageNo, pageSize, postTypeId);
+                Integer pageCount = postPageDAO.getPageCount(pageSize, postTypeId);
+                request.setAttribute("pageCount", pageCount);
+                request.setAttribute("pageNo", pageNo);
                 request.setAttribute("postList", postList);
-                request.setAttribute("postTypeId",postTypeId);
-                request.getRequestDispatcher("listNews.jsp").forward(request, response);
+                request.setAttribute("postTypeId", postTypeId);
+                request.getRequestDispatcher("listPost.jsp").forward(request, response);
                 break;
             }
             default : {
@@ -145,7 +163,7 @@ public class PostServlet extends HttpServlet {
                         String name = parts[0];
                         String pwd = parts[1];
                         UserDAO userDAO = new UserDAO();
-                        if (!userDAO.queryByNamePwd(name, pwd)) {
+                        if (userDAO.queryByNamePwd(name, pwd) != "") {
                             response.sendRedirect("userLogin.jsp ");
                         } else {
                             session.setAttribute("username", name);
@@ -157,7 +175,7 @@ public class PostServlet extends HttpServlet {
                 request.setAttribute("pageCount",pageCount);
                 request.setAttribute("pageNo",pageNo);
                 request.setAttribute("newsList", postList);
-                request.getRequestDispatcher("listNews.jsp").forward(request, response);
+                request.getRequestDispatcher("listPost.jsp").forward(request, response);
             }
         }
     }

@@ -19,7 +19,7 @@ public class PostPageDAO {
         PostDAO postDAO = new PostDAO();
         int recordCount=0,t1=0,t2=0;
         //新闻总条数
-        recordCount = postDAO.getNewsCount(postTypeId);
+        recordCount = postDAO.getPostCountByType(postTypeId);
         //取余
         t1=recordCount%pageSize;
         //取商
@@ -38,7 +38,7 @@ public class PostPageDAO {
         PostDAO postDAO = new PostDAO();
         ArrayList<Post> postList = new ArrayList<Post>();
         int start = (pageNo-1)*pageSize;
-        postList = postDAO.getNewsByST(start,pageSize,postTypeId);
+        postList = postDAO.getPostBySCT(start, pageSize, postTypeId);
         return postList;
     }
 

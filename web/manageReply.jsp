@@ -27,7 +27,7 @@
         <div class="news_list">
             <div class="top-bar">
                 <h1>
-                    评论管理
+                    回帖管理
                 </h1>
                 <div class="breadcrumbs"></div>
             </div>
@@ -36,10 +36,10 @@
                 <table class="listing" cellpadding="0" cellspacing="0" width="600" border="1">
                     <tbody>
                     <tr>
-                        <th class="first" width="200px">新闻标题</th>
-                        <th style="width: 200px">评论内容</th>
-                        <th>评论作者</th>
-                        <th style="width: 150px;">评论时间</th>
+                        <th class="first" width="200px">帖子标题</th>
+                        <th style="width: 200px">回帖内容</th>
+                        <th>回帖人</th>
+                        <th style="width: 150px;">回帖时间</th>
                         <th style="width: 100px;">删除</th>
                     </tr>
                     <c:forEach items="${requestScope.replyList}" var="reply">
@@ -50,7 +50,7 @@
                                 </a>
                             </td>
                             <td style="text-align: left;width: 100px;">
-                                <a href="reply?action=disp&newsid=${reply.postId}">
+                                <a href="post?action=displayPost&postId=${reply.postId}">
                                         ${reply.content}
                                 </a>
                             </td>
