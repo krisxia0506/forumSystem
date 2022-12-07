@@ -30,7 +30,16 @@
             </div>
             <div class="news_time">
                 <span class="left-t">${requestScope.post.postTime}</span>
-                <span class="right-t">（单击：${requestScope.post.hits})
+                <span class="right-t">
+                    <c:choose>
+                        <c:when test="${requestScope.isCollected}">
+                            <button onclick="window.location.href = 'collect?action=delete&postId=${requestScope.post.id}'">已收藏</button>
+                        </c:when>
+                        <c:otherwise>
+                            <button onclick="window.location.href = 'collect?action=add&postId=${requestScope.post.id}'">收藏</button>
+                        </c:otherwise>
+                    </c:choose>
+                    （单击：${requestScope.post.hits})
                 </span>
                 <div class="clear"></div>
             </div>

@@ -64,7 +64,7 @@ public class PostDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "insert into post(post_title,post_content,post_author,post_time,post_keyword,post_type_id) value(?,?,?,?,?,?)";
+            String sql = "insert into post value(null,?,?,?,?,?,?,0)";
             ps = conn.prepareStatement(sql);
             ps.setString(1, post.getTitle());
             ps.setString(2, post.getContent());
@@ -280,7 +280,7 @@ public class PostDAO {
     }
 
     /**
-     * 按关键字查询帖子
+     * 按标题、关键字、内容模糊查询帖子
      *
      * @param keyword 关键字
      * @return 帖子列表
@@ -412,38 +412,13 @@ public class PostDAO {
         return postId;
     }
 
-    public ArrayList<Post> getPostByAuthor() {
-        Post post = null;
-        ArrayList<Post> postList = new ArrayList<Post>();
-        Connection conn = null;
-        ResultSet rs = null;
-        try {
-            conn = DBGet.getConnection();
-            Statement stmt = conn.createStatement();
-            String sql = "select * from post where post_author=? order by post_time desc  ";
-
-            rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                post = new Post();
-                post.setId(rs.getInt("post_id"));
-                post.setTitle(rs.getString("post_title"));
-                post.setContent(rs.getString("post_content"));
-                post.setAuthor(rs.getString("post_author"));
-                post.setPostTime(rs.getString("post_time"));
-                post.setKeyword(rs.getString("post_keyword"));
-                post.setHits(rs.getString("post_hits"));
-                post.setPostType(rs.getString("post_type_id"));
-                postList.add(post);
-            }
-        } catch (SQLException e1) {
-            System.out.println("getAllNews" + e1);
-        } finally {
-            DBGet.closeConnection(conn);
-        }
-        return postList;
-    }
-
-    public ArrayList<Post> getPostByUsername(String username) {
+    /**
+     * 根据作者找帖子
+     *
+     * @param userId 作者
+     * @return 该用户所发表的帖子列表
+     */
+    public ArrayList<Post> getPostByUserId(String userId) {
         Post post = null;
         ArrayList<Post> postList = new ArrayList<Post>();
         Connection conn = null;
@@ -451,9 +426,9 @@ public class PostDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "select * from post where post_author = ?";
+            String sql = "select * from post where post_author = ? order by post_time desc";
             ps = conn.prepareStatement(sql);
-            ps.setString(1, username);
+            ps.setString(1, userId);
             rs = ps.executeQuery();
             while (rs.next()) {
                 post = new Post();
@@ -473,6 +448,6 @@ public class PostDAO {
             DBGet.closeConnection(conn);
         }
         return postList;
-
     }
+
 }

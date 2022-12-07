@@ -42,10 +42,10 @@
                 <div class="breadcrumbs"></div>
             </div>
             <br/>
-            <form action="post?action=modi" method="post">
-                <input type="hidden" name="author" value="${sessionScope.username}"/>
+            <form action="post?action=modify" method="post">
+                <input type="hidden" name="author" value="${sessionScope.userId}"/>
                 <input type="hidden" name="id" value="${post.id}"/><br>
-                <input type="hidden" name="pubtime" value="${post.postTime}"/><br>
+                <input type="hidden" name="postTime" value="${post.postTime}"/><br>
                 标题：<input type="text" name="title" id="title" value="${post.title}"><br><br>
                 类别：<select name="postType">
                 <c:forEach var="postType" items="${postTypeList}">

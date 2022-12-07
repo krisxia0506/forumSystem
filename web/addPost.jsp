@@ -34,7 +34,7 @@
             </div>
             <br>
             <form action="post?action=add" method="post" onsubmit="return CheckAddNews()">
-                <input type="hidden" name="author" value="<%=session.getAttribute("username")%>"></input><br>
+                <input type="hidden" name="author" value="${sessionScope.userId}"></input><br>
                 标题: <input type="text" name="title" id="title">
                 <br><br>
                 类别:

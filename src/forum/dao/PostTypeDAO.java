@@ -141,4 +141,40 @@ public class PostTypeDAO {
         }
         return result;
     }
+
+    /**
+     * 获取热门版块
+     */
+    public ArrayList<PostType> getHotPostType() {
+        PostType postType = null;
+        ArrayList<PostType> postTypeList = new ArrayList<PostType>();
+        Connection conn = null;
+        ResultSet rs = null;
+        Statement stmt = null;
+        try {
+            conn = DBGet.getConnection();
+            stmt = conn.createStatement();
+            String sql = "select post_type.post_type_id, post_type, post_type.type_introduction\n" +
+                    "from post_type\n" +
+                    "         join (select post_type_id, sum(post_hits) as hits\n" +
+                    "               from post\n" +
+                    "               group by post_type_id) as post_count\n" +
+                    "              on post_type.post_type_id = post_count.post_type_id\n" +
+                    "order by hits desc\n" +
+                    "limit 5;";
+            rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                postType = new PostType();
+                postType.setId(rs.getInt("post_type_id"));
+                postType.setPostType(rs.getString("post_type"));
+                postType.setTypeIntroduction(rs.getString("type_introduction"));
+                postTypeList.add(postType);
+            }
+        } catch (SQLException e1) {
+            System.out.println("getHotPostType" + e1);
+        } finally {
+            DBGet.closeConnection(conn);
+        }
+        return postTypeList;
+    }
 }

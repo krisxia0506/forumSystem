@@ -12,12 +12,11 @@ import java.util.ArrayList;
  * @author Xia Jiayi
  */
 public class UserDAO {
-    public String queryByNamePwd(String uName, String password) {
-        boolean result = false;
+    public User queryByNamePwd(String uName, String password) {
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
-        String role = null;
+        User user = new User();
         try {
             conn = DBGet.getConnection();
             String sql = "select * from user where username=? and password=?";
@@ -26,16 +25,17 @@ public class UserDAO {
             ps.setString(2, password);
             rs = ps.executeQuery();
             while (rs.next()) {
-                role = rs.getString("role");
+                user.setId(rs.getInt("id"));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setRoleId(Integer.valueOf(rs.getString("role")));
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             DBGet.closeConnection(conn);
         }
-        return role;
+        return user;
     }
 
     public boolean deleteById(String id) {
@@ -88,7 +88,7 @@ public class UserDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "INSERT INTO user VALUES(null,?,?,?,?)";
+            String sql = "INSERT INTO user VALUES(null,1,?,?,?,?,null,1)";
             ps = conn.prepareStatement(sql);
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
@@ -180,6 +180,5 @@ public class UserDAO {
             DBGet.closeConnection(conn);
         }
     }
-
 }
 

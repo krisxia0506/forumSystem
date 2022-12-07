@@ -60,10 +60,11 @@ public class UserServlet extends HttpServlet {
                 break;
             case "login":
                 String nopwd = request.getParameter("nopwd");
-                String role = userDAO.queryByNamePwd(uname, pwd);
-                if (role != "") {
+                user = userDAO.queryByNamePwd(uname, pwd);
+                if (user.getId() != null) {
                     session.setAttribute("username", uname);
-                    session.setAttribute("role", role);
+                    session.setAttribute("role", user.getRoleId().toString());
+                    session.setAttribute("userId", user.getId().toString());
                     if (nopwd != null) {
                         Cookie cookie = new Cookie("autologin", uname + "-" + pwd);
                         cookie.setMaxAge(Integer.parseInt(nopwd));

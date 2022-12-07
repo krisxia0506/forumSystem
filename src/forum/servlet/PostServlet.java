@@ -2,10 +2,7 @@ package forum.servlet;
 
 import forum.beans.Post;
 import forum.beans.Reply;
-import forum.dao.PostDAO;
-import forum.dao.PostPageDAO;
-import forum.dao.ReplyDAOImpl;
-import forum.dao.UserDAO;
+import forum.dao.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,27 +38,27 @@ public class PostServlet extends HttpServlet {
             func = "";
         }
         switch (func) {
-            case "query" : {
+            case "query": {
                 String keyword = request.getParameter("keyword");
                 postList = postDAO.getPostByKeyword(keyword);
                 request.setAttribute("postList", postList);
                 request.getRequestDispatcher("listPost.jsp").forward(request, response);
                 break;
             }
-            case "modi" : {
+            case "modify": {
                 Post post = new Post();
                 String id = request.getParameter("id");
                 String author = request.getParameter("author");
-                String pubtime = request.getParameter("pubtime");
+                String postTime = request.getParameter("postTime");
                 String title = request.getParameter("title");
-                String newstype = request.getParameter("newstype");
+                String postType = request.getParameter("postType");
                 String keyword = request.getParameter("keyword");
                 String content = request.getParameter("content");
                 post.setId(Integer.parseInt(id));
                 post.setAuthor(author);
-                post.setPostTime(pubtime);
+                post.setPostTime(postTime);
                 post.setTitle(title);
-                post.setPostType(newstype);
+                post.setPostType(postType);
                 post.setKeyword(keyword);
                 post.setContent(content);
                 if (postDAO.modifyPost(post)) {
@@ -76,8 +73,8 @@ public class PostServlet extends HttpServlet {
                 if (Objects.equals(role, "99")) {
                     postList = postDAO.getAllPost();
                 } else {
-                    String username = (String) session.getAttribute("username");
-                    postList = postDAO.getPostByUsername(username);
+                    String userId = (String) session.getAttribute("userId");
+                    postList = postDAO.getPostByUserId(userId);
                 }
 
                 request.setAttribute("postList", postList);
@@ -118,16 +115,23 @@ public class PostServlet extends HttpServlet {
             }
             case "displayPost" : {
                 String postId = request.getParameter("postId");
+                boolean isCollected = false;
                 if (postDAO.getById(postId).getId() != null) {
                     postDAO.increaseHits(postId);
                     //获取帖子详情
                     Post post = postDAO.getById(postId);
                     //获取回帖
                     ArrayList<Reply> replyList = replyDAO.getByNewsId(postId);
-
+                    //获取是否收藏
+                    String username = (String) session.getAttribute("username");
+                    if (username != null) {
+                        CollectDAO collectDAO = new CollectDAO();
+                        isCollected = collectDAO.isCollected(username, postId);
+                    }
                     request.setAttribute("post", post);
                     request.setAttribute("replyList", replyList);
                     request.setAttribute("relatePost", postDAO.getRelate(postId));
+                    request.setAttribute("isCollected", isCollected);
                     request.getRequestDispatcher("displayPost.jsp").forward(request, response);
                 } else {
                     request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -164,7 +168,7 @@ public class PostServlet extends HttpServlet {
                         String[] parts = autologin.split("-");
                         String name = parts[0];
                         String pwd = parts[1];
-                        if (userDAO.queryByNamePwd(name, pwd) != "") {
+                        if (userDAO.queryByNamePwd(name, pwd).getId() != null) {
                             response.sendRedirect("userLogin.jsp ");
                         } else {
                             session.setAttribute("username", name);

@@ -112,7 +112,7 @@ div#logo_main {
 
 .aside {
     width: 285px;
-    height: 380px;
+    /*height: 380px;*/
     float: left;
     border: solid 1px #bfdaf5;
 }

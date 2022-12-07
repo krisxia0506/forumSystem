@@ -2,18 +2,24 @@
 <%@ page import="forum.beans.*" %>
 <%@ page import="forum.dao.ReplyDAOImpl" %>
 <%@ page import="forum.dao.ReplyDAO" %>
-<%@ page import="forum.dao.ReplyDAOImpl" %>
 <%@ page language="java" contentType="text/html;charset=utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
 <jsp:useBean id="postTypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
 <%
+    //获取热门版块
+    ArrayList<PostType> hotPostType = postTypeDAO.getHotPostType();
+    request.setAttribute("hotPostType", hotPostType);
+    //获取热贴
     ArrayList<Post> hotPostList = postDAO.getHotPost();
     request.setAttribute("hotPostList", hotPostList);
+    //获取所有帖子类型
     ArrayList<PostType> postTypeList = postTypeDAO.getAllPostType();
     request.setAttribute("postTypeList", postTypeList);
+    //获取热门回帖
     ReplyDAO replyDAO = new ReplyDAOImpl();
     request.setAttribute("hotReplyList", replyDAO.getTop5());
+
 
 %>
 <div class="sidesec">
@@ -30,6 +36,19 @@
                 <i class="iconfont" style="font-size: 27px;cursor:pointer;" onclick="submitFun()">&#xeafe;</i>
             </div>
         </form>
+    </div>
+</div>
+<div class="sidesec">
+    <div class="sidesec_bt"><span>热门版块</span></div>
+    <hr>
+    <div class="sidesec_list">
+        <ul>
+            <c:forEach var="postType" items="${hotPostType}" varStatus="status">
+                <li>
+                    .<a href="post?action=displayPostList&postTypeId=${postType.id}">${postType.postType}</a>
+                </li>
+            </c:forEach>
+        </ul>
     </div>
 </div>
 <div class="sidesec">
