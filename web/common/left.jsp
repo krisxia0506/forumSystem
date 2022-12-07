@@ -18,7 +18,7 @@
     request.setAttribute("postTypeList", postTypeList);
     //获取热门回帖
     ReplyDAO replyDAO = new ReplyDAOImpl();
-    request.setAttribute("hotReplyList", replyDAO.getTop5());
+    request.setAttribute("hotReplyList", replyDAO.getHotReply());
 
 
 %>
@@ -71,7 +71,7 @@
         <ul>
             <c:forEach var="reply" items="${hotReplyList}">
                 <li>
-                    .<a href="reply?action=displayPost&newsid=${reply.postId}">
+                    .<a href="post?action=displayPost&postId=${reply.postId}">
                         ${reply.content}
                 </a>
                 </li>

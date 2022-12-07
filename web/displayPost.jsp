@@ -30,6 +30,8 @@
             </div>
             <div class="news_time">
                 <span class="left-t">${requestScope.post.postTime}</span>
+
+                <span class="left-t"><i class="iconfont">&#xe8c8;</i>${requestScope.post.author}</span>
                 <span class="right-t">
                     <c:choose>
                         <c:when test="${requestScope.isCollected}">
@@ -91,7 +93,7 @@
             <ul class="padding-left20" style="margin-top: -20px">
                 <c:forEach items="${requestScope.relatePost}" var="rPost">
                     <li>
-                        <a href="post?action=disp&id=${rPost.id}">${rPost.title}</a>
+                        <a href="post?action=displayPost&postId=${rPost.id}">${rPost.title}</a>
                     </li>
                 </c:forEach>
             </ul>

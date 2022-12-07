@@ -121,17 +121,17 @@ public class PostServlet extends HttpServlet {
                     //获取帖子详情
                     Post post = postDAO.getById(postId);
                     //获取回帖
-                    ArrayList<Reply> replyList = replyDAO.getByNewsId(postId);
+                    ArrayList<Reply> replyList = replyDAO.getByPostId(postId);
                     //获取是否收藏
-                    String username = (String) session.getAttribute("username");
-                    if (username != null) {
+                    String userId = (String) session.getAttribute("userId");
+                    if (userId != null) {
                         CollectDAO collectDAO = new CollectDAO();
-                        isCollected = collectDAO.isCollected(username, postId);
+                        isCollected = collectDAO.isCollected(userId, postId);
+                        request.setAttribute("isCollected", isCollected);
                     }
                     request.setAttribute("post", post);
                     request.setAttribute("replyList", replyList);
                     request.setAttribute("relatePost", postDAO.getRelate(postId));
-                    request.setAttribute("isCollected", isCollected);
                     request.getRequestDispatcher("displayPost.jsp").forward(request, response);
                 } else {
                     request.getRequestDispatcher("index.jsp").forward(request, response);

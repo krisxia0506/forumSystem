@@ -40,7 +40,7 @@ public class ReplyServlet extends HttpServlet {
             case "add" : {
                 Reply reply = new Reply();
                 String postId = request.getParameter("postId");
-                String replyAuthor = request.getParameter("replyAuthor");
+                String replyAuthor = (String) session.getAttribute("userId");
                 String replyContent = request.getParameter("replyContent");
                 if (Objects.equals(replyAuthor, "")) {
                     response.sendRedirect("userLogin.jsp");
@@ -72,8 +72,8 @@ public class ReplyServlet extends HttpServlet {
                 if (Objects.equals(role, "99")) {
                     replyList = replyDAO.getAll();
                 } else {
-                    String username = (String) session.getAttribute("username");
-                    replyList = replyDAO.getByUsername(username);
+                    String userId = (String) session.getAttribute("userId");
+                    replyList = replyDAO.getByUserId(userId);
                 }
                 PostDAO postDAO = new PostDAO();
                 postList = postDAO.getAllPost();

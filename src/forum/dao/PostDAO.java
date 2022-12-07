@@ -97,7 +97,7 @@ public class PostDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "select * from post where post_id=?";
+            String sql = "select post_id, post_title, post_content,username post_author, post_time, post_keyword, post_type_id, post_hits from post join user u on u.id = post.post_author where post_id=?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             rs = ps.executeQuery();
@@ -226,8 +226,6 @@ public class PostDAO {
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             if (ps.executeUpdate() == 1) {
-                //删除对应帖子的回帖
-                replyDAO.deleteByNewsId(id);
                 result = true;
             }
         } catch (SQLException e) {

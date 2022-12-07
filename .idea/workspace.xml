@@ -9,23 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb67749f-9fcc-4ef0-a7e5-6eff1e9e6692" name="变更" comment="帖子管理，回帖管理">
-      <change afterPath="$PROJECT_DIR$/src/forum/dao/CollectDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/forum/servlet/CollectServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="eb67749f-9fcc-4ef0-a7e5-6eff1e9e6692" name="变更" comment="模块管理&#10;热门版块&#10;数据库采用userId">
+      <change afterPath="$PROJECT_DIR$/src/forum/beans/Collection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/manageCollect.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/CollectDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/CollectDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forum/dao/PostDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/PostDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/dao/PostTypeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/PostTypeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/ReplyDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/ReplyDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/ReplyDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/ReplyDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/servlet/CollectServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/CollectServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forum/servlet/PostServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/PostServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/servlet/ReplyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/ReplyServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forum/servlet/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/addPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/addPost.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/checkvaild.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/checkvaild.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/common/left.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/common/left.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/common/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/common/top.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/displayPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/displayPost.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/modifyPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/modifyPost.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,7 +279,7 @@
       <workItem from="1670287876851" duration="13743000" />
       <workItem from="1670323364053" duration="47000" />
       <workItem from="1670323423312" duration="4514000" />
-      <workItem from="1670372619716" duration="10187000" />
+      <workItem from="1670372619716" duration="16503000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1670234117707</created>
@@ -317,7 +316,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670327862710</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="模块管理&#10;热门版块&#10;数据库采用userId">
+      <created>1670385327008</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1670385327008</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +345,8 @@
     <MESSAGE value="1" />
     <MESSAGE value="README.md" />
     <MESSAGE value="帖子管理，回帖管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="帖子管理，回帖管理" />
+    <MESSAGE value="模块管理&#10;热门版块&#10;数据库采用userId" />
+    <option name="LAST_COMMIT_MESSAGE" value="模块管理&#10;热门版块&#10;数据库采用userId" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

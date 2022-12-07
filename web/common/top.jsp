@@ -39,6 +39,8 @@
                         |
                         <li><a href="reply?action=manage">我的回帖</a></li>
                         |
+                        <li><a href="collect?action=manage">我的收藏</a></li>
+                        |
                         <li><a href="user?action=modifyView&username=${sessionScope.username}">修改用户</a></li>
                         |
                     </c:otherwise>

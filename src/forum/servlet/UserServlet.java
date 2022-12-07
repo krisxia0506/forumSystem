@@ -1,7 +1,6 @@
 package forum.servlet;
 
 import forum.beans.User;
-import forum.dao.ReplyDAOImpl;
 import forum.dao.UserDAO;
 
 import javax.servlet.ServletException;
@@ -49,9 +48,6 @@ public class UserServlet extends HttpServlet {
                 break;
             case "delete":
                 if (userDAO.deleteById(id)) {
-                    ReplyDAOImpl commentDAO = new ReplyDAOImpl();
-                    commentDAO.deleteByUsername(uname);
-
                     request.getRequestDispatcher("user?action=manage").forward(request, response);
                 } else {
                     System.out.println("deleteUser error");
