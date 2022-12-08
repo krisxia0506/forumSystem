@@ -1,8 +1,8 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="forum.beans.PostType" %>
+<%@ page import="forum.beans.Theme" %>
 <%@ page import="forum.beans.Post" %>
 <%@ page import="forum.beans.Post" %>
-<%@ page import="forum.beans.PostType" %><%--
+<%@ page import="forum.beans.Theme" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2022-11-03
@@ -13,12 +13,12 @@
 <%@ include file="checkvaild.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
-<jsp:useBean id="newstypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
+<jsp:useBean id="themeDAO" class="forum.dao.ThemeDAO" scope="page"/>
 <%
-    ArrayList<PostType> postTypeList = newstypeDAO.getAllPostType();
+    ArrayList<Theme> themeList = themeDAO.getAllTheme();
     String id = request.getParameter("id");
     Post post = postDAO.getById(id);
-    request.setAttribute("postTypeList", postTypeList);
+    request.setAttribute("themeList", themeList);
     request.setAttribute("post", post);
     request.setCharacterEncoding("UTF-8");
 %>
@@ -47,17 +47,17 @@
                 <input type="hidden" name="id" value="${post.id}"/><br>
                 <input type="hidden" name="postTime" value="${post.postTime}"/><br>
                 标题：<input type="text" name="title" id="title" value="${post.title}"><br><br>
-                类别：<select name="postType">
-                <c:forEach var="postType" items="${postTypeList}">
+                类别：<select name="theme">
+                <c:forEach var="theme" items="${themeList}">
                     <c:choose>
-                        <c:when test="${postType.id==post.postType}">
-                            <option value="${postType.id}" selected="selected">
-                                    ${postType.postType}
+                        <c:when test="${theme.id==post.theme}">
+                            <option value="${theme.id}" selected="selected">
+                                    ${theme.themeTitle}
                             </option>
                         </c:when>
                         <c:otherwise>
-                            <option value="${postType.id}">
-                                    ${postType.postType}
+                            <option value="${theme.id}">
+                                    ${theme.themeTitle}
                             </option>
                         </c:otherwise>
                     </c:choose>

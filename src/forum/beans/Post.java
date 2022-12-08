@@ -13,7 +13,7 @@ public class Post implements java.io.Serializable {
     private String postTime;
     private String keyword;
     private String note;
-    private String postType;
+    private String theme;
     private String hits;
 
     public Post() {
@@ -84,12 +84,12 @@ public class Post implements java.io.Serializable {
         this.note = note;
     }
 
-    public String getPostType() {
-        return postType;
+    public String getTheme() {
+        return theme;
     }
 
-    public void setPostType(String postType) {
-        this.postType = postType;
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 
     public String getHits() {

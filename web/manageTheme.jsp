@@ -42,23 +42,23 @@
                         <th style="width: 40px;">修改</th>
                         <th style="width: 40px;">删除</th>
                     </tr>
-                    <c:forEach var="postType" items="${requestScope.postTypeList}" varStatus="status">
+                    <c:forEach var="theme" items="${requestScope.themeList}" varStatus="status">
                         <tr>
                             <td>${status.count}</td>
                             <td class="title">
-                                <a href="post?action=displayPostList&postTypeId=${postType.id}">
-                                        ${postType.postType}
+                                <a href="post?action=displayPostList&postTypeId=${theme.id}">
+                                        ${theme.themeTitle}
                                 </a>
                             </td>
-                            <td class="ntime">${postType.typeIntroduction}</td>
+                            <td class="ntime">${theme.themeIntroduction}</td>
                             <td>
                                 <button value="修改"
-                                        onclick="window.location.href='modifyType.jsp?postTypeId='+${postType.id};">修改
+                                        onclick="window.location.href='modifyTheme.jsp?postTypeId='+${theme.id};">修改
                                 </button>
 
                             </td>
                             <td>
-                                <button value="删除" onclick="deleteType(${postType.id});">删除</button>
+                                <button value="删除" onclick="deleteType(${theme.id});">删除</button>
 
                             </td>
                         </tr>

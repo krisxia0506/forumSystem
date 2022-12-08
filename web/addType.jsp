@@ -6,10 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.*" %>
-<%@ page import="forum.beans.PostType" %>
-<jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
-<jsp:useBean id="newstypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
 <!DOCTYPE>
 <html>
 <head>
@@ -29,9 +25,9 @@
                 <h1>新增版块</h1>
             </div>
             <br>
-            <form action="type?action=add" method="post" onsubmit="return CheckAddNews()">
+            <form action="theme?action=add" method="post" onsubmit="return CheckAddNews()">
                 <br><br>
-                版块标题:<input type="text" name="postType" id="title" value=""><br><br>
+                版块标题:<input type="text" name="theme" id="title" value=""><br><br>
                 版块简介:<textarea name="typeIntroduction" cols="25" rows="5"></textarea>
                 <br><br>
                 <input type="submit" value="新增"/><br>

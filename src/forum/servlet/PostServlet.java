@@ -58,7 +58,7 @@ public class PostServlet extends HttpServlet {
                 post.setAuthor(author);
                 post.setPostTime(postTime);
                 post.setTitle(title);
-                post.setPostType(postType);
+                post.setTheme(postType);
                 post.setKeyword(keyword);
                 post.setContent(content);
                 if (postDAO.modifyPost(post)) {
@@ -100,7 +100,7 @@ public class PostServlet extends HttpServlet {
                 String content = request.getParameter("content");
                 post.setAuthor(userId);
                 post.setTitle(title);
-                post.setPostType(postType);
+                post.setTheme(postType);
                 post.setKeyword(keyword);
                 post.setContent(content);
                 if (postDAO.addPost(post)) {

@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="forum.beans.PostType" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
-<jsp:useBean id="newstypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
-
-<%
-    ArrayList<PostType> postTypeList = newstypeDAO.getAllPostType();
-    request.setAttribute("postTypeList", postTypeList);
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,13 +19,13 @@
             <h1 style="margin: 0 0 20px">版块中心</h1>
 
             <ul class="ul1">
-                <c:forEach items="${requestScope.postTypeList}" var="postType">
+                <c:forEach items="${requestScope.themeList}" var="theme">
                     <li class="li1">
                         <div>
-                            <a class="div403" href="post?action=displayPostList&postTypeId=${postType.id}">
+                            <a class="div403" href="post?action=displayPostList&postTypeId=${theme.id}">
                                 <div class="div404">
-                                    <div class="typeTitle">${postType.postType}</div>
-                                    <div class="typeIntroduction">${postType.typeIntroduction}</div>
+                                    <div class="typeTitle">${theme.themeTitle}</div>
+                                    <div class="typeIntroduction">${theme.themeIntroduction}</div>
                                 </div>
 
                             </a>

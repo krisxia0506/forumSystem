@@ -6,16 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="forum.beans.PostType" %>
-<%@ page import="forum.beans.PostType" %>
+<%@ page import="forum.beans.Theme" %>
+<%@ page import="forum.beans.Theme" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
-<jsp:useBean id="newstypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
+<jsp:useBean id="themeDAO" class="forum.dao.ThemeDAO" scope="page"/>
 
 <%
-    ArrayList<PostType> postTypeList = newstypeDAO.getAllPostType();
-    request.setAttribute("postTypeList", postTypeList);
+    ArrayList<Theme> themeList = themeDAO.getAllTheme();
+    request.setAttribute("themeList", themeList);
 %>
 
 <!DOCTYPE html>
@@ -39,10 +39,10 @@
                 <c:forEach items="${requestScope.postList}" var="post">
                     <li>
                         <div class="dd_lm">[
-                            <c:forEach var="postType" items="${postTypeList}">
+                            <c:forEach var="theme" items="${themeList}">
                                 <c:choose>
-                                    <c:when test="${postType.id==post.postType}">
-                                        ${postType.postType}
+                                    <c:when test="${theme.id==post.theme}">
+                                        ${theme.themeTitle}
                                     </c:when>
 
                                 </c:choose>

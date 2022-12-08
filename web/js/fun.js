@@ -53,7 +53,7 @@ function deleteNews(postId) {
 
 function deleteType(postTypeId) {
     if (confirm("确定删除吗？")) {
-        window.location.href = "type?action=delete&postTypeId=" + postTypeId;
+        window.location.href = "theme?action=delete&postTypeId=" + postTypeId;
     }
 }
 

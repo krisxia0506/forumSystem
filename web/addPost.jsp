@@ -7,12 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.*" %>
-<%@ page import="forum.beans.PostType" %>
+<%@ page import="forum.beans.Theme" %>
+<%@ page import="forum.beans.Theme" %>
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
-<jsp:useBean id="newstypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
+<jsp:useBean id="themeDAO" class="forum.dao.ThemeDAO" scope="page"/>
 <%
     request.setCharacterEncoding("UTF-8");
-    ArrayList<PostType> postTypeList = newstypeDAO.getAllPostType();
+    ArrayList<Theme> themeList = themeDAO.getAllTheme();
 %>
 <!DOCTYPE>
 <html>
@@ -38,12 +39,12 @@
                 标题: <input type="text" name="title" id="title">
                 <br><br>
                 类别:
-                <select name="postType" id="">
+                <select name="theme" id="">
                     <%
-                        for (PostType postType : postTypeList) {
+                        for (Theme theme : themeList) {
                     %>
-                    <option value="<%=postType.getId()%>">
-                        <%=postType.getPostType()%>
+                    <option value="<%=theme.getId()%>">
+                        <%=theme.getThemeTitle()%>
                     </option>
                     <%}%>
                 </select>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

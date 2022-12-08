@@ -27,7 +27,7 @@ public class PostDAO {
         try {
             conn = DBGet.getConnection();
             Statement stmt = conn.createStatement();
-            String sql = "select post_id, post_title, post_content,username post_author, post_time, post_keyword, post_type_id, post_hits from post join user u on u.id = post.post_author order by post_time desc ";
+            String sql = "select post_id, post_title, post_content,username post_author, post_time, post_keyword, theme, post_hits from post join user u on u.id = post.post_author order by post_time desc ";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 post = new Post();
@@ -38,7 +38,7 @@ public class PostDAO {
                 post.setPostTime(rs.getString("post_time"));
                 post.setKeyword(rs.getString("post_keyword"));
                 post.setHits(rs.getString("post_hits"));
-                post.setPostType(rs.getString("post_type_id"));
+                post.setTheme(rs.getString("theme"));
                 postList.add(post);
             }
         } catch (SQLException e1) {
@@ -71,7 +71,7 @@ public class PostDAO {
             ps.setString(3, post.getAuthor());
             ps.setString(4, post.getPostTime());
             ps.setString(5, post.getKeyword());
-            ps.setString(6, post.getPostType());
+            ps.setString(6, post.getTheme());
             n = ps.executeUpdate();
         } catch (SQLException e1) {
             System.out.println("insert" + e1);
@@ -97,7 +97,7 @@ public class PostDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "select post_id, post_title, post_content,username post_author, post_time, post_keyword, post_type_id, post_hits from post join user u on u.id = post.post_author where post_id=?";
+            String sql = "select post_id, post_title, post_content,username post_author, post_time, post_keyword, theme, post_hits from post join user u on u.id = post.post_author where post_id=?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             rs = ps.executeQuery();
@@ -111,7 +111,7 @@ public class PostDAO {
                 post.setPostTime(rs.getString("post_time"));
                 post.setKeyword(rs.getString("post_keyword"));
                 post.setHits(rs.getString("post_hits"));
-                post.setPostType(rs.getString("post_type_id"));
+                post.setTheme(rs.getString("theme"));
             }
         } catch (SQLException e1) {
             System.out.println("getById" + e1);
@@ -155,7 +155,7 @@ public class PostDAO {
         ResultSet rs = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "SELECT * from post where post_type_id=(select post_type_id from post where post_id=?) and post_id != ?";
+            String sql = "SELECT * from post where theme=(select theme from post where post_id=?) and post_id != ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             ps.setString(2, id);
@@ -188,14 +188,14 @@ public class PostDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            sql = "update post set post_title=?,post_content=?,post_author=?,post_time=?,post_keyword=?,post_type_id=? where post_id =?";
+            sql = "update post set post_title=?,post_content=?,post_author=?,post_time=?,post_keyword=?,theme=? where post_id =?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, post.getTitle());
             ps.setString(2, post.getContent());
             ps.setString(3, post.getAuthor());
             ps.setString(4, post.getPostTime());
             ps.setString(5, post.getKeyword());
-            ps.setString(6, post.getPostType());
+            ps.setString(6, post.getTheme());
             ps.setString(7, String.valueOf(post.getId()));
             n = ps.executeUpdate();
         } catch (SQLException e1) {
@@ -267,7 +267,7 @@ public class PostDAO {
                 post.setPostTime(rs.getString("post_time"));
                 post.setKeyword(rs.getString("post_keyword"));
                 post.setHits(rs.getString("post_hits"));
-                post.setPostType(rs.getString("post_type_id"));
+                post.setTheme(rs.getString("theme"));
                 postList.add(post);
             }
         } catch (SQLException e1) {
@@ -308,7 +308,7 @@ public class PostDAO {
                 post.setPostTime(rs.getString("post_time"));
                 post.setKeyword(rs.getString("post_keyword"));
                 post.setHits(rs.getString("post_hits"));
-                post.setPostType(rs.getString("post_type_id"));
+                post.setTheme(rs.getString("theme"));
                 postList.add(post);
             }
         } catch (SQLException e1) {
@@ -333,7 +333,7 @@ public class PostDAO {
         try {
             conn = DBGet.getConnection();
             stmt = conn.createStatement();
-            String sql = "select count(*) from post where post_type_id='" + postTypeId + "'";
+            String sql = "select count(*) from post where theme='" + postTypeId + "'";
             rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 count = rs.getInt(1);
@@ -361,7 +361,7 @@ public class PostDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "select * from post where post_type_id=? order by post_id desc limit ?,?";
+            String sql = "select * from post where theme=? order by post_id desc limit ?,?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, postTypeId);
             ps.setInt(2, start);
@@ -376,7 +376,7 @@ public class PostDAO {
                 post.setPostTime(rs.getString("post_time"));
                 post.setKeyword(rs.getString("post_keyword"));
                 post.setHits(rs.getString("post_hits"));
-                post.setPostType(rs.getString("post_type_id"));
+                post.setTheme(rs.getString("theme"));
                 postList.add(post);
             }
         } catch (SQLException e1) {
@@ -438,7 +438,7 @@ public class PostDAO {
                 post.setPostTime(rs.getString("post_time"));
                 post.setKeyword(rs.getString("post_keyword"));
                 post.setHits(rs.getString("post_hits"));
-                post.setPostType(rs.getString("post_type_id"));
+                post.setTheme(rs.getString("theme"));
                 postList.add(post);
             }
         } catch (SQLException e1) {

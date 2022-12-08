@@ -5,19 +5,19 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
-<jsp:useBean id="postTypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
+<jsp:useBean id="themeDAO" class="forum.dao.ThemeDAO" scope="page"/>
 <link rel="stylesheet" href="css/left.css">
 
 <%
     //获取热门版块
-    ArrayList<PostType> hotPostType = postTypeDAO.getHotPostType();
-    request.setAttribute("hotPostType", hotPostType);
+    ArrayList<Theme> hotTheme = themeDAO.getHotTheme();
+    request.setAttribute("hotTheme", hotTheme);
     //获取热贴
     ArrayList<Post> hotPostList = postDAO.getHotPost();
     request.setAttribute("hotPostList", hotPostList);
     //获取所有帖子类型
-    ArrayList<PostType> postTypeList = postTypeDAO.getAllPostType();
-    request.setAttribute("postTypeList", postTypeList);
+    ArrayList<Theme> themeList = themeDAO.getAllTheme();
+    request.setAttribute("themeList", themeList);
     //获取热门回帖
     ReplyDAO replyDAO = new ReplyDAOImpl();
     request.setAttribute("hotReplyList", replyDAO.getHotReply());
@@ -43,12 +43,13 @@
 <div class="sidesec">
     <div class="sidesec_bt"><span>热门版块</span></div>
     <hr>
+    <br>
     <div class="sidesec_list">
         <ul>
-            <c:forEach var="postType" items="${hotPostType}" varStatus="status">
+            <c:forEach var="theme" items="${hotTheme}" varStatus="status">
                 <li>
-                    <a class="a101" href="post?action=displayPostList&postTypeId=${postType.id}">
-                        <div>${postType.postType}</div>
+                    <a class="a101" href="post?action=displayPostList&postTypeId=${theme.id}">
+                        <div>${theme.themeTitle}</div>
                     </a>
                 </li>
             </c:forEach>
@@ -61,8 +62,8 @@
     <div class="sidesec_list">
         <ul>
             <c:forEach var="post" items="${hotPostList}" varStatus="status">
-                <li class="li2">
-                    .<a href="post?action=displayPost&postId=${post.id}">${post.title}</a>
+                <li>
+                    <a href="post?action=displayPost&postId=${post.id}">.${post.title}</a><span>...</span>
                 </li>
             </c:forEach>
         </ul>

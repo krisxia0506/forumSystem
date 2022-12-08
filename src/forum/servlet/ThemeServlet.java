@@ -1,7 +1,7 @@
 package forum.servlet;
 
-import forum.beans.PostType;
-import forum.dao.PostTypeDAO;
+import forum.beans.Theme;
+import forum.dao.ThemeDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,48 +16,48 @@ import java.util.ArrayList;
  *
  * @author Xia Jiayi
  */
-@WebServlet("/type")
-public class TypeServlet extends HttpServlet {
+@WebServlet("/theme")
+public class ThemeServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        PostTypeDAO postTypeDAO = new PostTypeDAO();
-        PostType postType = new PostType();
-        ArrayList<PostType> postTypeList = new ArrayList<>();
+        ThemeDAO themeDAO = new ThemeDAO();
+        Theme theme = new Theme();
+        ArrayList<Theme> themeList = new ArrayList<>();
         String func = request.getParameter("action");
         switch (func) {
             case "add": {
                 String postType1 = request.getParameter("postType");
                 String typeIntroduction = request.getParameter("typeIntroduction");
-                postType.setPostType(postType1);
-                postType.setTypeIntroduction(typeIntroduction);
-                postTypeDAO.addPostType(postType);
-                request.getRequestDispatcher("type?action=manage").forward(request, response);
+                theme.setThemeTitle(postType1);
+                theme.setThemeIntroduction(typeIntroduction);
+                themeDAO.addTheme(theme);
+                request.getRequestDispatcher("theme?action=manage").forward(request, response);
                 break;
             }
             case "manage": {
-                postTypeList = postTypeDAO.getAllPostType();
-                request.setAttribute("postTypeList", postTypeList);
-                request.getRequestDispatcher("manageType.jsp").forward(request, response);
+                themeList = themeDAO.getAllTheme();
+                request.setAttribute("postTypeList", themeList);
+                request.getRequestDispatcher("manageTheme.jsp").forward(request, response);
                 break;
             }
             case "delete": {
                 String postTypeId = request.getParameter("postTypeId");
-                postTypeDAO.deletePostTypeById(postTypeId);
-                request.getRequestDispatcher("type?action=manage").forward(request, response);
+                themeDAO.deleteThemeById(postTypeId);
+                request.getRequestDispatcher("theme?action=manage").forward(request, response);
                 break;
             }
             case "modify": {
                 String postTypeId = request.getParameter("postTypeId");
                 String postType1 = request.getParameter("postType");
                 String typeIntroduction = request.getParameter("typeIntroduction");
-                postType.setId(Integer.valueOf(postTypeId));
-                postType.setPostType(postType1);
-                postType.setTypeIntroduction(typeIntroduction);
-                if (postTypeDAO.modifyPostType(postType)) {
-                    request.getRequestDispatcher("type?action=manage").forward(request, response);
+                theme.setId(Integer.valueOf(postTypeId));
+                theme.setThemeTitle(postType1);
+                theme.setThemeIntroduction(typeIntroduction);
+                if (themeDAO.modifyTheme(theme)) {
+                    request.getRequestDispatcher("theme?action=manage").forward(request, response);
                 } else {
-                    request.getRequestDispatcher("modifyType.jsp?postTypeId=" + postTypeId).forward(request, response);
+                    request.getRequestDispatcher("modifyTheme.jsp?postTypeId=" + postTypeId).forward(request, response);
                 }
                 break;
             }

@@ -9,33 +9,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb67749f-9fcc-4ef0-a7e5-6eff1e9e6692" name="变更" comment="收藏DAO">
-      <change afterPath="$PROJECT_DIR$/web/css/left.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/js/left.js" afterDir="false" />
+    <list default="true" id="eb67749f-9fcc-4ef0-a7e5-6eff1e9e6692" name="变更" comment="更改主题颜色&#10;添加热门版块">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/beans/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/beans/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/beans/PostType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/beans/Theme.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forum/dao/PostDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/PostDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/dao/PostTypeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/PostTypeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/PostTypeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/ThemeDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forum/servlet/PostServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/PostServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/servlet/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/UserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/servlet/TypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/ThemeServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/addPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/addPost.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/addType.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/addType.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/common/left.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/common/left.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/common/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/common/top.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/css/left.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/left.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/displayPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/displayPost.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/images/topbarbackground.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/web/images/topbarbackground.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/fun.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/fun.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/listPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/listPost.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/manageCollect.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageCollect.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/managePost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/managePost.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/manageReply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageReply.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/manageType.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageType.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/manageUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/modiUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/modifyUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/userRegister.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/userRegister.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/userVeriRegister.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/userRegisterSuccess.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/manageType.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageTheme.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/modifyPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/modifyPost.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/modifyType.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/modifyTheme.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,7 +289,7 @@
       <workItem from="1670323423312" duration="4514000" />
       <workItem from="1670372619716" duration="17015000" />
       <workItem from="1670405388058" duration="10534000" />
-      <workItem from="1670459574094" duration="10059000" />
+      <workItem from="1670459574094" duration="12924000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1670234117707</created>
@@ -346,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670391833960</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="更改主题颜色&#10;添加热门版块">
+      <created>1670475643535</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1670475643535</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -371,7 +372,8 @@
     <MESSAGE value="帖子管理，回帖管理" />
     <MESSAGE value="模块管理&#10;热门版块&#10;数据库采用userId" />
     <MESSAGE value="收藏DAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="收藏DAO" />
+    <MESSAGE value="更改主题颜色&#10;添加热门版块" />
+    <option name="LAST_COMMIT_MESSAGE" value="更改主题颜色&#10;添加热门版块" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

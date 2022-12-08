@@ -1,6 +1,4 @@
-/*html, body, div, img, p, h1, h2, h3, h4, h5, h6, ul, li, dl, dt, dd, th, td, a {
-    list-style: none outside none;
-	}*/
+
 html {
     scrollbar-gutter: stable; /*去除滚动条占用空间*/
 }
@@ -48,7 +46,7 @@ div#logo_main {
     right: 0px;
     margin: 10px 10px 10px 10px;
     color: #ff0000;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 /*menu*/
@@ -123,7 +121,6 @@ div#logo_main {
 }
 
 
-/*left*/
 
 /*left*/
 .sidesec {
@@ -169,14 +166,13 @@ div#logo_main {
 
 .sidesec_list {
     padding: 0px;
-    margin: 10px 0 10px;
+    /*margin: 10px 0 10px;*/
 
 }
 
 .sidesec_list ul {
     padding-left: 10px;
-    margin-top: 0;
-    margin-left: 1px;
+    margin: 0 0 5px 1px;
 }
 
 .sidesec_list li {

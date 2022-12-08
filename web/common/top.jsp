@@ -25,7 +25,7 @@
             <c:if test="${!empty sessionScope.username}">
                 <c:choose>
                     <c:when test="${sessionScope.role=='99'}">
-                        <li><a href="type?action=manage">版块管理</a></li>
+                        <li><a href="theme?action=manage">版块管理</a></li>
                         |
                         <li><a href="post?action=manage">帖子管理</a></li>
                         |

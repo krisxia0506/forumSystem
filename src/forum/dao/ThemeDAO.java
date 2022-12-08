@@ -1,6 +1,6 @@
 package forum.dao;
 
-import forum.beans.PostType;
+import forum.beans.Theme;
 import forum.util.DBGet;
 
 import java.sql.*;
@@ -11,34 +11,34 @@ import java.util.ArrayList;
  *
  * @author Xia Jiayi
  */
-public class PostTypeDAO {
-    public ArrayList<PostType> getAllPostType() {
-        PostType postType = null;
-        ArrayList<PostType> postTypeList = new ArrayList<PostType>();
+public class ThemeDAO {
+    public ArrayList<Theme> getAllTheme() {
+        Theme theme = null;
+        ArrayList<Theme> themeList = new ArrayList<Theme>();
         Connection conn = null;
         ResultSet rs = null;
         Statement stmt = null;
         try {
             conn = DBGet.getConnection();
             stmt = conn.createStatement();
-            String sql = "select * from post_type";
+            String sql = "select * from theme";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                postType = new PostType();
-                postType.setId(rs.getInt("post_type_id"));
-                postType.setPostType(rs.getString("post_type"));
-                postType.setTypeIntroduction(rs.getString("type_introduction"));
-                postTypeList.add(postType);
+                theme = new Theme();
+                theme.setId(rs.getInt("theme_id"));
+                theme.setThemeTitle(rs.getString("theme_title"));
+                theme.setThemeIntroduction(rs.getString("theme_introduction"));
+                themeList.add(theme);
             }
         } catch (SQLException e1) {
             System.out.println("getAllPostType" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
-        return postTypeList;
+        return themeList;
     }
 
-    public boolean addPostType(PostType postType) {
+    public boolean addTheme(Theme theme) {
 
         boolean result = false;
         int n = 0;
@@ -46,10 +46,10 @@ public class PostTypeDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "insert into post_type(post_type,type_introduction) value(?,?)";
+            String sql = "insert into theme(theme_title,theme_introduction) value(?,?)";
             ps = conn.prepareStatement(sql);
-            ps.setString(1, postType.getPostType());
-            ps.setString(2, postType.getTypeIntroduction());
+            ps.setString(1, theme.getThemeTitle());
+            ps.setString(2, theme.getThemeIntroduction());
             n = ps.executeUpdate();
         } catch (SQLException e1) {
             System.out.println("insert" + e1);
@@ -65,14 +65,14 @@ public class PostTypeDAO {
     /**
      * 根据id删除
      */
-    public boolean deletePostTypeById(String id) {
+    public boolean deleteThemeById(String id) {
         boolean result = false;
         int n = 0;
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "delete from post_type where post_type_id = ?";
+            String sql = "delete from theme where theme_id = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             n = ps.executeUpdate();
@@ -90,46 +90,46 @@ public class PostTypeDAO {
     /**
      * 根据id查询
      */
-    public PostType getPostTypeById(String id) {
-        PostType postType = null;
+    public Theme getThemeById(String id) {
+        Theme theme = null;
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "select * from post_type where post_type_id = ?";
+            String sql = "select * from theme where theme_id = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                postType = new PostType();
-                postType.setId(rs.getInt("post_type_id"));
-                postType.setPostType(rs.getString("post_type"));
-                postType.setTypeIntroduction(rs.getString("type_introduction"));
+                theme = new Theme();
+                theme.setId(rs.getInt("theme_id"));
+                theme.setThemeTitle(rs.getString("theme_title"));
+                theme.setThemeIntroduction(rs.getString("theme_introduction"));
             }
         } catch (SQLException e1) {
             System.out.println("getPostTypeById" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
-        return postType;
+        return theme;
     }
 
     /**
      * 根据id修改
      */
-    public boolean modifyPostType(PostType postType) {
+    public boolean modifyTheme(Theme theme) {
         boolean result = false;
         int n = 0;
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "update post_type set post_type = ?,type_introduction = ? where post_type_id = ?";
+            String sql = "update theme set theme_title = ?,theme_introduction = ? where theme_id = ?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1, postType.getPostType());
-            ps.setString(2, postType.getTypeIntroduction());
-            ps.setInt(3, postType.getId());
+            ps.setString(1, theme.getThemeTitle());
+            ps.setString(2, theme.getThemeIntroduction());
+            ps.setInt(3, theme.getId());
             n = ps.executeUpdate();
         } catch (SQLException e1) {
             System.out.println("update" + e1);
@@ -145,36 +145,36 @@ public class PostTypeDAO {
     /**
      * 获取热门版块
      */
-    public ArrayList<PostType> getHotPostType() {
-        PostType postType = null;
-        ArrayList<PostType> postTypeList = new ArrayList<PostType>();
+    public ArrayList<Theme> getHotTheme() {
+        Theme theme = null;
+        ArrayList<Theme> themeList = new ArrayList<Theme>();
         Connection conn = null;
         ResultSet rs = null;
         Statement stmt = null;
         try {
             conn = DBGet.getConnection();
             stmt = conn.createStatement();
-            String sql = "select post_type.post_type_id, post_type, post_type.type_introduction\n" +
-                    "from post_type\n" +
-                    "         join (select post_type_id, sum(post_hits) as hits\n" +
+            String sql = "select theme.theme_id, theme_title, theme.theme_introduction\n" +
+                    "from theme\n" +
+                    "         join (select theme, sum(post_hits) as hits\n" +
                     "               from post\n" +
-                    "               group by post_type_id) as post_count\n" +
-                    "              on post_type.post_type_id = post_count.post_type_id\n" +
+                    "               group by theme) as post_count\n" +
+                    "              on theme.theme_id = post_count.theme\n" +
                     "order by hits desc\n" +
                     "limit 6;";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                postType = new PostType();
-                postType.setId(rs.getInt("post_type_id"));
-                postType.setPostType(rs.getString("post_type"));
-                postType.setTypeIntroduction(rs.getString("type_introduction"));
-                postTypeList.add(postType);
+                theme = new Theme();
+                theme.setId(rs.getInt("theme_id"));
+                theme.setThemeTitle(rs.getString("theme_title"));
+                theme.setThemeIntroduction(rs.getString("theme_introduction"));
+                themeList.add(theme);
             }
         } catch (SQLException e1) {
             System.out.println("getHotPostType" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
-        return postTypeList;
+        return themeList;
     }
 }

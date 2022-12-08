@@ -1,8 +1,8 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="forum.beans.PostType" %>
+<%@ page import="forum.beans.Theme" %>
 <%@ page import="forum.beans.Post" %>
 <%@ page import="forum.beans.Post" %>
-<%@ page import="forum.beans.PostType" %><%--
+<%@ page import="forum.beans.Theme" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2022-11-03
@@ -13,11 +13,11 @@
 <%@ include file="checkvaild.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
-<jsp:useBean id="postTypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
+<jsp:useBean id="themeDAO" class="forum.dao.ThemeDAO" scope="page"/>
 <%
     String postTypeId = request.getParameter("postTypeId");
-    PostType postType = postTypeDAO.getPostTypeById(postTypeId);
-    request.setAttribute("postType", postType);
+    Theme theme = themeDAO.getThemeById(postTypeId);
+    request.setAttribute("theme", theme);
     request.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE>
@@ -40,12 +40,12 @@
                 <div class="breadcrumbs"></div>
             </div>
             <br/>
-            <form action="type?action=modify" method="post">
-                <input type="hidden" name="postTypeId" value="${postType.id}"/><br>
-                版块标题：<input type="text" name="postType" id="title" value="${postType.postType}"><br><br>
+            <form action="theme?action=modify" method="post">
+                <input type="hidden" name="postTypeId" value="${theme.id}"/><br>
+                版块标题：<input type="text" name="theme" id="title" value="${theme.themeTitle}"><br><br>
                 <br>
                 <br>
-                版块简介:<textarea name="typeIntroduction" cols="25" rows="5">${postType.typeIntroduction}</textarea>
+                版块简介:<textarea name="typeIntroduction" cols="25" rows="5">${theme.themeIntroduction}</textarea>
                 <br><br>
                 <input type="submit" value="修改"/><br>
             </form>
