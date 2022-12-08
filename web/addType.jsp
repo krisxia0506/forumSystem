@@ -23,25 +23,23 @@
   <div class="aside">
     <jsp:include page="common/left.jsp"/>
   </div>
-  <div id="main">
-    <div class="inputform">
-      <div class="top-bar">
-        <h1>新增版块</h1>
-      </div>
-      <br>
-      <form action="type?action=add" method="post" onsubmit="return CheckAddNews()">
-        <input type="hidden" name="author" value="<%=session.getAttribute("username")%>"></input><br>
-        版块标题：<input type="text" name="postType" id="title" value="${postType.postType}"><br><br>
-        <br>
-        <br>
-        版块简介:<textarea name="typeIntroduction" cols="25" rows="5">${postType.typeIntroduction}</textarea>
-        <br><br>
-        <input type="submit" value="修改"/><br>
-      </form>
+    <div id="main">
+        <div class="inputform post_list manage_list">
+            <div class="top-bar-manage">
+                <h1>新增版块</h1>
+            </div>
+            <br>
+            <form action="type?action=add" method="post" onsubmit="return CheckAddNews()">
+                <br><br>
+                版块标题:<input type="text" name="postType" id="title" value=""><br><br>
+                版块简介:<textarea name="typeIntroduction" cols="25" rows="5"></textarea>
+                <br><br>
+                <input type="submit" value="新增"/><br>
+            </form>
+        </div>
     </div>
-  </div>
-  <div class="blank10"></div>
-  <div class="blank20"></div>
+    <div class="blank10"></div>
+    <div class="blank20"></div>
 </div>
 <%@include file="common/bottom.txt" %>
 </body>

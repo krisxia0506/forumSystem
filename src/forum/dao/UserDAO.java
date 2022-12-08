@@ -170,7 +170,7 @@ public class UserDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "update user set post_times = post_times+1 where username = ?";
+            String sql = "update user set post_times = post_times+1 where id = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, author);
             ps.executeUpdate();

@@ -18,8 +18,8 @@
         <jsp:include page="common/left.jsp"/>
     </div>
     <div id="main">
-        <div class="news_list">
-            <div class="top-bar">
+        <div class="post_list manage_list">
+            <div class="top-bar-manage">
                 <h1>用户管理</h1>
             </div>
             <br>

@@ -32,7 +32,7 @@
         <jsp:include page="common/left.jsp"/>
     </div>
     <div id="main">
-        <div class="news_list">
+        <div class="post_list">
             <h1 style="margin: 0 0 20px">贴子列表</h1>
 
             <ul>

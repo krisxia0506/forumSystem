@@ -1106,7 +1106,8 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </foreign-key>
     <foreign-key id="312" parent="289" name="post_post_type_post_type_id_fk">
       <ColNames>post_type_id</ColNames>
-      <OnDelete>set-null</OnDelete>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
       <RefColNames>post_type_id</RefColNames>
       <RefTableName>post_type</RefTableName>
     </foreign-key>
@@ -1169,7 +1170,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <UnderlyingIndexName>id</UnderlyingIndexName>
     </key>
     <column id="326" parent="291" name="reply_id">
-      <AutoIncrement>92</AutoIncrement>
+      <AutoIncrement>96</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>

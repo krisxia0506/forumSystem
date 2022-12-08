@@ -24,8 +24,8 @@
         <jsp:include page="common/left.jsp"/>
     </div>
     <div id="main">
-        <div class="news_list">
-            <div class="top-bar">
+        <div class="post_list manage_list">
+            <div class="top-bar-manage">
                 <h1>
                     回帖管理
                 </h1>
@@ -38,7 +38,7 @@
                     <tr>
                         <th class="first" width="200px">帖子标题</th>
                         <th style="width: 200px">回帖内容</th>
-                        <th>回帖人</th>
+                        <th style="width: 200px">回帖人</th>
                         <th style="width: 150px;">回帖时间</th>
                         <th style="width: 100px;">删除</th>
                     </tr>

@@ -22,10 +22,12 @@
             </div>
             <br/>
 
-            <form action="userVeriRegister.jsp" method="post" onsubmit="return Check()">
-                用户名：<input type="text" id="username" name="username" onkeyup="registerCheck()"></input>
+            <form action="user?action=register" method="post" onsubmit="return RegisterCheck()">
+                用&nbsp;户&nbsp;名：<input type="text" id="username" name="username" onkeyup="registerCheck()"></input>
                 <span id="show"></span><br/><br/>
-                密&nbsp;&nbsp;&nbsp;码：<input type="password" id="password" name="password"></input><br/><br/>
+                密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" id="password"
+                                                                name="password"></input><br/><br/>
+                确认密码：<input type="password" id="passwordCheck" name="password"></input><br/><br/>
                 性&nbsp;&nbsp;&nbsp;别： 男<input type="radio" value="male" name="gender" checked>
                 女<input type="radio" value="female" name="gender"><br>
                 个人简介<textarea name="resume" cols="12" rows="6"></textarea><br/><br/>
@@ -48,18 +50,24 @@
         var loginError = document.getElementById("loginError");
         loginError.style.display = "block";
     }
-    function Check()
-    {
-        var username= document.getElementById("username").value
-        var password =document.getElementById("password").value
-        if ( username.length<5||username.length>10)
-        {
+
+    function RegisterCheck() {
+        var username = document.getElementById("username")
+        var password = document.getElementById("password")
+        var passwordCheck = document.getElementById("passwordCheck")
+        if (username.value.length < 5 || username.value.length > 10) {
             alert("用户名长度应为5-10位");
+            username.focus();
             return false;
         }
-        if ( password.length<5||password.length>10)
-        {
+        if (password.value.length < 5 || password.value.length > 10) {
             alert("密码长度应为5-10位");
+            password.focus();
+            return false;
+        }
+        if (password.value !== passwordCheck.value) {
+            alert("两次密码不一致");
+            passwordCheck.focus();
             return false;
         }
 

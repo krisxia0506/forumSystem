@@ -27,7 +27,7 @@ public class PostDAO {
         try {
             conn = DBGet.getConnection();
             Statement stmt = conn.createStatement();
-            String sql = "select * from post order by post_time desc ";
+            String sql = "select post_id, post_title, post_content,username post_author, post_time, post_keyword, post_type_id, post_hits from post join user u on u.id = post.post_author order by post_time desc ";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 post = new Post();
@@ -105,7 +105,8 @@ public class PostDAO {
                 post = new Post();
                 post.setId(rs.getInt("post_id"));
                 post.setTitle(rs.getString("post_title"));
-                post.setContent(rs.getString("post_content"));
+                String result = rs.getString("post_content").replaceAll("(\\r\\n|\\n|\\n\\r)", "<br/>");
+                post.setContent(result);
                 post.setAuthor(rs.getString("post_author"));
                 post.setPostTime(rs.getString("post_time"));
                 post.setKeyword(rs.getString("post_keyword"));

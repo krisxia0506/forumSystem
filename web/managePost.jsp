@@ -26,19 +26,29 @@
         <jsp:include page="common/left.jsp"/>
     </div>
     <div id="main">
-        <div class="news_list">
-            <div class="top-bar">
-                <h1>我的帖子</h1>
+        <div class="post_list manage_list">
+            <div class="top-bar-manage">
+                <c:choose>
+                    <c:when test="${sessionScope.role==99}">
+                        <h1>帖子管理</h1>
+                    </c:when>
+                    <c:otherwise>
+                        <h1>我的帖子</h1>
+                    </c:otherwise>
+                </c:choose>
+
                 <button style="margin-left: 450px;" value="发布新闻" onclick="window.location.href='addPost.jsp';">
                     发布帖子
                 </button>
             </div>
-            <br>
             <div class="table">
                 <table class="listing" cellspacing="0" cellpadding="0">
                     <tr>
                         <th class="first" width="40">序号</th>
                         <th>帖子标题</th>
+                        <c:if test="${sessionScope.role==99}">
+                            <th>发帖人</th>
+                        </c:if>
                         <th>发布时间</th>
                         <th style="width: 40px;">修改</th>
                         <th style="width: 40px;">删除</th>
@@ -51,6 +61,9 @@
                                         ${post.title}
                                 </a>
                             </td>
+                            <c:if test="${sessionScope.role==99}">
+                                <td>${post.author}</td>
+                            </c:if>
                             <td class="ntime">${post.postTime}</td>
                             <td>
                                 <button value="修改" onclick="window.location.href='modifyPost.jsp?id=${post.id}';">修改

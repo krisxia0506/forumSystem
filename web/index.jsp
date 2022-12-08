@@ -25,47 +25,26 @@
         <jsp:include page="common/left.jsp"/>
     </div>
     <div id="main">
-        <div class="news_list">
-            <h1 style="margin: 0 0 20px">模块列表</h1>
+        <div class="type_list">
+            <h1 style="margin: 0 0 20px">版块中心</h1>
 
-            <ul>
+            <ul class="ul1">
                 <c:forEach items="${requestScope.postTypeList}" var="postType">
-                    <li>
-                        <div class="dd_bt">
-                            <a href="post?action=displayPostList&postTypeId=${postType.id}">${postType.postType}</a>
+                    <li class="li1">
+                        <div>
+                            <a class="div403" href="post?action=displayPostList&postTypeId=${postType.id}">
+                                <div class="div404">
+                                    <div class="typeTitle">${postType.postType}</div>
+                                    <div class="typeIntroduction">${postType.typeIntroduction}</div>
+                                </div>
+
+                            </a>
                         </div>
                     </li>
                 </c:forEach>
             </ul>
-            <div class="page">
-                <div>
-                    <c:if test="${pageCount>0}">
-                        <c:choose>
-                            <c:when test="${pageNo==1}"><%--首页显示--%>
-                                <a href="post?pageNo=${pageNo+1}" >下一页</a>
-                                ${pageNo} / ${pageCount}
-                                <a href="post?pageNo=${pageCount}">尾页</a>
-                            </c:when>
-                            <c:when test="${pageNo==pageCount}"><%--尾页显示--%>
-                                <a href="post?pageNo=1" >首页</a>
-                                ${pageNo} / ${pageCount}
-                                <a href="post?pageNo=${pageNo-1}" >上一页</a>
-                            </c:when>
-                            <c:otherwise>
-                                <a href="post?pageNo=1" >首页</a>
-                                <a href="post?pageNo=${pageNo-1}" >上一页</a>
-                                ${pageNo} / ${pageCount}
-                                <a href="post?pageNo=${pageNo+1}" >下一页</a>
-                                <a href="post?pageNo=${pageCount}">尾页</a>
-                            </c:otherwise>
-                        </c:choose>
-
-                    </c:if>
-                </div>
-            </div>
         </div>
     </div>
-    <div class="blank10"></div>
     <div class="blank20"></div>
 </div>
 <%@ include file="common/bottom.txt" %>

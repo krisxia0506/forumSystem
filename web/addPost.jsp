@@ -28,8 +28,8 @@
         <jsp:include page="common/left.jsp"/>
     </div>
     <div id="main">
-        <div class="news_list">
-            <div class="top-bar">
+        <div class="post_list manage_list">
+            <div class="top-bar-manage">
                 <h1>发新贴</h1>
             </div>
             <br>
@@ -48,7 +48,8 @@
                     <%}%>
                 </select>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 关键字： <input type="text" name="keyword" id="keyword"><br><br>
-                内容：<textarea name="content" cols="35" rows="5" id="contentcontent"></textarea><br><br>
+                内容：<textarea style="white-space:pre-wrap;" name="content" cols="35" rows="5"
+                               id="contentcontent"></textarea><br><br>
                 <input type="submit" value="发布"></input>
             </form>
         </div>

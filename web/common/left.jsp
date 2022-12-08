@@ -2,10 +2,12 @@
 <%@ page import="forum.beans.*" %>
 <%@ page import="forum.dao.ReplyDAOImpl" %>
 <%@ page import="forum.dao.ReplyDAO" %>
-<%@ page language="java" contentType="text/html;charset=utf-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
 <jsp:useBean id="postTypeDAO" class="forum.dao.PostTypeDAO" scope="page"/>
+<link rel="stylesheet" href="css/left.css">
+
 <%
     //获取热门版块
     ArrayList<PostType> hotPostType = postTypeDAO.getHotPostType();
@@ -22,7 +24,7 @@
 
 
 %>
-<div class="sidesec">
+<div class="sidesec1">
     <div class="sidesec_bt"><span>站内检索</span></div>
     <hr>
     <div class="sideform">
@@ -45,7 +47,9 @@
         <ul>
             <c:forEach var="postType" items="${hotPostType}" varStatus="status">
                 <li>
-                    .<a href="post?action=displayPostList&postTypeId=${postType.id}">${postType.postType}</a>
+                    <a class="a101" href="post?action=displayPostList&postTypeId=${postType.id}">
+                        <div>${postType.postType}</div>
+                    </a>
                 </li>
             </c:forEach>
         </ul>
@@ -57,7 +61,7 @@
     <div class="sidesec_list">
         <ul>
             <c:forEach var="post" items="${hotPostList}" varStatus="status">
-                <li>
+                <li class="li2">
                     .<a href="post?action=displayPost&postId=${post.id}">${post.title}</a>
                 </li>
             </c:forEach>
@@ -79,20 +83,4 @@
         </ul>
     </div>
 </div>
-<script>
-    //获取地址栏参数//可以是中文参数
-    function getUrlParam(key) {
-        // 获取参数
-        var url = window.location.search;
-        // 正则筛选地址栏
-        var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
-        // 匹配目标参数
-        var result = url.substr(1).match(reg);
-        //返回参数值
-        return result ? decodeURIComponent(result[2]) : null;
-    }
-    if (getUrlParam("keyword")){
-        document.getElementById("q").value = getUrlParam("keyword");
-    }
-
-</script>
+<script src="js/left.js"></script>

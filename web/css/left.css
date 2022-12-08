@@ -1,0 +1,23 @@
+
+.a101 {
+    display: flex;
+    width: 130px;
+    height: 35px;
+    float: left;
+    border: 1px dashed #737373;
+    transition: all 0.5s;
+}
+
+.a101 div {
+    margin: auto;
+}
+
+.li2 {
+    float: left;
+}
+
+.a101:hover {
+    color: red;
+    background: #ffd2d2;
+    transform: scale(1.2);
+}

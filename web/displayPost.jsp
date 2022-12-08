@@ -23,12 +23,12 @@
         <jsp:include page="common/left.jsp"/>
     </div>
     <div id="main">
-        <div class="news_list">
+        <div class="post_list">
             <div class="top-bar">
                 <h1 style="text-align: left;">${requestScope.post.title}
                 </h1>
             </div>
-            <div class="news_time">
+            <div class="post_time">
                 <span class="left-t">${requestScope.post.postTime}</span>
 
                 <span class="left-t"><i class="iconfont">&#xe8c8;</i>${requestScope.post.author}</span>
@@ -86,23 +86,24 @@
             </div>
         </div>
         <%--相关新闻--%>
-        <div class="div624 border-top-darshd">
-            <h4 class="padding-left20" style="margin-top: 0px;color: rgb(30,80,162);">
-                相关新闻：
-            </h4>
-            <ul class="padding-left20" style="margin-top: -20px">
-                <c:forEach items="${requestScope.relatePost}" var="rPost">
-                    <li>
-                        <a href="post?action=displayPost&postId=${rPost.id}">${rPost.title}</a>
-                    </li>
-                </c:forEach>
-            </ul>
-        </div>
+        <c:if test="${requestScope.relatePost.size() > 0}">
+            <div class="div624 border-top-darshd">
+                <h4 class="padding-left20" style="margin-top: 0px;color: rgb(30,80,162);">
+                    相关新闻：
+                </h4>
+                <ul class="padding-left20" style="margin-top: -20px">
+                    <c:forEach items="${requestScope.relatePost}" var="rPost">
+                        <li>
+                            <a href="post?action=displayPost&postId=${rPost.id}">${rPost.title}</a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
     </div>
 
 
 </div>
-
 
 </div>
 <div class="blank10"></div>

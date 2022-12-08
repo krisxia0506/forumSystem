@@ -161,7 +161,7 @@ public class PostTypeDAO {
                     "               group by post_type_id) as post_count\n" +
                     "              on post_type.post_type_id = post_count.post_type_id\n" +
                     "order by hits desc\n" +
-                    "limit 5;";
+                    "limit 6;";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 postType = new PostType();

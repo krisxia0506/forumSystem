@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--@elvariable id="user" type="forum.servlet.UserServlet"--%>
 <%--
 Created by IntelliJ IDEA.
@@ -14,7 +15,7 @@ To change this template use File | Settings | File Templates.
 <!DOCTYPE>
 <html>
 <head>
-    <title>新闻发布系统V2</title>
+    <title>技术论坛</title>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/fun.js"></script>
@@ -35,19 +36,22 @@ To change this template use File | Settings | File Templates.
             <br/>
             <form action="user?action=modi" method="post">
                 <input type="hidden" name="id" value="${requestScope.user.id}"/>
-                用户名：<input type="text" name="username" value="${requestScope.user.username}" onkeyup="registerCheck()">
+                用户名：<input type="text" name="username" value="${requestScope.user.username}"
+                              onkeyup="registerCheck()">
                 <span id="show"></span><br><br>
-                密&nbsp&nbsp&nbsp码：<input type="password" name="password" value="${requestScope.user.password}"><br><br>
-                性别：<%
-                if ("male".equals("male")) {
-            %>
-                男<input type="radio" value="male" name="gender" checked/>
-                女<input type="radio" value="felmale" name="gender"/>
-                <%} else {%>
-                男<input type="radio" value="male" name="gender"/>
-                女<input type="radio" value="felmale" name="gender" checked/>
-                <br>
-                <%}%>
+                密&nbsp&nbsp&nbsp码：<input type="password" name="password"
+                                           value="${requestScope.user.password}"><br><br>
+                性别：
+                <c:choose>
+                    <c:when test="${requestScope.user.gender=='male'}">
+                        男<input type="radio" value="male" name="gender" checked/>
+                        女<input type="radio" value="felmale" name="gender"/>
+                    </c:when>
+                    <c:otherwise>
+                        男<input type="radio" value="male" name="gender"/>
+                        女<input type="radio" value="felmale" name="gender" checked/>
+                    </c:otherwise>
+                </c:choose>
                 <br><br>
                 个人简介:<textarea name="resume" cols="6" rows="6">${requestScope.user.resume}</textarea>
                 <br><br>

@@ -26,14 +26,13 @@
         <jsp:include page="common/left.jsp"/>
     </div>
     <div id="main">
-        <div class="news_list">
-            <div class="top-bar">
-                <h1>我的帖子</h1>
+        <div class="post_list manage_list">
+            <div class="top-bar-manage">
+                <h1>版块管理</h1>
                 <button style="margin-left: 450px;" value="发布新闻" onclick="window.location.href='addType.jsp';">
                     新增版块
                 </button>
             </div>
-            <br>
             <div class="table">
                 <table class="listing" cellspacing="0" cellpadding="0">
                     <tr>
@@ -74,4 +73,5 @@
 
 <%@include file="common/bottom.txt" %>
 </body>
+
 </html>

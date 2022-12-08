@@ -93,19 +93,21 @@ public class PostServlet extends HttpServlet {
             }
             case "add" : {
                 Post post = new Post();
-                String author = request.getParameter("author");
+                String userId = (String) session.getAttribute("userId");
                 String title = request.getParameter("title");
                 String postType = request.getParameter("postType");
                 String keyword = request.getParameter("keyword");
                 String content = request.getParameter("content");
-                post.setAuthor(author);
+                post.setAuthor(userId);
                 post.setTitle(title);
                 post.setPostType(postType);
                 post.setKeyword(keyword);
                 post.setContent(content);
                 if (postDAO.addPost(post)) {
-                    userDAO.increasePostTimes(author);
+                    userDAO.increasePostTimes(userId);
+                    //查询刚才发布的帖子的id
                     String postId = postDAO.queryLastPost();
+                    //转到刚才发布的帖子
                     request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
                 } else {
                     System.out.println("发布失败");
