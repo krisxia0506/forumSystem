@@ -89,7 +89,7 @@
         <c:if test="${requestScope.relatePost.size() > 0}">
             <div class="div624 border-top-darshd">
                 <h4 class="padding-left20" style="margin-top: 0px;color: rgb(30,80,162);">
-                    相关新闻：
+                    相关帖子：
                 </h4>
                 <ul class="padding-left20" style="margin-top: -20px">
                     <c:forEach items="${requestScope.relatePost}" var="rPost">

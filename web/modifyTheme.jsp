@@ -41,11 +41,11 @@
             </div>
             <br/>
             <form action="theme?action=modify" method="post">
-                <input type="hidden" name="postTypeId" value="${theme.id}"/><br>
-                版块标题：<input type="text" name="theme" id="title" value="${theme.themeTitle}"><br><br>
+                <input type="hidden" name="themeId" value="${theme.id}"/><br>
+                版块标题：<input type="text" name="themeTitle" id="title" value="${theme.themeTitle}"><br><br>
                 <br>
                 <br>
-                版块简介:<textarea name="typeIntroduction" cols="25" rows="5">${theme.themeIntroduction}</textarea>
+                版块简介:<textarea name="themeIntroduction" cols="25" rows="5">${theme.themeIntroduction}</textarea>
                 <br><br>
                 <input type="submit" value="修改"/><br>
             </form>

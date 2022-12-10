@@ -2,6 +2,7 @@
 <%@ page import="forum.beans.*" %>
 <%@ page import="forum.dao.ReplyDAOImpl" %>
 <%@ page import="forum.dao.ReplyDAO" %>
+<%@ page import="forum.dao.UserDAO" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
@@ -21,8 +22,6 @@
     //获取热门回帖
     ReplyDAO replyDAO = new ReplyDAOImpl();
     request.setAttribute("hotReplyList", replyDAO.getHotReply());
-
-
 %>
 <div class="sidesec1">
     <div class="sidesec_bt"><span>站内检索</span></div>

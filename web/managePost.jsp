@@ -71,7 +71,7 @@
 
                             </td>
                             <td>
-                                <button value="删除" onclick="deleteNews(${post.id});">删除</button>
+                                <button value="删除" onclick="deletePost(${post.id});">删除</button>
 
                             </td>
                         </tr>

@@ -185,7 +185,6 @@ public class ReplyDAOImpl implements ReplyDAO {
             DBGet.closeConnection(conn);
         }
         return replyList;
-
     }
 }
 

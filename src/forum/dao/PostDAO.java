@@ -320,12 +320,12 @@ public class PostDAO {
     }
 
     /**
-     * 根据帖子类型查询帖子条数
+     * 根据版块查询帖子条数
      *
-     * @param postTypeId 帖子类型id
+     * @param theme 版块
      * @return 该类型帖子的总数
      */
-    public int getPostCountByType(String postTypeId) {
+    public int getPostCountByType(String theme) {
         int count = 0;
         Connection conn = null;
         ResultSet rs = null;
@@ -333,7 +333,7 @@ public class PostDAO {
         try {
             conn = DBGet.getConnection();
             stmt = conn.createStatement();
-            String sql = "select count(*) from post where theme='" + postTypeId + "'";
+            String sql = "select count(*) from post where theme='" + theme + "'";
             rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 count = rs.getInt(1);
@@ -349,11 +349,11 @@ public class PostDAO {
     /**
      * 根据起始、条数、类型查询新闻
      *
-     * @param start      起始
-     * @param count      条数
-     * @param postTypeId 类型
+     * @param start 起始
+     * @param count 条数
+     * @param theme 版块
      */
-    public ArrayList<Post> getPostBySCT(int start, int count, String postTypeId) {
+    public ArrayList<Post> getPostBySCT(int start, int count, String theme) {
         Post post = null;
         ArrayList<Post> postList = new ArrayList<Post>();
         Connection conn = null;
@@ -363,7 +363,7 @@ public class PostDAO {
             conn = DBGet.getConnection();
             String sql = "select * from post where theme=? order by post_id desc limit ?,?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1, postTypeId);
+            ps.setString(1, theme);
             ps.setInt(2, start);
             ps.setInt(3, count);
             rs = ps.executeQuery();

@@ -28,7 +28,7 @@ public class UserDAO {
                 user.setId(rs.getInt("id"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
-                user.setRoleId(Integer.valueOf(rs.getString("role")));
+                user.setRole(Integer.valueOf(rs.getString("role")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,7 +58,7 @@ public class UserDAO {
         return result;
     }
 
-    public boolean updataUserById(User user) {
+    public boolean updateUserById(User user) {
         boolean result = false;
         Connection conn = null;
         PreparedStatement ps = null;
@@ -170,12 +170,32 @@ public class UserDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "update user set post_times = post_times+1 where id = ?";
+            String sql = "update user set post_times = post_times+1 where id = ?;";
             ps = conn.prepareStatement(sql);
             ps.setString(1, author);
-            ps.executeUpdate();
+            if (ps.executeUpdate() > 0) {
+                level_procedure();
+            }
         } catch (SQLException e1) {
             System.out.println("increaseAc" + e1);
+        } finally {
+            DBGet.closeConnection(conn);
+        }
+    }
+
+    /**
+     * 调用存储过程
+     */
+    public void level_procedure() {
+        Connection conn = null;
+        CallableStatement callableStatement = null;
+        try {
+            conn = DBGet.getConnection();
+            String sql = "{call level_procedure()}";
+            callableStatement = conn.prepareCall(sql);
+            callableStatement.execute();
+        } catch (SQLException e1) {
+            System.out.println("level_procedure" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }

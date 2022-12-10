@@ -7,7 +7,7 @@ package forum.beans;
  */
 public class User implements java.io.Serializable {
     private Integer id;
-    private Integer roleId;
+    private Integer role;
     private String username;
     private String password;
     private String gender;
@@ -16,9 +16,9 @@ public class User implements java.io.Serializable {
     public User() {
     }
 
-    public User(Integer id, Integer roleId, String username, String password, String gender, String resume) {
+    public User(Integer id, Integer role, String username, String password, String gender, String resume) {
         this.id = id;
-        this.roleId = roleId;
+        this.role = role;
         this.username = username;
         this.password = password;
         this.gender = gender;
@@ -65,11 +65,11 @@ public class User implements java.io.Serializable {
         this.resume = resume;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public Integer getRole() {
+        return role;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setRole(Integer role) {
+        this.role = role;
     }
 }

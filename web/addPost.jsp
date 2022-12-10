@@ -11,6 +11,7 @@
 <%@ page import="forum.beans.Theme" %>
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
 <jsp:useBean id="themeDAO" class="forum.dao.ThemeDAO" scope="page"/>
+<jsp:include page="checkvaild.jsp"/>
 <%
     request.setCharacterEncoding("UTF-8");
     ArrayList<Theme> themeList = themeDAO.getAllTheme();

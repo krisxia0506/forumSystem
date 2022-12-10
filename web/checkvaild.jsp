@@ -1,4 +1,3 @@
-<%@ page import="java.util.Scanner" %>
 <%@ page import="forum.dao.UserDAO" %><%--
   Created by IntelliJ IDEA.
   forum.beans.User: Administrator
@@ -21,6 +20,7 @@
                 }
             }
         }
+
         if (autologin == null) {
             response.sendRedirect("userLogin.jsp");
         } else {

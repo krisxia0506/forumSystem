@@ -45,9 +45,9 @@ function OnExit(field) {
 }
 
 //managePost.jsp
-function deleteNews(postId) {
+function deletePost(postId) {
     if (confirm("确定删除吗？")) {
-        window.location.href = "post?action=del&postId=" + postId;
+        window.location.href = "post?action=delete&postId=" + postId;
     }
 }
 

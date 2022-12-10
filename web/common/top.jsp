@@ -1,7 +1,40 @@
+<%@ page import="forum.dao.UserDAO" %>
+<%@ page import="forum.beans.User" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <script src="js/fun.js"></script>
-<link rel="shortcut icon" href="favicon.ico" >
+<link rel="shortcut icon" href="favicon.ico">
+<%
+    //自动登陆
+    String uname = (String) session.getAttribute("username");
+    if (uname == null) {
+        Cookie[] cookies = request.getCookies();
+        String autologin = null;
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("autologin".equals(cookie.getName())) {
+                    autologin = cookie.getValue();
+                    break;
+                }
+            }
+        }
+        if (autologin != null) {
+            String[] parts = autologin.split("-");
+            String name = parts[0];
+            String pwd = parts[1];
+            System.out.println(name);
+            UserDAO userDAO = new UserDAO();
+            User user = userDAO.queryByNamePwd(name, pwd);
+            if (user.getId() != null) {
+                session.setAttribute("username", name);
+                session.setAttribute("role", user.getRole().toString());
+                session.setAttribute("userId", user.getId().toString());
+            } else {
+                response.sendRedirect("userLogin.jsp ");
+            }
+        }
+    }
+%>
 <div id="logo">
     <div id="logo_main">
         <span id="myspan"></span>

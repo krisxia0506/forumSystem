@@ -59,7 +59,7 @@ public class UserServlet extends HttpServlet {
                 user = userDAO.queryByNamePwd(uname, pwd);
                 if (user.getId() != null) {
                     session.setAttribute("username", uname);
-                    session.setAttribute("role", user.getRoleId().toString());
+                    session.setAttribute("role", user.getRole().toString());
                     session.setAttribute("userId", user.getId().toString());
                     if (nopwd != null) {
                         Cookie cookie = new Cookie("autologin", uname + "-" + pwd);
@@ -93,7 +93,7 @@ public class UserServlet extends HttpServlet {
                 user.setPassword(pwd);
                 user.setGender(gender);
                 user.setResume(resume);
-                if (userDAO.updataUserById(user)) {
+                if (userDAO.updateUserById(user)) {
                     String username = (String) session.getAttribute("username");
                     if (Objects.equals(username, "admin")) {
                         request.getRequestDispatcher("user?action=manage").forward(request, response);

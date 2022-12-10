@@ -14,7 +14,7 @@ public interface ReplyDAO {
 
     public ArrayList<Reply> getByPostId(String postId);
 
-    public ArrayList<Reply> getByUserId(String username);
+    public ArrayList<Reply> getByUserId(String userId);
 
     public ArrayList<Reply> getAll();
 

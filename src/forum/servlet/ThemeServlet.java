@@ -48,16 +48,16 @@ public class ThemeServlet extends HttpServlet {
                 break;
             }
             case "modify": {
-                String postTypeId = request.getParameter("postTypeId");
-                String postType1 = request.getParameter("postType");
-                String typeIntroduction = request.getParameter("typeIntroduction");
-                theme.setId(Integer.valueOf(postTypeId));
-                theme.setThemeTitle(postType1);
-                theme.setThemeIntroduction(typeIntroduction);
+                String themeId = request.getParameter("themeId");
+                String themeTitle = request.getParameter("themeTitle");
+                String themeIntroduction = request.getParameter("themeIntroduction");
+                theme.setId(Integer.valueOf(themeId));
+                theme.setThemeTitle(themeTitle);
+                theme.setThemeIntroduction(themeIntroduction);
                 if (themeDAO.modifyTheme(theme)) {
                     request.getRequestDispatcher("theme?action=manage").forward(request, response);
                 } else {
-                    request.getRequestDispatcher("modifyTheme.jsp?postTypeId=" + postTypeId).forward(request, response);
+                    request.getRequestDispatcher("modifyTheme.jsp?themeId=" + themeId).forward(request, response);
                 }
                 break;
             }

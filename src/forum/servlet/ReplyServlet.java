@@ -58,9 +58,9 @@ public class ReplyServlet extends HttpServlet {
                 }
                 break;
             }
-            case "del" : {
-                String id = request.getParameter("id");
-                if (replyDAO.deleteById(id)) {
+            case "delete": {
+                String replyId = request.getParameter("replyId");
+                if (replyDAO.deleteById(replyId)) {
                     request.getRequestDispatcher("reply?action=manage").forward(request, response);
                 } else {
                     request.getRequestDispatcher("index.jsp?error=1").forward(request, response);

@@ -6,16 +6,5 @@
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-<!--
-    <servlet>
-        <servlet-name>newsServlet</servlet-name>
-        <servlet-class>forum.servlet.PostServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>newsServlet</servlet-name>
-        <url-pattern>/forum</url-pattern>
-    </servlet-mapping>
--->
-
 </web-app>
 

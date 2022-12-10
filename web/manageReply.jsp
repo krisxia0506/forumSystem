@@ -38,7 +38,10 @@
                     <tr>
                         <th class="first" width="200px">帖子标题</th>
                         <th style="width: 200px">回帖内容</th>
-                        <th style="width: 200px">回帖人</th>
+                        <c:if test="${sessionScope.role==99}">
+                            <th style="width: 200px">回帖人</th>
+                        </c:if>
+
                         <th style="width: 150px;">回帖时间</th>
                         <th style="width: 100px;">删除</th>
                     </tr>
@@ -54,10 +57,12 @@
                                         ${reply.content}
                                 </a>
                             </td>
-                            <td>${reply.author}</td>
+                            <c:if test="${sessionScope.role==99}">
+                                <td>${reply.author}</td>
+                            </c:if>
                             <td>${reply.replyTime}</td>
                             <td width="10px">
-                                <a href="reply?action=del&username=${sessionScope.username}&id=${reply.id}"
+                                <a href="reply?action=delete&replyId=${reply.id}"
                                    onclick="return confirm('确定删除？')">
                                     <i class="iconfont">&#xe74b;</i>
                                 </a>

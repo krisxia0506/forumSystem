@@ -13,23 +13,29 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forum/beans/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/beans/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/beans/PostType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/beans/Theme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/beans/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/beans/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forum/dao/PostDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/PostDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/dao/PostTypeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/ThemeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/PostPageDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/PostPageDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/ReplyDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/ReplyDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/ReplyDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/ReplyDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/UserDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forum/servlet/PostServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/PostServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/servlet/TypeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/ThemeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/servlet/ReplyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/ReplyServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/servlet/ThemeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/ThemeServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/servlet/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/UserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/addPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/addPost.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/addType.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/addType.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/checkvaild.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/checkvaild.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/common/left.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/common/left.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/common/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/common/top.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/left.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/left.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/displayPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/displayPost.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/js/fun.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/fun.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/listPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/listPost.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/manageType.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageTheme.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/modifyPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/modifyPost.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/modifyType.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/modifyTheme.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/manageCollect.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageCollect.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/managePost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/managePost.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/manageReply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageReply.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/modifyTheme.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/modifyTheme.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +54,20 @@
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="218f0898-ad56-4744-8e21-b300d75a6882" />
+        <option name="url" value="git@github.com:krisxia0506/forumSystem.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -85,10 +105,10 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "项目",
+    "project.structure.last.edited": "问题",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
+    "settings.editor.selected.configurable": "editor.preferences.tabs",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -103,10 +123,11 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Tomcat 9.0.64" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" activateToolWindowBeforeRun="false" APPLICATION_SERVER_NAME="Tomcat 9.0.64" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.64" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.64" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
       <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
         <artifact name="forum:Web exploded">
@@ -116,7 +137,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="238863b0-63be-46b4-b9fa-5751d4e114f1" />
+        <option name="BASE_DIRECTORY_NAME" value="9e1d17bd-42ec-4b5a-9ec0-3f8035e34890" />
         <option name="PRESERVE_SESSIONS" value="true" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
@@ -289,7 +310,11 @@
       <workItem from="1670323423312" duration="4514000" />
       <workItem from="1670372619716" duration="17015000" />
       <workItem from="1670405388058" duration="10534000" />
-      <workItem from="1670459574094" duration="12924000" />
+      <workItem from="1670459574094" duration="13699000" />
+      <workItem from="1670491104541" duration="1835000" />
+      <workItem from="1670495700660" duration="5134000" />
+      <workItem from="1670545897546" duration="9115000" />
+      <workItem from="1670657718820" duration="6905000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1670234117707</created>
@@ -347,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670475643535</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="更改主题颜色&#10;添加热门版块">
+      <created>1670478523904</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1670478523904</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

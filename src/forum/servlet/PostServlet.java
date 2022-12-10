@@ -6,7 +6,10 @@ import forum.dao.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -28,11 +31,6 @@ public class PostServlet extends HttpServlet {
         PostPageDAO postPageDAO = new PostPageDAO();
         int pageNo = 1;
         int pageSize = 6;
-        String strPageNo = request.getParameter("pageNo");
-        if (strPageNo!=null){
-            pageNo=Integer.parseInt(strPageNo);
-        }
-
         String func = request.getParameter("action");
         if (func == null) {
             func = "";
@@ -51,7 +49,7 @@ public class PostServlet extends HttpServlet {
                 String author = request.getParameter("author");
                 String postTime = request.getParameter("postTime");
                 String title = request.getParameter("title");
-                String postType = request.getParameter("postType");
+                String postType = request.getParameter("theme");
                 String keyword = request.getParameter("keyword");
                 String content = request.getParameter("content");
                 post.setId(Integer.parseInt(id));
@@ -82,20 +80,21 @@ public class PostServlet extends HttpServlet {
                 break;
             }
 
-            case "del" : {
+            case "delete": {
                 String postId = request.getParameter("postId");
                 if (postDAO.deletePostById(postId)) {
                     request.getRequestDispatcher("post?action=manage").forward(request, response);
                 } else {
-                    System.out.println();
+                    System.out.println("delete failed");
+                    request.getRequestDispatcher("post?action=manage").forward(request, response);
                 }
                 break;
             }
-            case "add" : {
+            case "add": {
                 Post post = new Post();
                 String userId = (String) session.getAttribute("userId");
                 String title = request.getParameter("title");
-                String postType = request.getParameter("postType");
+                String postType = request.getParameter("theme");
                 String keyword = request.getParameter("keyword");
                 String content = request.getParameter("content");
                 post.setAuthor(userId);
@@ -143,7 +142,11 @@ public class PostServlet extends HttpServlet {
             //根据模块查询该模块的帖子列表
             case "displayPostList" : {
                 String postTypeId = request.getParameter("postTypeId");
-                postList = postPageDAO.getNewsByPage(pageNo, pageSize, postTypeId);
+                String strPageNo = request.getParameter("pageNo");
+                if (strPageNo != null) {
+                    pageNo = Integer.parseInt(strPageNo);
+                }
+                postList = postPageDAO.getPostByPage(pageNo, pageSize, postTypeId);
                 Integer pageCount = postPageDAO.getPageCount(pageSize, postTypeId);
                 request.setAttribute("pageCount", pageCount);
                 request.setAttribute("pageNo", pageNo);
@@ -152,37 +155,9 @@ public class PostServlet extends HttpServlet {
                 request.getRequestDispatcher("listPost.jsp").forward(request, response);
                 break;
             }
-            default : {
-                String uname = null;
-                uname = (String) session.getAttribute("username");
-                if (uname == null) {
-                    Cookie[] cookies = request.getCookies();
-                    String autologin = null;
-                    if (cookies != null) {
-                        for (Cookie cookie : cookies) {
-                            if ("autologin".equals(cookie.getName())) {
-                                autologin = cookie.getValue();
-                                break;
-                            }
-                        }
-                    }
-                    if (autologin != null) {
-                        String[] parts = autologin.split("-");
-                        String name = parts[0];
-                        String pwd = parts[1];
-                        if (userDAO.queryByNamePwd(name, pwd).getId() != null) {
-                            response.sendRedirect("userLogin.jsp ");
-                        } else {
-                            session.setAttribute("username", name);
-                        }
-                    }
-                }
-                postList = postPageDAO.getNewsByPage(pageNo, pageSize,null);
-                Integer pageCount = postPageDAO.getPageCount(pageSize,null);
-                request.setAttribute("pageCount",pageCount);
-                request.setAttribute("pageNo",pageNo);
-                request.setAttribute("newsList", postList);
-                request.getRequestDispatcher("listPost.jsp").forward(request, response);
+            default: {
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                break;
             }
         }
     }

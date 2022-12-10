@@ -19,13 +19,16 @@ public class Post implements java.io.Serializable {
     public Post() {
     }
 
-    public Post(String title, String content, String author, String postTime, String keyword, String note) {
+    public Post(Integer id, String title, String content, String author, String postTime, String keyword, String note, String theme, String hits) {
+        this.id = id;
         this.title = title;
         this.content = content;
         this.author = author;
         this.postTime = postTime;
         this.keyword = keyword;
         this.note = note;
+        this.theme = theme;
+        this.hits = hits;
     }
 
     public Integer getId() {
