@@ -2,7 +2,7 @@
 <!DOCTYPE>
 <html>
 <head>
-    <title>新闻发布系统V2</title>
+    <title>技术论坛系统</title>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/fun.js"></script>
@@ -22,12 +22,16 @@
             </div>
             <br/>
 
-            <form action="user?action=register" method="post" onsubmit="return RegisterCheck()">
-                用&nbsp;户&nbsp;名：<input type="text" id="username" name="username" onkeyup="registerCheck()"></input>
+            <form action="user?action=register" method="post" onsubmit="return RegisterCheckPassword()">
+                昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：<input type="text" name="nickname" id="nickname"
+                                                                placeholder="请输入昵称" required/><br/><br>
+                用&nbsp;户&nbsp;名：<input type="text" id="username" name="username"
+                                          onkeyup="AjaxCheckUsername()"></input>
                 <span id="show"></span><br/><br/>
-                密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" id="password"
-                                                                name="password"></input><br/><br/>
-                确认密码：<input type="password" id="passwordCheck" name="password"></input><br/><br/>
+                密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" id="password" name="password"></input>
+                <span id="showPassword" style="color: red"></span><br/><br/>
+                确认密码：<input type="password" id="passwordCheck" name="password"></input>
+                <span id="showCheckPassword" style="color: red"></span><br/><br/><br/><br/>
                 性&nbsp;&nbsp;&nbsp;别： 男<input type="radio" value="male" name="gender" checked>
                 女<input type="radio" value="female" name="gender"><br>
                 个人简介<textarea name="resume" cols="12" rows="6"></textarea><br/><br/>
@@ -51,27 +55,5 @@
         loginError.style.display = "block";
     }
 
-    function RegisterCheck() {
-        var username = document.getElementById("username")
-        var password = document.getElementById("password")
-        var passwordCheck = document.getElementById("passwordCheck")
-        if (username.value.length < 5 || username.value.length > 10) {
-            alert("用户名长度应为5-10位");
-            username.focus();
-            return false;
-        }
-        if (password.value.length < 5 || password.value.length > 10) {
-            alert("密码长度应为5-10位");
-            password.focus();
-            return false;
-        }
-        if (password.value !== passwordCheck.value) {
-            alert("两次密码不一致");
-            passwordCheck.focus();
-            return false;
-        }
-
-        return true;
-    }
 </script>
 </html>

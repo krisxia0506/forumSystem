@@ -9,6 +9,7 @@ public class Reply implements java.io.Serializable {
     private Integer id;
     private String content;
     private String author;
+    private String level;
     private String replyTime;
     private Integer postId;
 
@@ -17,10 +18,11 @@ public class Reply implements java.io.Serializable {
     public Reply() {
     }
 
-    public Reply(Integer id, String content, String author, String replyTime, Integer postId, Post post) {
+    public Reply(Integer id, String content, String author, String level, String replyTime, Integer postId, Post post) {
         this.id = id;
         this.content = content;
         this.author = author;
+        this.level = level;
         this.replyTime = replyTime;
         this.postId = postId;
         this.post = post;
@@ -72,5 +74,13 @@ public class Reply implements java.io.Serializable {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 }

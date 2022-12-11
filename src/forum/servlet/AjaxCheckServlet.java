@@ -21,7 +21,8 @@ public class AjaxCheckServlet extends HttpServlet {
         String username = request.getParameter("username");
         UserDAO userDAO = new UserDAO();
         if (username != null) {
-            if (userDAO.queryByName(username).getId() != null) {
+            if (userDAO.queryByUsername(username)) {
+                //用户名已存在
                 response.getWriter().write("1");
             } else {
                 response.getWriter().write("0");

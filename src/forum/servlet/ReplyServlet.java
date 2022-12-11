@@ -42,16 +42,16 @@ public class ReplyServlet extends HttpServlet {
                 String postId = request.getParameter("postId");
                 String replyAuthor = (String) session.getAttribute("userId");
                 String replyContent = request.getParameter("replyContent");
-                if (Objects.equals(replyAuthor, "")) {
+                //判断是否登陆
+                if (Objects.equals(replyAuthor, null)) {
                     response.sendRedirect("userLogin.jsp");
                 } else {
                     reply.setContent(replyContent);
                     reply.setAuthor(replyAuthor);
                     reply.setPostId(Integer.parseInt(postId));
-                    if (replyDAO.insert(reply)) {
+                    if (replyDAO.insertReply(reply)) {
                         userDAO.increasePostTimes(replyAuthor);
                         request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
-
                     } else {
                         request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
@@ -69,9 +69,9 @@ public class ReplyServlet extends HttpServlet {
             }
             case "manage": {//评论管理
                 String role = (String) session.getAttribute("role");
-                if (Objects.equals(role, "99")) {
+                if (Objects.equals(role, "99")) {//管理员
                     replyList = replyDAO.getAll();
-                } else {
+                } else {//普通用户
                     String userId = (String) session.getAttribute("userId");
                     replyList = replyDAO.getByUserId(userId);
                 }

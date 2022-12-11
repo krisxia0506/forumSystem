@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class ReplyDAOImpl implements ReplyDAO {
 
-    public boolean insert(Reply reply) {
+    public boolean insertReply(Reply reply) {
         boolean result = false;
         int n = 0;
         Connection conn = null;
@@ -58,7 +58,8 @@ public class ReplyDAOImpl implements ReplyDAO {
                 reply = new Reply();
                 reply.setId(rs.getInt("reply_id"));
                 reply.setContent(rs.getString("reply_content"));
-                reply.setAuthor(rs.getString("username"));
+                reply.setAuthor(rs.getString("nickname"));
+                reply.setLevel(rs.getString("level"));
                 reply.setReplyTime(rs.getString("reply_time"));
                 reply.setPostId(rs.getInt("post_id"));
                 replyList.add(reply);
@@ -79,7 +80,7 @@ public class ReplyDAOImpl implements ReplyDAO {
         ArrayList<Reply> replyList = new ArrayList<Reply>();
         try {
             conn = DBGet.getConnection();
-            String sql = "select reply_id, reply_content, username, reply_time, post_id from reply join user u on u.id = reply.reply_user where reply_user = ? order by reply_time desc;";
+            String sql = "select reply_id, reply_content, reply_time, post_id from reply join user u on u.id = reply.reply_user where reply_user = ? order by reply_time desc;";
             ps = conn.prepareStatement(sql);
             ps.setString(1, userId);
             rs = ps.executeQuery();
@@ -88,7 +89,6 @@ public class ReplyDAOImpl implements ReplyDAO {
                 reply = new Reply();
                 reply.setId(rs.getInt("reply_id"));
                 reply.setContent(rs.getString("reply_content"));
-                reply.setAuthor(rs.getString("username"));
                 reply.setReplyTime(rs.getString("reply_time"));
                 reply.setPostId(rs.getInt("post_id"));
                 replyList.add(reply);

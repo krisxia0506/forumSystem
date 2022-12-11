@@ -7,9 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    String uname = null;
-    uname = (String) session.getAttribute("username");
-    if (uname == null) {
+    String nickname = null;
+    nickname = (String) session.getAttribute("nickname");
+    if (nickname == null) {
         Cookie[] cookies = request.getCookies();
         String autologin = null;
         if (cookies != null) {

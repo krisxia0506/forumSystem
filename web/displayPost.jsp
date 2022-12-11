@@ -12,7 +12,7 @@
 <!DOCTYPE>
 <html>
 <head>
-    <title>新闻发布系统V2</title>
+    <title>技术论坛系统</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 </head>
@@ -76,7 +76,7 @@
                 <c:forEach items="${requestScope.replyList}" var="reply">
                     <div class="nr">
                         <i class="iconfont">&#xe8c8;</i>
-                        <span>回帖人：[${reply.author}]</span>
+                        <span>回帖人：${reply.level}[${reply.author}]</span>
                         &nbsp;&nbsp;${reply.replyTime}&nbsp;&nbsp;
                         <div class="clear"></div>
                         <div class="blank20"></div>

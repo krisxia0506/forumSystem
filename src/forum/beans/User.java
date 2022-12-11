@@ -11,18 +11,21 @@ public class User implements java.io.Serializable {
     private String username;
     private String password;
     private String gender;
+    private String nickname;
     private String resume;
+    private String level;
 
     public User() {
     }
 
-    public User(Integer id, Integer role, String username, String password, String gender, String resume) {
+    public User(Integer id, Integer role, String username, String password, String gender, String resume, String level) {
         this.id = id;
         this.role = role;
         this.username = username;
         this.password = password;
         this.gender = gender;
         this.resume = resume;
+        this.level = level;
     }
 
     public Integer getId() {
@@ -71,5 +74,21 @@ public class User implements java.io.Serializable {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }

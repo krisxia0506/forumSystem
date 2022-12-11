@@ -1,4 +1,5 @@
 package forum.dao;
+
 import forum.beans.User;
 import forum.util.DBGet;
 
@@ -28,7 +29,9 @@ public class UserDAO {
                 user.setId(rs.getInt("id"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
+                user.setNickname(rs.getString("nickname"));
                 user.setRole(Integer.valueOf(rs.getString("role")));
+                user.setLevel(rs.getString("level"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,36 +67,14 @@ public class UserDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "UPDATE user SET username=?,password=?,gender=?,resume=? WHERE id=?";
+            String sql = "UPDATE user SET username=?,password=?,nickname=?,gender=?,resume=? WHERE id=?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
-            ps.setString(3, user.getGender());
-            ps.setString(4, user.getResume());
-            ps.setInt(5, user.getId());
-            if (ps.executeUpdate() == 1) {
-                result = true;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            DBGet.closeConnection(conn);
-        }
-        return result;
-    }
-
-    public boolean insertUser(User user) {
-        boolean result = false;
-        Connection conn = null;
-        PreparedStatement ps = null;
-        try {
-            conn = DBGet.getConnection();
-            String sql = "INSERT INTO user VALUES(null,1,?,?,?,?,null,1)";
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, user.getUsername());
-            ps.setString(2, user.getPassword());
-            ps.setString(3, user.getGender());
-            ps.setString(4, user.getResume());
+            ps.setString(3, user.getNickname());
+            ps.setString(4, user.getGender());
+            ps.setString(5, user.getResume());
+            ps.setInt(6, user.getId());
             if (ps.executeUpdate() == 1) {
                 result = true;
             }
@@ -106,7 +87,39 @@ public class UserDAO {
     }
 
     /**
+     * 注册用户
+     *
+     * @param user 用户对象
+     * @return 是否成功
+     */
+    public boolean insertUser(User user) {
+        boolean result = false;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = DBGet.getConnection();
+            String sql = "INSERT INTO user VALUES(null,1,?,?,?,?,?,'技术小白',1)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getNickname());
+            ps.setString(4, user.getGender());
+            ps.setString(5, user.getResume());
+            if (ps.executeUpdate() == 1) {
+                result = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("注册失败");
+        } finally {
+            DBGet.closeConnection(conn);
+        }
+        return result;
+    }
+
+    /**
      * 查询所有用户
+     *
+     * @return 用户列表
      */
     public ArrayList<User> queryAll() {
         ArrayList<User> userList = new ArrayList<User>();
@@ -128,33 +141,40 @@ public class UserDAO {
                 userList.add(user);
             }
         } catch (SQLException e) {
-            System.out.println("queryAll"+e);
+            System.out.println("queryAll" + e);
         } finally {
             DBGet.closeConnection(conn);
         }
         return userList;
     }
 
-    public User queryByName(String uname) {
+    /**
+     * 根据id查询用户
+     *
+     * @param id 用户id
+     * @return User
+     */
+    public User queryByUserId(String id) {
         User user = new User();
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "select * from user where username=?";
+            String sql = "select * from user where id=?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1, uname);
+            ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
                 user.setId(rs.getInt("id"));
                 user.setUsername(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
+                user.setNickname(rs.getString("nickname"));
                 user.setGender(rs.getString("gender"));
                 user.setResume(rs.getString("resume"));
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println("根据id查询用户失败");
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -162,8 +182,34 @@ public class UserDAO {
         return user;
     }
 
+    public boolean queryByUsername(String username) {
+        boolean flag = false;
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        try {
+            conn = DBGet.getConnection();
+            String sql = "select * from user where username=?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            //如果有数据，说明用户名已经存在
+            if (rs.next()) {
+                flag = true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            DBGet.closeConnection(conn);
+        }
+
+        return flag;
+    }
+
     /**
      * 增加发帖次数
+     *
+     * @param author 用户id
      */
     public void increasePostTimes(String author) {
         Connection conn = null;
@@ -184,7 +230,7 @@ public class UserDAO {
     }
 
     /**
-     * 调用存储过程
+     * 调用存储过程，更新用户等级
      */
     public void level_procedure() {
         Connection conn = null;

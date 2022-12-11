@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * Created on 2022-11-21 18:25
+ * Created on 2022-12-11 18:25
  *
  * @author Xia Jiayi
  */
@@ -22,47 +22,41 @@ public class UserServlet extends HttpServlet {
         HttpSession session = request.getSession();
         UserDAO userDAO = new UserDAO();
         ArrayList<User> usersList = new ArrayList<User>();
-        String id = request.getParameter("id");
-        String uname = request.getParameter("username");
-        String pwd = request.getParameter("password");
-        String gender = request.getParameter("gender");
-        String resume = request.getParameter("resume");
 
         String func = request.getParameter("action");
         if (func == null) {
             func = "";
         }
         switch (func) {
-            case "manage":
+            case "manage": {
                 usersList = userDAO.queryAll();
                 request.setAttribute("usersList", usersList);
                 request.getRequestDispatcher("manageUser.jsp").forward(request, response);
                 break;
-            case "delete":
-                if (userDAO.deleteById(id)) {
+            }
+            case "delete": {
+                String userId = request.getParameter("userId");
+                if (userDAO.deleteById(userId)) {
                     request.getRequestDispatcher("user?action=manage").forward(request, response);
                 } else {
                     System.out.println("deleteUser error");
                     request.getRequestDispatcher("user?action=manage").forward(request, response);
                 }
                 break;
+            }
             case "login": {
                 String nopwd = request.getParameter("nopwd");
+                String username = request.getParameter("username");
+                String pwd = request.getParameter("password");
                 User user = new User();
-                if (id != null) {
-                    user.setId(Integer.valueOf(id));
-                }
-                user.setUsername(uname);
-                user.setPassword(pwd);
-                user.setGender(gender);
-                user.setResume(resume);
-                user = userDAO.queryByNamePwd(uname, pwd);
+                user = userDAO.queryByNamePwd(username, pwd);
                 if (user.getId() != null) {
-                    session.setAttribute("username", uname);
                     session.setAttribute("role", user.getRole().toString());
+                    session.setAttribute("nickname", user.getNickname());
                     session.setAttribute("userId", user.getId().toString());
+                    session.setAttribute("level", user.getLevel());
                     if (nopwd != null) {
-                        Cookie cookie = new Cookie("autologin", uname + "-" + pwd);
+                        Cookie cookie = new Cookie("autologin", username + "-" + pwd);
                         cookie.setMaxAge(Integer.parseInt(nopwd));
                         cookie.setPath(request.getContextPath());
                         response.addCookie(cookie);
@@ -75,8 +69,14 @@ public class UserServlet extends HttpServlet {
             }
             case "register": {
                 User user = new User();
-                user.setUsername(uname);
+                String username = request.getParameter("username");
+                String pwd = request.getParameter("password");
+                String nickname = request.getParameter("nickname");
+                String gender = request.getParameter("gender");
+                String resume = request.getParameter("resume");
+                user.setUsername(username);
                 user.setPassword(pwd);
+                user.setNickname(nickname);
                 user.setGender(gender);
                 user.setResume(resume);
                 if (userDAO.insertUser(user)) {
@@ -86,19 +86,26 @@ public class UserServlet extends HttpServlet {
                 }
                 break;
             }
-            case "modi": {
+            case "modify": {
+                String id = request.getParameter("id");
+                String username = request.getParameter("username");
+                String pwd = request.getParameter("password");
+                String nickname = request.getParameter("nickname");
+                String gender = request.getParameter("gender");
+                String resume = request.getParameter("resume");
                 User user = new User();
                 user.setId(Integer.valueOf(id));
-                user.setUsername(uname);
+                user.setUsername(username);
                 user.setPassword(pwd);
+                user.setNickname(nickname);
                 user.setGender(gender);
                 user.setResume(resume);
                 if (userDAO.updateUserById(user)) {
-                    String username = (String) session.getAttribute("username");
-                    if (Objects.equals(username, "admin")) {
+                    String role = (String) session.getAttribute("role");
+                    if (Objects.equals(role, "99")) {//管理员
                         request.getRequestDispatcher("user?action=manage").forward(request, response);
                     } else {
-                        session.setAttribute("username", uname);
+                        session.setAttribute("nickname", nickname);
                         request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
                 } else {
@@ -107,13 +114,14 @@ public class UserServlet extends HttpServlet {
                 break;
             }
             case "modifyView": {//修改用户页面
-                String realUsername = (String) session.getAttribute("username");
+                String userId = request.getParameter("userId");
+                String sessionId = (String) session.getAttribute("userId");
                 String role = (String) session.getAttribute("role");
                 User user = new User();
                 if (Objects.equals(role, "99")) {//如果是管理员
-                    user = userDAO.queryByName(uname);
+                    user = userDAO.queryByUserId(userId);
                 } else {//如果是普通用户
-                    user = userDAO.queryByName(realUsername);
+                    user = userDAO.queryByUserId(sessionId);
                 }
                 request.setAttribute("user", user);
                 request.getRequestDispatcher("modifyUser.jsp").forward(request, response);
@@ -130,6 +138,7 @@ public class UserServlet extends HttpServlet {
             }
         }
     }
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }

@@ -28,11 +28,15 @@ public class CollectServlet extends HttpServlet {
         switch (func) {
             case "add": {
                 String postId = request.getParameter("postId");
-                if (collectDAO.collectPost(userId, postId)) {
-                    request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
+                if (userId == null) {
+                    response.sendRedirect("userLogin.jsp");
                 } else {
-                    System.out.println("收藏失败");
-                    request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
+                    if (collectDAO.collectPost(userId, postId)) {
+                        request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
+                    } else {
+                        System.out.println("收藏失败");
+                        request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
+                    }
                 }
                 break;
             }

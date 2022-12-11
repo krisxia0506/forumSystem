@@ -228,10 +228,16 @@ div#logo_main {
 
 .dd_bt {
     color: #333;
-    width: 390px;
+    width: 380px;
     float: left;
     text-align: left;
     font-size: 15px;
+}
+
+.dd_lmbt {
+    float: left;
+    overflow: auto;
+    width: 470px;
 }
 
 .dd_bt a, .dd_bt a:visited {
@@ -260,11 +266,11 @@ div#logo_main {
 .page a {
     padding: 5px;
     color: white;
-    background: #40b7ed;
+    background: #fdb7b7;
 }
 
 .page a:hover {
-    background: #1063ff;
+    background: #ff7171;
 }
 
 /*postlist-end*/

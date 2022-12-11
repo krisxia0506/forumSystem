@@ -3,7 +3,7 @@
 <!DOCTYPE>
 <html>
 <head>
-    <title>新闻发布系统V2</title>
+    <title>技术论坛系统</title>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
     <script src="js/fun.js"></script>
 </head>
@@ -18,7 +18,7 @@
         <div class="inputform">
             <form action="user?action=login" method="post">
                 <label>
-                    用户名：
+                    账&nbsp;&nbsp;&nbsp;号：
                     <input type="text" name="username"></input>
                 </label><br><br>
                 <label>

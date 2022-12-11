@@ -97,7 +97,7 @@ public class PostDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "select post_id, post_title, post_content,username post_author, post_time, post_keyword, theme, post_hits from post join user u on u.id = post.post_author where post_id=?";
+            String sql = "select post_id, post_title, post_content,nickname post_author, post_time, post_keyword, theme, post_hits from post join user u on u.id = post.post_author where post_id=?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             rs = ps.executeQuery();

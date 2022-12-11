@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>新闻发布系统V2</title>
+    <title>技术论坛系统</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 </head>
@@ -38,19 +38,21 @@
             <ul>
                 <c:forEach items="${requestScope.postList}" var="post">
                     <li>
-                        <div class="dd_lm">[
-                            <c:forEach var="theme" items="${themeList}">
-                                <c:choose>
-                                    <c:when test="${theme.id==post.theme}">
-                                        ${theme.themeTitle}
-                                    </c:when>
+                        <div class="dd_lmbt">
+                            <div class="dd_lm">[
+                                <c:forEach var="theme" items="${themeList}">
+                                    <c:choose>
+                                        <c:when test="${theme.id==post.theme}">
+                                            ${theme.themeTitle}
+                                        </c:when>
 
-                                </c:choose>
+                                    </c:choose>
 
-                            </c:forEach>]
-                        </div>
-                        <div class="dd_bt">
-                            <a href="post?action=displayPost&postId=${post.id}">${post.title}</a>
+                                </c:forEach>]
+                            </div>
+                            <div class="dd_bt">
+                                <a href="post?action=displayPost&postId=${post.id}">${post.title}</a>
+                            </div>
                         </div>
                         <div class="dd_time">${post.postTime}</div>
                     </li>
@@ -61,24 +63,24 @@
             </c:if>
             <div class="page">
                 <div>
-                    <c:if test="${pageCount>1}">
+                    <c:if test="${requestScope.pageCount>1}">
                         <c:choose>
-                            <c:when test="${pageNo==1}"><%--首页显示--%>
-                                <a href="post?action=displayPostList&postTypeId=${postTypeId}&pageNo=${pageNo+1}" >下一页</a>
-                                ${pageNo} / ${pageCount}
-                                <a href="post?action=displayPostList&postTypeId=${postTypeId}&pageNo=${pageCount}">尾页</a>
+                            <c:when test="${requestScope.pageNo==1}"><%--首页显示--%>
+                                <a href="post?action=displayPostList&themeId=${requestScope.themeId}&pageNo=${requestScope.pageNo+1}">下一页</a>
+                                ${requestScope.pageNo} / ${requestScope.pageCount}
+                                <a href="post?action=displayPostList&themeId=${requestScope.themeId}&pageNo=${requestScope.pageCount}">尾页</a>
                             </c:when>
-                            <c:when test="${pageNo==pageCount}"><%--尾页显示--%>
-                                <a href="post?action=displayPostList&postTypeId=${postTypeId}&pageNo=1" >首页</a>
-                                ${pageNo} / ${pageCount}
-                                <a href="post?action=displayPostList&postTypeId=${postTypeId}&pageNo=${pageNo-1}" >上一页</a>
+                            <c:when test="${requestScope.pageNo==requestScope.pageCount}"><%--尾页显示--%>
+                                <a href="post?action=displayPostList&themeId=${requestScope.themeId}&pageNo=1">首页</a>
+                                ${requestScope.pageNo} / ${requestScope.pageCount}
+                                <a href="post?action=displayPostList&themeId=${requestScope.themeId}&pageNo=${requestScope.pageNo-1}">上一页</a>
                             </c:when>
                             <c:otherwise>
-                                <a href="post?action=displayPostList&postTypeId=${postTypeId}&pageNo=1" >首页</a>
-                                <a href="post?action=displayPostList&postTypeId=${postTypeId}&pageNo=${pageNo-1}" >上一页</a>
-                                ${pageNo} / ${pageCount}
-                                <a href="post?action=displayPostList&postTypeId=${postTypeId}&pageNo=${pageNo+1}" >下一页</a>
-                                <a href="post?action=displayPostList&postTypeId=${postTypeId}&pageNo=${pageCount}">尾页</a>
+                                <a href="post?action=displayPostList&themeId=${requestScope.themeId}&pageNo=1">首页</a>
+                                <a href="post?action=displayPostList&themeId=${requestScope.themeId}&pageNo=${requestScope.pageNo-1}">上一页</a>
+                                ${requestScope.pageNo} / ${requestScope.pageCount}
+                                <a href="post?action=displayPostList&themeId=${requestScope.themeId}&pageNo=${requestScope.pageNo+1}">下一页</a>
+                                <a href="post?action=displayPostList&themeId=${requestScope.themeId}&pageNo=${requestScope.pageCount}">尾页</a>
                             </c:otherwise>
                         </c:choose>
                     </c:if>

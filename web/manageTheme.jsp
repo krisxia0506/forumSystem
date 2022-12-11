@@ -14,7 +14,7 @@
 <!DOCTYPE>
 <html>
 <head>
-    <title>新闻发布系统V2</title>
+    <title>技术论坛系统</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="js/fun.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
@@ -46,7 +46,7 @@
                         <tr>
                             <td>${status.count}</td>
                             <td class="title">
-                                <a href="post?action=displayPostList&postTypeId=${theme.id}">
+                                <a href="post?action=displayPostList&themeId=${theme.id}">
                                         ${theme.themeTitle}
                                 </a>
                             </td>

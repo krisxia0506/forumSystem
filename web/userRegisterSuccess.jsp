@@ -3,7 +3,7 @@
 <!DOCTYPE>
 <html>
 <head>
-    <title>新闻发布系统V2</title>
+    <title>技术论坛系统</title>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
     <script src="js/fun.js"></script>
     <script type="text/javascript">

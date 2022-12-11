@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * Created on 2022-11-09 16:27
+ * Created on 2022-12-08 16:27
  *
  * @author Xia Jiayi
  */
@@ -118,6 +118,7 @@ public class PostServlet extends HttpServlet {
                 String postId = request.getParameter("postId");
                 boolean isCollected = false;
                 if (postDAO.getById(postId).getId() != null) {
+                    //增加点击量
                     postDAO.increaseHits(postId);
                     //获取帖子详情
                     Post post = postDAO.getById(postId);
@@ -132,6 +133,7 @@ public class PostServlet extends HttpServlet {
                     }
                     request.setAttribute("post", post);
                     request.setAttribute("replyList", replyList);
+                    //获取相关帖子
                     request.setAttribute("relatePost", postDAO.getRelate(postId));
                     request.getRequestDispatcher("displayPost.jsp").forward(request, response);
                 } else {
@@ -141,17 +143,17 @@ public class PostServlet extends HttpServlet {
             }
             //根据模块查询该模块的帖子列表
             case "displayPostList" : {
-                String postTypeId = request.getParameter("postTypeId");
+                String themeId = request.getParameter("themeId");
                 String strPageNo = request.getParameter("pageNo");
                 if (strPageNo != null) {
                     pageNo = Integer.parseInt(strPageNo);
                 }
-                postList = postPageDAO.getPostByPage(pageNo, pageSize, postTypeId);
-                Integer pageCount = postPageDAO.getPageCount(pageSize, postTypeId);
+                postList = postPageDAO.getPostByPage(pageNo, pageSize, themeId);
+                Integer pageCount = postPageDAO.getPageCount(pageSize, themeId);
                 request.setAttribute("pageCount", pageCount);
                 request.setAttribute("pageNo", pageNo);
                 request.setAttribute("postList", postList);
-                request.setAttribute("postTypeId", postTypeId);
+                request.setAttribute("themeId", themeId);
                 request.getRequestDispatcher("listPost.jsp").forward(request, response);
                 break;
             }

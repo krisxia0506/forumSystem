@@ -47,7 +47,7 @@
         <ul>
             <c:forEach var="theme" items="${hotTheme}" varStatus="status">
                 <li>
-                    <a class="a101" href="post?action=displayPostList&postTypeId=${theme.id}">
+                    <a class="a101" href="post?action=displayPostList&themeId=${theme.id}">
                         <div>${theme.themeTitle}</div>
                     </a>
                 </li>

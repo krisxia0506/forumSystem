@@ -34,11 +34,12 @@ To change this template use File | Settings | File Templates.
                 <div class="breadcrumbs"></div>
             </div>
             <br/>
-            <form action="user?action=modi" method="post">
+            <form action="user?action=modify" method="post">
                 <input type="hidden" name="id" value="${requestScope.user.id}"/>
-                用户名：<input type="text" name="username" value="${requestScope.user.username}"
-                              onkeyup="registerCheck()">
+                账&nbsp&nbsp&nbsp号：<input type="text" name="username" value="${requestScope.user.username}"
+                                           onkeyup="AjaxCheckUsername()">
                 <span id="show"></span><br><br>
+                昵&nbsp&nbsp&nbsp称：<input type="text" name="nickname" value="${requestScope.user.nickname}"><br><br>
                 密&nbsp&nbsp&nbsp码：<input type="password" name="password"
                                            value="${requestScope.user.password}"><br><br>
                 性别：
@@ -56,7 +57,9 @@ To change this template use File | Settings | File Templates.
                 个人简介:<textarea name="resume" cols="6" rows="6">${requestScope.user.resume}</textarea>
                 <br><br>
                 <input type="submit" value="修改"/>
-                <button onclick="history.go(-1)">返回</button>
+                <c:if test="${sessionScope.role==99}">
+                    <button onclick="window.local.href='user?action=manage'">返回</button>
+                </c:if>
                 <br>
             </form>
         </div>

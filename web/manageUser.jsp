@@ -6,7 +6,7 @@
 <!DOCTYPE>
 <html>
 <head>
-    <title>新闻发布系统V2</title>
+    <title>技术论坛系统</title>
     <script src="js/fun.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
@@ -33,12 +33,12 @@
                     <c:forEach items="${requestScope.usersList}" var="user" varStatus="status">
                         <tr>
                             <td>${status.count}</td>
-                            <td><a href="user?action=modifyView&username=${user.username}">
+                            <td><a href="user?action=modifyView&userId=${user.id}">
                                     ${user.username}
                             </a>
                             </td>
                             <td>
-                                <a href="user?action=delete&id=${user.id}&username=${user.username}" onclick="return confirm('确定删除么')">
+                                <a href="user?action=delete&userId=${user.id}" onclick="return confirm('确定删除么')">
                                     <i class="iconfont">&#xe74b;</i>
                                 </a>
                             </td>

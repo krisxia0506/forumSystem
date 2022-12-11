@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author Xia Jiayi
  */
 public interface ReplyDAO {
-    public boolean insert(Reply reply);
+    public boolean insertReply(Reply reply);
 
     public ArrayList<Reply> getByPostId(String postId);
 

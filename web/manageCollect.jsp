@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>新闻发布系统V2</title>
+    <title>技术论坛系统</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <script src="js/fun.js"></script>

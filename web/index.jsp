@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>新闻发布系统V2</title>
+    <title>技术论坛系统</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 </head>
@@ -21,7 +21,7 @@
                 <c:forEach items="${requestScope.themeList}" var="theme">
                     <li class="li1">
                         <div>
-                            <a class="div403" href="post?action=displayPostList&postTypeId=${theme.id}">
+                            <a class="div403" href="post?action=displayPostList&themeId=${theme.id}">
                                 <div class="div404">
                                     <div class="typeTitle">${theme.themeTitle}</div>
                                     <div class="typeIntroduction">${theme.themeIntroduction}</div>
