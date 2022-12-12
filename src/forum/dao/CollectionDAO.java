@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author Xia Jiayi
  */
-public class CollectDAO {
+public class CollectionDAO {
 
     /**
      * 收藏帖子
@@ -44,6 +44,7 @@ public class CollectDAO {
      * 查询是否已收藏
      */
     public boolean isCollected(String userId, String postId) {
+        boolean flag = false;
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
@@ -55,14 +56,14 @@ public class CollectDAO {
             ps.setString(2, postId);
             rs = ps.executeQuery();
             if (rs.next()) {
-                return true;
+                flag = true;
             }
         } catch (SQLException e1) {
             System.out.println("isCollected" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
-        return false;
+        return flag;
     }
 
     /**

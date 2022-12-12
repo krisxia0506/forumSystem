@@ -72,18 +72,21 @@ function AjaxCheckUsername() {
                 if (data === "1") {
                     show.html("用户已存在！！！")
                     show.css("color", "red")
+                    return false;
                 } else {
                     if (name.length < 5 || name.length > 10 || reg.test(name)) {
                         show.html("用户名长度应为5-10位英文字符或数字");
                         show.css("color", "red")
                         $("[name=username]").focus();
+                        return false;
                     } else {
                         show.html("用户名可用")
                         show.css("color", "green")
+                        return true;
                     }
                 }
-        }
-    })
+            }
+        })
     }
 }
 
@@ -92,17 +95,22 @@ function RegisterCheckPassword() {
     var passwordCheck = document.getElementById("passwordCheck")
     var showPassword = document.getElementById("showPassword")
     var showCheckPassword = document.getElementById("showCheckPassword")
-    if (password.value.length < 5 || password.value.length > 10) {
-        showPassword.innerHTML = "密码长度应为5-10位";
-        password.focus();
+    if (AjaxCheckUsername()) {
+        if (password.value.length < 5 || password.value.length > 10) {
+            showPassword.innerHTML = "密码长度应为5-10位";
+            password.focus();
+            return false;
+        } else if (password.value !== passwordCheck.value) {
+            showCheckPassword.innerHTML = "两次密码不一致";
+            passwordCheck.focus();
+            return false;
+        } else {
+            return true;
+        }
+
+    } else {
         return false;
     }
-    if (password.value !== passwordCheck.value) {
-        showCheckPassword.innerHTML = "两次密码不一致";
-        passwordCheck.focus();
-        return false;
-    }
-    return true;
 }
 
 function CheckReply() {

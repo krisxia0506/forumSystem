@@ -16,9 +16,6 @@
     //获取热贴
     ArrayList<Post> hotPostList = postDAO.getHotPost();
     request.setAttribute("hotPostList", hotPostList);
-    //获取所有帖子类型
-    ArrayList<Theme> themeList = themeDAO.getAllTheme();
-    request.setAttribute("themeList", themeList);
     //获取热门回帖
     ReplyDAO replyDAO = new ReplyDAOImpl();
     request.setAttribute("hotReplyList", replyDAO.getHotReply());

@@ -37,7 +37,7 @@ public class ThemeServlet extends HttpServlet {
             }
             case "manage": {
                 themeList = themeDAO.getAllTheme();
-                request.setAttribute("postTypeList", themeList);
+                request.setAttribute("themeList", themeList);
                 request.getRequestDispatcher("manageTheme.jsp").forward(request, response);
                 break;
             }

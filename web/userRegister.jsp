@@ -37,7 +37,7 @@
                 个人简介<textarea name="resume" cols="12" rows="6"></textarea><br/><br/>
                 <input type="submit" value="提交">
                 <button onclick="history.go(-1)">返回</button>
-                <div id="loginError" style="display: none;color: red;font-size: 20px">注册失败</div>
+                <div id="loginError" style="color: red;font-size: 20px">${requestScope.msg}</div>
                 <br/>
             </form>
         </div>
@@ -48,12 +48,4 @@
 </div>
 <%@include file="common/bottom.txt" %>
 </body>
-<script>
-    var errori = '<%=request.getParameter("error")%>';
-    if (errori === '1') {
-        var loginError = document.getElementById("loginError");
-        loginError.style.display = "block";
-    }
-
-</script>
 </html>

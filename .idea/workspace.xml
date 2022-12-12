@@ -9,32 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb67749f-9fcc-4ef0-a7e5-6eff1e9e6692" name="变更" comment="更改主题颜色&#10;添加热门版块">
-      <change afterPath="$PROJECT_DIR$/src/forum/filter/AutoLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/38dc372d-9d99-4c50-8fdf-a6fdbfa4d8ea.xml" afterDir="false" />
+    <list default="true" id="eb67749f-9fcc-4ef0-a7e5-6eff1e9e6692" name="变更" comment="添加昵称">
+      <change afterPath="$PROJECT_DIR$/src/forum/filter/CheckLoginFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/beans/Reply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/beans/Reply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/beans/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/beans/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/dao/PostDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/PostDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/dao/ReplyDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/ReplyDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/dao/ReplyDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/ReplyDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/servlet/AjaxCheckServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/AjaxCheckServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/servlet/CollectServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/CollectServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/CollectDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/CollectionDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/filter/AutoLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/filter/AutoLoginFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/servlet/CollectServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/CollectionServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forum/servlet/PostServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/PostServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forum/servlet/ReplyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/ReplyServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/servlet/ThemeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/ThemeServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forum/servlet/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/checkvaild.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/checkvaild.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/common/left.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/common/left.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/common/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/common/top.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/displayPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/displayPost.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/js/fun.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/fun.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/listPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/listPost.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/managePost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/managePost.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/manageTheme.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageTheme.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/manageUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/modifyUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/modifyUser.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/userLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/userLogin.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/userRegister.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/userRegister.jsp" afterDir="false" />
     </list>
@@ -140,6 +130,7 @@
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="9e1d17bd-42ec-4b5a-9ec0-3f8035e34890" />
         <option name="HTTP_PORT" value="8081" />
+        <option name="JNDI_PORT" value="1111" />
         <option name="PRESERVE_SESSIONS" value="true" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
@@ -317,7 +308,11 @@
       <workItem from="1670495700660" duration="5134000" />
       <workItem from="1670545897546" duration="9115000" />
       <workItem from="1670657718820" duration="11633000" />
-      <workItem from="1670741709241" duration="11429000" />
+      <workItem from="1670741709241" duration="12101000" />
+      <workItem from="1670804989690" duration="15000" />
+      <workItem from="1670805025289" duration="12350000" />
+      <workItem from="1670825049001" duration="573000" />
+      <workItem from="1670833981135" duration="4847000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1670234117707</created>
@@ -389,7 +384,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670667184460</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="添加昵称">
+      <created>1670755726218</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1670755726218</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -415,9 +417,20 @@
     <MESSAGE value="模块管理&#10;热门版块&#10;数据库采用userId" />
     <MESSAGE value="收藏DAO" />
     <MESSAGE value="更改主题颜色&#10;添加热门版块" />
-    <option name="LAST_COMMIT_MESSAGE" value="更改主题颜色&#10;添加热门版块" />
+    <MESSAGE value="添加昵称" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加昵称" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/web/common/left.jsp</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

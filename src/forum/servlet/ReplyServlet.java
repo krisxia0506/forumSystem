@@ -2,6 +2,7 @@ package forum.servlet;
 
 import forum.beans.Post;
 import forum.beans.Reply;
+import forum.beans.User;
 import forum.dao.PostDAO;
 import forum.dao.ReplyDAO;
 import forum.dao.ReplyDAOImpl;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * Created on 2022-11-21 11:05
+ * Created on 2022-12-7 11:05
  *
  * @author Xia Jiayi
  */
@@ -37,25 +38,24 @@ public class ReplyServlet extends HttpServlet {
             func = "";
         }
         switch (func) {
-            case "add" : {
+            case "add": {
                 Reply reply = new Reply();
                 String postId = request.getParameter("postId");
                 String replyAuthor = (String) session.getAttribute("userId");
                 String replyContent = request.getParameter("replyContent");
-                //判断是否登陆
-                if (Objects.equals(replyAuthor, null)) {
-                    response.sendRedirect("userLogin.jsp");
+                reply.setContent(replyContent);
+                reply.setAuthor(replyAuthor);
+                reply.setPostId(Integer.parseInt(postId));
+                if (replyDAO.insertReply(reply)) {
+                    userDAO.increasePostTimes(replyAuthor);
+                    //更新用户等级
+                    User user = userDAO.queryByUserId((String) session.getAttribute("userId"));
+                    session.setAttribute("level", user.getLevel());
+                    request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
                 } else {
-                    reply.setContent(replyContent);
-                    reply.setAuthor(replyAuthor);
-                    reply.setPostId(Integer.parseInt(postId));
-                    if (replyDAO.insertReply(reply)) {
-                        userDAO.increasePostTimes(replyAuthor);
-                        request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
-                    } else {
-                        request.getRequestDispatcher("index.jsp").forward(request, response);
-                    }
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
+
                 break;
             }
             case "delete": {
@@ -89,7 +89,8 @@ public class ReplyServlet extends HttpServlet {
                 request.getRequestDispatcher("manageReply.jsp").forward(request, response);
                 break;
             }
-            default : request.getRequestDispatcher("index.jsp").forward(request, response);
+            default:
+                request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 

@@ -1,7 +1,7 @@
 package forum.servlet;
 
 import forum.beans.Collection;
-import forum.dao.CollectDAO;
+import forum.dao.CollectionDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,11 +18,11 @@ import java.util.ArrayList;
  * @author Xia Jiayi
  */
 @WebServlet("/collect")
-public class CollectServlet extends HttpServlet {
+public class CollectionServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
-        CollectDAO collectDAO = new CollectDAO();
+        CollectionDAO collectionDAO = new CollectionDAO();
         String userId = (String) session.getAttribute("userId");
         String func = request.getParameter("action");
         switch (func) {
@@ -31,7 +31,7 @@ public class CollectServlet extends HttpServlet {
                 if (userId == null) {
                     response.sendRedirect("userLogin.jsp");
                 } else {
-                    if (collectDAO.collectPost(userId, postId)) {
+                    if (collectionDAO.collectPost(userId, postId)) {
                         request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
                     } else {
                         System.out.println("收藏失败");
@@ -43,7 +43,7 @@ public class CollectServlet extends HttpServlet {
             case "delete": {
                 String postId = request.getParameter("postId");
                 String url = request.getHeader("Referer");
-                if (collectDAO.cancelCollect(userId, postId)) {
+                if (collectionDAO.cancelCollect(userId, postId)) {
                     if (url.contains("manage")) {
                         request.getRequestDispatcher("collect?action=manage").forward(request, response);
                     } else {
@@ -57,7 +57,7 @@ public class CollectServlet extends HttpServlet {
             }
             case "manage": {
                 ArrayList<Collection> collectionList = new ArrayList<Collection>();
-                collectionList = collectDAO.getCollectionByUserId(userId);
+                collectionList = collectionDAO.getCollectionByUserId(userId);
                 request.setAttribute("collectionList", collectionList);
                 request.getRequestDispatcher("manageCollect.jsp").forward(request, response);
                 break;

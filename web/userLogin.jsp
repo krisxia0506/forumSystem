@@ -1,5 +1,4 @@
 <%@ page language="java" pageEncoding="utf-8" %>
-
 <!DOCTYPE>
 <html>
 <head>
@@ -37,7 +36,7 @@
                 <br>
             </form>
             <br>
-            <div id="loginError" style="display: none;color: red;font-size: 20px">登陆失败</div>
+            <div id="loginError" style="color: red;font-size: 20px">${requestScope.msg}</div>
         </div>
         <!--main end -->
     </div>
@@ -47,12 +46,5 @@
 <%@include file="common/bottom.txt" %>
 
 </body>
-<script>
-    var errori = '<%=request.getParameter("error")%>';
-    if (errori === '1') {
-        var loginError = document.getElementById("loginError");
-        loginError.style.display = "block";
-    }
-</script>
 </html>
 

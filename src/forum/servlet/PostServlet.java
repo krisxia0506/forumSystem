@@ -2,6 +2,7 @@ package forum.servlet;
 
 import forum.beans.Post;
 import forum.beans.Reply;
+import forum.beans.User;
 import forum.dao.*;
 
 import javax.servlet.ServletException;
@@ -66,7 +67,7 @@ public class PostServlet extends HttpServlet {
                 }
                 break;
             }
-            case "manage" : {
+            case "manage": {
                 String role = (String) session.getAttribute("role");
                 if (Objects.equals(role, "99")) {
                     postList = postDAO.getAllPost();
@@ -104,6 +105,9 @@ public class PostServlet extends HttpServlet {
                 post.setContent(content);
                 if (postDAO.addPost(post)) {
                     userDAO.increasePostTimes(userId);
+                    //更新用户等级
+                    User user = userDAO.queryByUserId(userId);
+                    session.setAttribute("level", user.getLevel());
                     //查询刚才发布的帖子的id
                     String postId = postDAO.queryLastPost();
                     //转到刚才发布的帖子
@@ -114,7 +118,7 @@ public class PostServlet extends HttpServlet {
                 }
                 break;
             }
-            case "displayPost" : {
+            case "displayPost": {
                 String postId = request.getParameter("postId");
                 boolean isCollected = false;
                 if (postDAO.getById(postId).getId() != null) {
@@ -127,8 +131,8 @@ public class PostServlet extends HttpServlet {
                     //获取是否收藏
                     String userId = (String) session.getAttribute("userId");
                     if (userId != null) {
-                        CollectDAO collectDAO = new CollectDAO();
-                        isCollected = collectDAO.isCollected(userId, postId);
+                        CollectionDAO collectionDAO = new CollectionDAO();
+                        isCollected = collectionDAO.isCollected(userId, postId);
                         request.setAttribute("isCollected", isCollected);
                     }
                     request.setAttribute("post", post);
@@ -142,7 +146,7 @@ public class PostServlet extends HttpServlet {
                 break;
             }
             //根据模块查询该模块的帖子列表
-            case "displayPostList" : {
+            case "displayPostList": {
                 String themeId = request.getParameter("themeId");
                 String strPageNo = request.getParameter("pageNo");
                 if (strPageNo != null) {

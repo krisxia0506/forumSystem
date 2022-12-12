@@ -63,7 +63,8 @@ public class UserServlet extends HttpServlet {
                     }
                     response.sendRedirect("index.jsp");
                 } else {
-                    response.sendRedirect("userLogin.jsp?error=1");
+                    request.setAttribute("msg", "登陆失败，请检查用户名和密码");
+                    request.getRequestDispatcher("userLogin.jsp").forward(request, response);
                 }
                 break;
             }
@@ -82,7 +83,8 @@ public class UserServlet extends HttpServlet {
                 if (userDAO.insertUser(user)) {
                     response.sendRedirect("userRegisterSuccess.jsp");
                 } else {
-                    response.sendRedirect("userRegister.jsp?error=1");
+                    request.setAttribute("msg", "注册失败");
+                    request.getRequestDispatcher("userRegister.jsp").forward(request, response);
                 }
                 break;
             }

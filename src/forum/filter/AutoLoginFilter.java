@@ -10,23 +10,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
 /**
  * Created on 2022-12-11 15:00
  *
  * @author Xia Jiayi
  */
 @WebFilter(filterName = "AutoLogin", urlPatterns = "/index.jsp")
-public class AutoLogin implements Filter {
+public class AutoLoginFilter implements Filter {
+    @Override
+    public void init(FilterConfig config) throws ServletException {
+    }
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("AutoLoginFilter is Success");
-        HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
-        HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
-        HttpSession session = httpRequest.getSession();
-        String uname = (String) session.getAttribute("username");
+        System.out.println("AutoLoginFilter");
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
+        HttpSession session = request.getSession();
+        String uname = (String) session.getAttribute("nickname");
         if (uname == null) {
-            Cookie[] cookies = httpRequest.getCookies();
+            Cookie[] cookies = request.getCookies();
             String autologin = null;
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
@@ -43,18 +46,19 @@ public class AutoLogin implements Filter {
                 UserDAO userDAO = new UserDAO();
                 User user = userDAO.queryByNamePwd(name, pwd);
                 if (user.getId() != null) {
-                    session.setAttribute("username", name);
+                    session.setAttribute("nickname", user.getNickname());
                     session.setAttribute("role", user.getRole().toString());
                     session.setAttribute("userId", user.getId().toString());
-                    filterChain.doFilter(servletRequest, servletResponse);
-                } else {
-                    httpResponse.sendRedirect("userLogin.jsp ");
+                    session.setAttribute("level", user.getLevel());
+                    System.out.println("自动登陆成功，昵称：" + user.getNickname());
                 }
-            } else {
-                filterChain.doFilter(servletRequest, servletResponse);
             }
-        } else {
-            filterChain.doFilter(servletRequest, servletResponse);
         }
+        filterChain.doFilter(request, response);
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("销毁");
     }
 }
