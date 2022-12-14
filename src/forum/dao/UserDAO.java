@@ -209,18 +209,19 @@ public class UserDAO {
     /**
      * 增加发帖次数
      *
-     * @param author 用户id
+     * @param userId 用户id
      */
-    public void increasePostTimes(String author) {
+    public void increasePostTimes(String userId) {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
             String sql = "update user set post_times = post_times+1 where id = ?;";
             ps = conn.prepareStatement(sql);
-            ps.setString(1, author);
+            ps.setString(1, userId);
             if (ps.executeUpdate() > 0) {
                 level_procedure();
+
             }
         } catch (SQLException e1) {
             System.out.println("increaseAc" + e1);

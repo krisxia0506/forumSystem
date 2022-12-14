@@ -26,7 +26,7 @@
         <div class="post_list manage_list">
             <div class="top-bar-manage">
                 <h1>版块管理</h1>
-                <button style="margin-left: 450px;" value="发布新闻" onclick="window.location.href='addType.jsp';">
+                <button style="margin-left: 450px;" value="新增版块" onclick="window.location.href='addTheme.jsp';">
                     新增版块
                 </button>
             </div>
@@ -50,12 +50,12 @@
                             <td class="ntime">${theme.themeIntroduction}</td>
                             <td>
                                 <button value="修改"
-                                        onclick="window.location.href='modifyTheme.jsp?postTypeId='+${theme.id};">修改
+                                        onclick="window.location.href='modifyTheme.jsp?themeId='+${theme.id};">修改
                                 </button>
 
                             </td>
                             <td>
-                                <button value="删除" onclick="deleteType(${theme.id});">删除</button>
+                                <button value="删除" onclick="deleteTheme(${theme.id});">删除</button>
 
                             </td>
                         </tr>

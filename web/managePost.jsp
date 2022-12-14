@@ -34,7 +34,7 @@
                     </c:otherwise>
                 </c:choose>
 
-                <button style="margin-left: 450px;" value="发布新闻" onclick="window.location.href='addPost.jsp';">
+                <button style="margin-left: 450px;" value="发布帖子" onclick="window.location.href='addPost.jsp';">
                     发布帖子
                 </button>
             </div>

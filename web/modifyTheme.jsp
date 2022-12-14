@@ -1,7 +1,4 @@
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="forum.beans.Theme" %>
-<%@ page import="forum.beans.Post" %>
-<%@ page import="forum.beans.Post" %>
 <%@ page import="forum.beans.Theme" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -15,8 +12,8 @@
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
 <jsp:useBean id="themeDAO" class="forum.dao.ThemeDAO" scope="page"/>
 <%
-    String postTypeId = request.getParameter("postTypeId");
-    Theme theme = themeDAO.getThemeById(postTypeId);
+    String themeId = request.getParameter("themeId");
+    Theme theme = themeDAO.getThemeById(themeId);
     request.setAttribute("theme", theme);
     request.setCharacterEncoding("UTF-8");
 %>

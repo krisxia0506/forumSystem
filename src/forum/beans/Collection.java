@@ -10,17 +10,17 @@ public class Collection implements java.io.Serializable {
     private String userId;
     private String postId;
     private String date;
-    private String title;
+    private String postTitle;
 
     public Collection() {
     }
 
-    public Collection(Integer id, String userId, String postId, String date, String title) {
+    public Collection(Integer id, String userId, String postId, String date, String postTitle) {
         this.id = id;
         this.userId = userId;
         this.postId = postId;
         this.date = date;
-        this.title = title;
+        this.postTitle = postTitle;
     }
 
     public Integer getId() {
@@ -56,10 +56,10 @@ public class Collection implements java.io.Serializable {
     }
 
     public String getTitle() {
-        return title;
+        return postTitle;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.postTitle = title;
     }
 }

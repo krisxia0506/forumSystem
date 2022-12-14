@@ -17,7 +17,6 @@ To change this template use File | Settings | File Templates.
 <head>
     <title>技术论坛</title>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/fun.js"></script>
 </head>
 <body>

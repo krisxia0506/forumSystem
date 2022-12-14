@@ -52,7 +52,7 @@ public class PostServlet extends HttpServlet {
                 String title = request.getParameter("title");
                 String postType = request.getParameter("theme");
                 String keyword = request.getParameter("keyword");
-                String content = request.getParameter("content");
+                String content = request.getParameter("postContent");
                 post.setId(Integer.parseInt(id));
                 post.setAuthor(author);
                 post.setPostTime(postTime);
@@ -97,7 +97,7 @@ public class PostServlet extends HttpServlet {
                 String title = request.getParameter("title");
                 String postType = request.getParameter("theme");
                 String keyword = request.getParameter("keyword");
-                String content = request.getParameter("content");
+                String content = request.getParameter("postContent");
                 post.setAuthor(userId);
                 post.setTitle(title);
                 post.setTheme(postType);
@@ -120,10 +120,13 @@ public class PostServlet extends HttpServlet {
             }
             case "displayPost": {
                 String postId = request.getParameter("postId");
+                String reply = request.getParameter("reply");
                 boolean isCollected = false;
                 if (postDAO.getById(postId).getId() != null) {
-                    //增加点击量
-                    postDAO.increaseHits(postId);
+                    if (!Objects.equals(reply, "1")) {
+                        //增加点击量
+                        postDAO.increaseHits(postId);
+                    }
                     //获取帖子详情
                     Post post = postDAO.getById(postId);
                     //获取回帖
@@ -149,10 +152,12 @@ public class PostServlet extends HttpServlet {
             case "displayPostList": {
                 String themeId = request.getParameter("themeId");
                 String strPageNo = request.getParameter("pageNo");
+
                 if (strPageNo != null) {
                     pageNo = Integer.parseInt(strPageNo);
                 }
                 postList = postPageDAO.getPostByPage(pageNo, pageSize, themeId);
+                //总页数
                 Integer pageCount = postPageDAO.getPageCount(pageSize, themeId);
                 request.setAttribute("pageCount", pageCount);
                 request.setAttribute("pageNo", pageNo);
@@ -169,6 +174,7 @@ public class PostServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         doGet(request, response);
     }
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class PostPageDAO {
     /**
-     * 根据每页新闻条数返回共有多少页
+     * 根据每页帖子条数返回共有多少页
      *
      * @param pageSize 每页显示的记录数
      * @return 共多少页
@@ -19,7 +19,7 @@ public class PostPageDAO {
     public int getPageCount(int pageSize, String theme) {
         PostDAO postDAO = new PostDAO();
         int recordCount = 0, t1 = 0, t2 = 0;
-        //新闻总条数
+        //帖子总条数
         recordCount = postDAO.getPostCountByType(theme);
         //取余
         t1 = recordCount % pageSize;
@@ -30,11 +30,11 @@ public class PostPageDAO {
     }
 
     /**
-     * 获取指定页的新闻
+     * 获取指定页的帖子
      *
      * @param pageNo   指定页
-     * @param pageSize 每页显示的新闻条数
-     * @return 指定页的新闻
+     * @param pageSize 每页显示的帖子条数
+     * @return 指定页的帖子
      */
     public ArrayList<Post> getPostByPage(int pageNo, int pageSize, String postTypeId) {
         PostDAO postDAO = new PostDAO();

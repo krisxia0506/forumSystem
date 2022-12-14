@@ -28,7 +28,7 @@ public class ReplyServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        ReplyDAO replyDAO = new ReplyDAOImpl();
+        ReplyDAOImpl replyDAO = new ReplyDAOImpl();
         UserDAO userDAO = new UserDAO();
         ArrayList<Reply> replyList = new ArrayList<Reply>();
         ArrayList<Post> postList = new ArrayList<>();
@@ -51,7 +51,7 @@ public class ReplyServlet extends HttpServlet {
                     //更新用户等级
                     User user = userDAO.queryByUserId((String) session.getAttribute("userId"));
                     session.setAttribute("level", user.getLevel());
-                    request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
+                    request.getRequestDispatcher("post?action=displayPost&reply=1&postId=" + postId).forward(request, response);
                 } else {
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
@@ -63,7 +63,8 @@ public class ReplyServlet extends HttpServlet {
                 if (replyDAO.deleteById(replyId)) {
                     request.getRequestDispatcher("reply?action=manage").forward(request, response);
                 } else {
-                    request.getRequestDispatcher("index.jsp?error=1").forward(request, response);
+                    System.out.println("删除回帖失败");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
                 break;
             }

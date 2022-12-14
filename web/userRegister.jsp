@@ -4,7 +4,6 @@
 <head>
     <title>技术论坛系统</title>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/fun.js"></script>
 </head>
 <body>
@@ -22,7 +21,8 @@
             </div>
             <br/>
 
-            <form action="user?action=register" method="post" onsubmit="return RegisterCheckPassword()">
+            <form action="user?action=register" method="post"
+                  onsubmit="return RegisterCheckPassword()&&AjaxCheckUsername()">
                 昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：<input type="text" name="nickname" id="nickname"
                                                                 placeholder="请输入昵称" required/><br/><br>
                 用&nbsp;户&nbsp;名：<input type="text" id="username" name="username"
@@ -30,7 +30,8 @@
                 <span id="show"></span><br/><br/>
                 密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" id="password" name="password"></input>
                 <span id="showPassword" style="color: red"></span><br/><br/>
-                确认密码：<input type="password" id="passwordCheck" name="password"></input>
+                确认密码：<input type="password" id="passwordCheck" name="password"
+                                onkeydown="document.getElementById('showCheckPassword').innerHTML=''"></input>
                 <span id="showCheckPassword" style="color: red"></span><br/><br/><br/><br/>
                 性&nbsp;&nbsp;&nbsp;别： 男<input type="radio" value="male" name="gender" checked>
                 女<input type="radio" value="female" name="gender"><br>

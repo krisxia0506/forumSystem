@@ -28,27 +28,22 @@ public class CollectionServlet extends HttpServlet {
         switch (func) {
             case "add": {
                 String postId = request.getParameter("postId");
-                if (userId == null) {
-                    response.sendRedirect("userLogin.jsp");
+                if (collectionDAO.collectPost(userId, postId)) {
+                    response.getWriter().write("collectSuccess");
+                    //request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
                 } else {
-                    if (collectionDAO.collectPost(userId, postId)) {
-                        request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
-                    } else {
-                        System.out.println("收藏失败");
-                        request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
-                    }
+                    System.out.println("收藏失败");
+                    request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
                 }
                 break;
             }
             case "delete": {
                 String postId = request.getParameter("postId");
-                String url = request.getHeader("Referer");
+
                 if (collectionDAO.cancelCollect(userId, postId)) {
-                    if (url.contains("manage")) {
-                        request.getRequestDispatcher("collect?action=manage").forward(request, response);
-                    } else {
-                        request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);
-                    }
+                    response.getWriter().write("cancelCollectSuccess");
+                    //request.getRequestDispatcher("collect?action=manage").forward(request, response);
+
                 } else {
                     System.out.println("取消收藏失败");
                     request.getRequestDispatcher("post?action=displayPost&postId=" + postId).forward(request, response);

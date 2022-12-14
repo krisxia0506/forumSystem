@@ -175,9 +175,9 @@ public class PostDAO {
     }
 
     /**
-     * 修改新闻
+     * 修改帖子
      *
-     * @param post 新闻对象
+     * @param post 帖子对象
      * @return 是否成功
      */
     public boolean modifyPost(Post post) {
@@ -347,7 +347,7 @@ public class PostDAO {
     }
 
     /**
-     * 根据起始、条数、类型查询新闻
+     * 根据起始、条数、类型查询帖子
      *
      * @param start 起始
      * @param count 条数
@@ -388,7 +388,7 @@ public class PostDAO {
     }
 
     /**
-     * 找最新发布的一条新闻的id
+     * 找最新发布的一条帖子的id
      */
     public String queryLastPost() {
         String postId = null;

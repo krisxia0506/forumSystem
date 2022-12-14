@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author Xia Jiayi
  */
-@WebFilter(filterName = "CheckLoginFilter", urlPatterns = {"/post", "/theme", "/user", "/reply", "/managePost.jsp", "/manageTheme.jsp", "/modifyTheme.jsp", "/modifyPost.jsp"})
+@WebFilter(filterName = "CheckLoginFilter", urlPatterns = {"/post", "/theme", "/reply", "/collect", "/managePost.jsp", "/manageTheme.jsp", "/manageUser.jsp", "/modifyUser.jsp", "/modifyTheme.jsp", "/modifyPost.jsp"})
 public class CheckLoginFilter implements Filter {
 
     @Override
@@ -22,13 +22,15 @@ public class CheckLoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("CheckLoginFilter");
+        System.out.println("CheckLoginFilter运行");
+        servletRequest.setCharacterEncoding("UTF-8");
+        servletResponse.setCharacterEncoding("UTF-8");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String nickname = (String) request.getSession().getAttribute("nickname");
         String action = request.getParameter("action");
-        if (!Objects.equals(action, "login") && !Objects.equals(action, "displayPostList") && !Objects.equals(action, "displayPost") && nickname == null) {
-            System.out.println("跳转登录");
+        if (!Objects.equals(action, "displayPostList") && !Objects.equals(action, "displayPost") && nickname == null) {
+            System.out.println("CheckLoginFilter：需要登录跳转登录");
             request.getRequestDispatcher("userLogin.jsp").forward(request, response);
         }
         filterChain.doFilter(request, response);

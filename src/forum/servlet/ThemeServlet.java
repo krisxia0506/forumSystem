@@ -27,12 +27,18 @@ public class ThemeServlet extends HttpServlet {
         String func = request.getParameter("action");
         switch (func) {
             case "add": {
-                String postType1 = request.getParameter("postType");
+                String themeTitle = request.getParameter("themeTitle");
                 String typeIntroduction = request.getParameter("typeIntroduction");
-                theme.setThemeTitle(postType1);
+                theme.setThemeTitle(themeTitle);
                 theme.setThemeIntroduction(typeIntroduction);
-                themeDAO.addTheme(theme);
-                request.getRequestDispatcher("theme?action=manage").forward(request, response);
+                if (themeDAO.addTheme(theme)) {
+                    request.getRequestDispatcher("theme?action=manage").forward(request, response);
+                } else {
+                    System.out.println("添加版块失败");
+                    request.setAttribute("msg", "添加版块失败");
+                    request.getRequestDispatcher("theme?action=manage").forward(request, response);
+                }
+
                 break;
             }
             case "manage": {
@@ -42,9 +48,15 @@ public class ThemeServlet extends HttpServlet {
                 break;
             }
             case "delete": {
-                String postTypeId = request.getParameter("postTypeId");
-                themeDAO.deleteThemeById(postTypeId);
-                request.getRequestDispatcher("theme?action=manage").forward(request, response);
+                String themeId = request.getParameter("themeId");
+                if (themeDAO.deleteThemeById(themeId)) {
+                    request.getRequestDispatcher("theme?action=manage").forward(request, response);
+                } else {
+                    System.out.println("删除版块失败");
+                    request.setAttribute("msg", "删除版块失败");
+                    request.getRequestDispatcher("theme?action=manage").forward(request, response);
+                }
+
                 break;
             }
             case "modify": {
@@ -57,6 +69,7 @@ public class ThemeServlet extends HttpServlet {
                 if (themeDAO.modifyTheme(theme)) {
                     request.getRequestDispatcher("theme?action=manage").forward(request, response);
                 } else {
+                    request.setAttribute("msg", "修改版块失败");
                     request.getRequestDispatcher("modifyTheme.jsp?themeId=" + themeId).forward(request, response);
                 }
                 break;

@@ -14,6 +14,7 @@
 <head>
     <title>技术论坛系统</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/collection.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
@@ -33,15 +34,25 @@
 
                 <span class="left-t"><i class="iconfont">&#xe8c8;</i>${requestScope.post.author}</span>
                 <span class="right-t">
-                    <c:choose>
+<%--                    <c:choose>
                         <c:when test="${requestScope.isCollected}">
-                            <button onclick="window.location.href = 'collect?action=delete&postId=${requestScope.post.id}'">已收藏</button>
+                            <button class="collection" value="已收藏" onclick="window.location.href = 'collect?action=delete&postId=${requestScope.post.id}'">已收藏</button>
                         </c:when>
                         <c:otherwise>
-                            <button onclick="window.location.href = 'collect?action=add&postId=${requestScope.post.id}'">收藏</button>
+                            <button class="collection" value="收藏" onclick="window.location.href = 'collect?action=add&postId=${requestScope.post.id}'">收藏</button>
+                        </c:otherwise>
+                    </c:choose>   --%>
+
+                    <c:choose>
+                        <c:when test="${requestScope.isCollected}">
+                            <button class="collection" value="已收藏"
+                                    onclick="CollectionButton(${requestScope.post.id})">已收藏</button>
+                        </c:when>
+                        <c:otherwise>
+                            <button class="collection" value="收藏" onclick="CollectionButton(${requestScope.post.id})">收藏</button>
                         </c:otherwise>
                     </c:choose>
-                    （单击：${requestScope.post.hits})
+                    （点击量：${requestScope.post.hits})
                 </span>
                 <div class="clear"></div>
             </div>
@@ -85,7 +96,7 @@
                 </c:forEach>
             </div>
         </div>
-        <%--相关新闻--%>
+        <%--相关帖子--%>
         <c:if test="${requestScope.relatePost.size() > 0}">
             <div class="div624 border-top-darshd">
                 <h4 class="padding-left20" style="margin-top: 0px;color: rgb(30,80,162);">

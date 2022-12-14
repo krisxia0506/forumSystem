@@ -51,9 +51,9 @@ function deletePost(postId) {
     }
 }
 
-function deleteType(postTypeId) {
+function deleteTheme(themeId) {
     if (confirm("确定删除吗？")) {
-        window.location.href = "theme?action=delete&postTypeId=" + postTypeId;
+        window.location.href = "theme?action=delete&themeId=" + themeId;
     }
 }
 
@@ -61,32 +61,35 @@ function AjaxCheckUsername() {
     var name = $("[name=username]").val();
     var reg = new RegExp("[\\u4E00-\\u9FFF]+", "g");
     var show = $("#show");
+    var flag = false;
     if (name === "") {
         show.html("用户不能为空")
+        return false;
     } else {
         $.ajax({
             type: "get",
+            async: false,
             url: "checkName?username=" + name,
             dataType: "text",
             success: function (data) {
                 if (data === "1") {
                     show.html("用户已存在！！！")
                     show.css("color", "red")
-                    return false;
+                    $("[name=username]").focus();
                 } else {
                     if (name.length < 5 || name.length > 10 || reg.test(name)) {
                         show.html("用户名长度应为5-10位英文字符或数字");
                         show.css("color", "red")
                         $("[name=username]").focus();
-                        return false;
                     } else {
                         show.html("用户名可用")
                         show.css("color", "green")
-                        return true;
+                        flag = true;
                     }
                 }
             }
         })
+        return flag;
     }
 }
 
@@ -95,8 +98,8 @@ function RegisterCheckPassword() {
     var passwordCheck = document.getElementById("passwordCheck")
     var showPassword = document.getElementById("showPassword")
     var showCheckPassword = document.getElementById("showCheckPassword")
-    if (AjaxCheckUsername()) {
-        if (password.value.length < 5 || password.value.length > 10) {
+
+    if (password.value.length < 5 || password.value.length > 10) {
             showPassword.innerHTML = "密码长度应为5-10位";
             password.focus();
             return false;
@@ -108,9 +111,6 @@ function RegisterCheckPassword() {
             return true;
         }
 
-    } else {
-        return false;
-    }
 }
 
 function CheckReply() {

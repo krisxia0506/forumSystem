@@ -25,10 +25,10 @@
                 <h1>新增版块</h1>
             </div>
             <br>
-            <form action="theme?action=add" method="post" onsubmit="return CheckAddNews()">
+            <form action="theme?action=add" method="post" onsubmit="return CheckAdd()">
                 <br><br>
-                版块标题:<input type="text" name="theme" id="title" value=""><br><br>
-                版块简介:<textarea name="typeIntroduction" cols="25" rows="5"></textarea>
+                版块标题:<input type="text" name="themeTitle" id="title" value=""><br><br>
+                版块简介:<textarea id="typeIntroduction" name="typeIntroduction" cols="25" rows="5"></textarea>
                 <br><br>
                 <input type="submit" value="新增"/><br>
             </form>
@@ -40,12 +40,12 @@
 <%@include file="common/bottom.txt" %>
 </body>
 <script>
-  function CheckAddNews() {
-    if (document.getElementById("title").value === "" || document.getElementById("contentcontent").value === "") {
-      alert('标题和内容不能为空');
-      return false;
+    function CheckAdd() {
+        if (document.getElementById("title").value === "" || document.getElementById("typeIntroduction").value === "") {
+            alert('标题和内容不能为空');
+            return false;
+        }
+        return true;
     }
-    return true;
-  }
 </script>
 </html>

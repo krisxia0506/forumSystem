@@ -1017,17 +1017,19 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <CollationName>utf8_general_ci</CollationName>
     </table>
     <column id="294" parent="289" name="id">
-      <AutoIncrement>66</AutoIncrement>
+      <AutoIncrement>96</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
     <column id="295" parent="289" name="user_id">
       <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
     <column id="296" parent="289" name="post_id">
       <DasType>int|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
     <column id="297" parent="289" name="date">
@@ -1148,7 +1150,7 @@ post_id</ColNames>
       <UnderlyingIndexName>id</UnderlyingIndexName>
     </key>
     <column id="321" parent="291" name="reply_id">
-      <AutoIncrement>19</AutoIncrement>
+      <AutoIncrement>21</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1242,7 +1244,7 @@ post_id</ColNames>
       <UnderlyingIndexName>id</UnderlyingIndexName>
     </key>
     <column id="341" parent="293" name="id">
-      <AutoIncrement>10</AutoIncrement>
+      <AutoIncrement>20</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>

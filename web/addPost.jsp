@@ -21,6 +21,7 @@
 <head>
     <title>技术论坛系统</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="ckeditor/ckeditor.js"></script>
     <meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
 </head>
 <body>
@@ -39,7 +40,7 @@
                 <input type="hidden" name="author" value="${sessionScope.userId}"></input><br>
                 标题: <input type="text" name="title" id="title">
                 <br><br>
-                类别:
+                版块:
                 <select name="theme" id="">
                     <%
                         for (Theme theme : themeList) {
@@ -50,7 +51,7 @@
                     <%}%>
                 </select>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                 关键字： <input type="text" name="keyword" id="keyword"><br><br>
-                内容：<textarea style="white-space:pre-wrap;" name="content" cols="35" rows="5"
+                内容：<textarea name="postContent" cols="25" rows="5"
                                id="contentcontent"></textarea><br><br>
                 <input type="submit" value="发布"></input>
             </form>
@@ -62,14 +63,16 @@
 <%@include file="common/bottom.txt" %>
 </body>
 <script>
-    function CheckAddNews()
-    {
-        if ( document.getElementById("title").value===""||document.getElementById("contentcontent").value==="")
-        {
+    function CheckAddNews() {
+        var content = CKEDITOR.instances.contentcontent.getData();
+        var title = $("#title").val()
+        if (title === "" || content === "") {
             alert('标题和内容不能为空');
             return false;
         }
         return true;
     }
+
+    CKEDITOR.replace('postContent');
 </script>
 </html>

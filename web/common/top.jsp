@@ -3,6 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <script src="js/fun.js"></script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <link rel="shortcut icon" href="favicon.ico">
 <div id="logo">
     <div id="logo_main">
