@@ -4,9 +4,9 @@ html {
 }
 
 a:hover {
-
     color: #009cff;
 }
+
 ul, li, dl, dt, dd, th, td, a {
     list-style: none outside none;
 }
@@ -40,10 +40,11 @@ div#logo_main {
     height: 109px;
     position: relative;
 }
+
 #myspan {
     position: absolute;
-    bottom: 0px;
-    right: 0px;
+    bottom: 0;
+    right: 0;
     margin: 10px 10px 10px 10px;
     color: #ff0000;
     font-size: 18px;
@@ -90,7 +91,7 @@ div#logo_main {
     color: #ff0000;
 }
 
-#menu li a:hover ,#menu #user a:hover {
+#menu li a:hover, #menu #user a:hover {
     color: #ffffff;
     background: #ff7171;
 }
@@ -104,9 +105,9 @@ div#logo_main {
 }
 
 #main {
-    height:auto!important;
-    height:380px;
-    min-height:380px;
+    height: auto !important;
+    height: 380px;
+    min-height: 380px;
     width: 656px;
     float: right;
     border: solid 1px #bfdaf5;
@@ -119,7 +120,6 @@ div#logo_main {
     float: left;
     border: solid 1px #bfdaf5;
 }
-
 
 
 /*left*/
@@ -166,8 +166,6 @@ div#logo_main {
 
 .sidesec_list {
     padding: 0px;
-    /*margin: 10px 0 10px;*/
-
 }
 
 .sidesec_list ul {
@@ -179,8 +177,6 @@ div#logo_main {
     font-size: 13px;
     line-height: 24px;
     color: #4a5265;
-    /*width: 280px;*/
-    /*overflow: hidden;*/
 }
 
 
@@ -195,7 +191,7 @@ div#logo_main {
 }
 
 .manage_list {
-    padding: 0px 0 0 20px;
+    padding: 0 0 0 20px;
 }
 
 .post_list ul {
@@ -213,7 +209,6 @@ div#logo_main {
 
 .dd_lm {
     color: #4a5265;
-    /*width: 70px;*/
     float: left;
     font-size: 15px;
     margin-right: 5px;
@@ -249,16 +244,16 @@ div#logo_main {
     color: #990000;
     text-decoration: underline;
 }
-.page{
+
+.page {
     height: auto;
     width: auto;
     position: absolute;
-    bottom: 0px;
-    right: 0px;
-
+    bottom: 0;
+    right: 0;
 }
-.page div{
 
+.page div {
     text-align: right;
     margin: 50px 20px 10px;
 }
@@ -294,7 +289,6 @@ div#logo_main {
     margin: 0 0 10px;
     border-bottom: 1px solid rgb(221, 221, 221);
     height: 30px;
-
 }
 
 .left-t {
@@ -312,16 +306,12 @@ div#logo_main {
     font-size: 15px;
     padding-bottom: 20px;
     padding-top: 20px;
-    /*text-indent: 2em;*/
-    text-align: left;
-}
-
-.border-top-darshd {
-    border-top: 1px dashed rgb(204, 204, 204);
     text-align: left;
 }
 
 .div624 {
+    border-top: 1px dashed rgb(204, 204, 204);
+    text-align: left;
     width: 624px;
     margin: 15px auto;
     padding: 0;
@@ -334,7 +324,6 @@ div#logo_main {
 
 .padding-left20 {
     padding-left: 20px;
-
 }
 
 
@@ -343,7 +332,6 @@ div#logo_main {
     font-size: 15px;
     line-height: 26px;
     list-style: disc inside;
-
 }
 
 .div624 li a {
@@ -357,22 +345,22 @@ div#logo_main {
 /*main-div*/
 .top-bar {
     width: 615px;
-    padding: 0px 0px 0px 9px;
-    margin: 0px 0px 4px;
+    padding: 0 0 0 9px;
+    margin: 0 0 4px;
 }
 
 .top-bar h1 {
     font: 20px/21px verdana, sans-serif;
     border-left: 2px solid rgb(255, 119, 0);
     color: rgb(67, 114, 159);
-    margin: 0px 0px 14px;
+    margin: 0 0 14px;
     padding: 0 5px;
 
 }
 
 .top-bar-manage h1 {
     color: rgb(159, 67, 67);
-    margin: 20px 0px 0px;
+    margin: 20px 0 0;
 }
 
 .top-bar a {
@@ -380,7 +368,7 @@ div#logo_main {
     color: rgb(67, 114, 159);
 }
 
-.inputform {
+.input_form {
     margin: 30px 60px;
 }
 
@@ -392,7 +380,7 @@ input#keyword {
     width: 160px;
 }
 
-.inputform textarea {
+.input_form textarea {
     border: 1px solid rgb(204, 204, 204);
     width: 320px;
     height: 70px;
@@ -406,24 +394,10 @@ input#keyword {
     background: #e8f3fb;
 }
 
-
-.blank10 {
-    height: 10px;
-    overflow: hidden;
-    clear: both;
-}
-
 .blank20 {
     height: 10px;
     overflow: hidden;
     clear: both;
-}
-
-.banq {
-    color: #999999;
-    text-align: center;
-    padding: 8px;
-    line-height: 22px
 }
 
 /* table*/
@@ -436,7 +410,6 @@ div.table {
 }
 
 table.listing {
-    border-bottom: 1px solid #9097A9;
     width: 583px;
     padding: 0;
     margin: 0;
@@ -463,11 +436,10 @@ table.listing td {
 /*table end*/
 
 
-/*comment page*/
+/*reply page*/
 
 
 .comment_list {
-
     font-size: 13px;
     padding: 30px 0 0 30px;
     clear: both;
@@ -480,7 +452,6 @@ table.listing td {
     color: rgb(175, 192, 206);
     line-height: 26px;
     display: block;
-
 }
 
 #main .comment_list p {
@@ -509,13 +480,12 @@ table.listing td {
 
 .fd {
     float: left;
-    padding: 3px 0px 0px 8px;
-
+    padding: 3px 0 0 8px;
 }
 
 .fdr {
     float: right;
-    margin-right: 0px;
+    margin-right: 0;
     padding-right: 12px;
 }
 
@@ -527,12 +497,12 @@ table.listing td {
 }
 
 .yc {
-    padding: 60px 0px 0px 162px;
+    padding: 60px 0 0 162px;
     height: 31px;
 }
 
 .mian {
-    border-width: 0px 1px 1px;
+    border-width: 0 1px 1px;
     border-style: none solid solid;
     border-color: currentColor rgb(156, 200, 230) rgb(156, 200, 230);
     padding: 8px 10px;
@@ -550,7 +520,7 @@ table.listing td {
     text-align: left;
 }
 
-comment_p {
+.reply_p {
     padding-left: 10px;
     padding-top: 5px;
     line-height: 22px;
@@ -559,7 +529,8 @@ comment_p {
     font-size: 14px;
 }
 
-/*comment page end*/
+/*reply page end*/
+
 /*版块中心*/
 .type_list {
     overflow: hidden;
@@ -579,7 +550,6 @@ comment_p {
 
 .li1 {
     float: left;
-    /*width: 610px;*/
     margin-top: 5px;
     list-style: none;
     overflow: auto;

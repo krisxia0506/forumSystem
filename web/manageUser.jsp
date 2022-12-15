@@ -45,20 +45,13 @@
                         </tr>
 
                     </c:forEach>
-
-
                 </table>
             </div>
-
-
         </div>
-
-
     </div>
-    <div class="blank10"></div>
     <div class="blank20"></div>
 </div>
 
-<%@include file="common/bottom.txt" %>
+
 </body>
 </html>

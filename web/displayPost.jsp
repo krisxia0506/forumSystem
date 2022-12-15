@@ -79,7 +79,7 @@
                         <input type="hidden" name="replyAuthor" value="${sessionScope.username}">
                         <textarea name="replyContent" id="replyContent"></textarea>
                     </form>
-                    <div class="blank10"></div>
+
                 </div>
 
             </div>
@@ -91,14 +91,14 @@
                         &nbsp;&nbsp;${reply.replyTime}&nbsp;&nbsp;
                         <div class="clear"></div>
                         <div class="blank20"></div>
-                        <div class="comment_p">${reply.content}</div>
+                        <div class="reply_p">${reply.content}</div>
                     </div>
                 </c:forEach>
             </div>
         </div>
         <%--相关帖子--%>
         <c:if test="${requestScope.relatePost.size() > 0}">
-            <div class="div624 border-top-darshd">
+            <div class="div624">
                 <h4 class="padding-left20" style="margin-top: 0px;color: rgb(30,80,162);">
                     相关帖子：
                 </h4>
@@ -117,10 +117,10 @@
 </div>
 
 </div>
-<div class="blank10"></div>
+
 <div class="blank20"></div>
 </div>
 
-<%@include file="common/bottom.txt" %>
+
 </body>
 </html>

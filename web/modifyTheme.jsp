@@ -31,7 +31,7 @@
     </div>
     <div id="main">
         <!-- main begin -->
-        <div class="inputform">
+        <div class="input_form">
             <div class="top-bar">
                 <h1>版块修改</h1>
                 <div class="breadcrumbs"></div>
@@ -47,11 +47,11 @@
                 <input type="submit" value="修改"/><br>
             </form>
         </div>
-        <!--main end -->
+
     </div>
     <div class="blank20"></div>
-    <div class="blank10"></div>
+
 </div>
-<%@include file="common/bottom.txt" %>
+
 </body>
 </html>

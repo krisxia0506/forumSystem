@@ -1,4 +1,3 @@
-<%@ page import="java.util.Objects" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE>
 <html>
@@ -11,7 +10,7 @@
         setInterval("refer()", 1000);
 
         function refer() {
-            if (t == 0) {
+            if (t === 0) {
                 location.href = "userLogin.jsp";
             }
             document.getElementById('show').innerHTML = "" + t + "秒后跳转到登陆页面";
@@ -19,7 +18,6 @@
         }
     </script>
 </head>
-
 <body>
 <jsp:include page="common/top.jsp"/>
 <div id="content">
@@ -27,8 +25,7 @@
         <jsp:include page="common/left.jsp"/>
     </div>
     <div id="main">
-        <!-- main begin -->
-        <div class="inputform">
+        <div class="input_form">
             <div class="top-bar">
                 <h1>注册成功</h1>
                 <div class="breadcrumbs"></div>
@@ -40,18 +37,15 @@
             </div>
 
         </div>
-        <!--main end -->
     </div>
     <div class="blank20"></div>
-    <div class="blank10"></div>
 </div>
-<%@include file="common/bottom.txt" %>
+
 </body>
 <style>
     .registerSuccess {
         font-size: 20px;
     }
-
     .registerSuccess a {
         border: black 1px solid;
         text-decoration: black;

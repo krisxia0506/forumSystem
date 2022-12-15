@@ -6,35 +6,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-    //自动登陆
-    /*String uname = (String) session.getAttribute("username");
-    if (uname == null) {
-        Cookie[] cookies = request.getCookies();
-        String autologin = null;
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if ("autologin".equals(cookie.getName())) {
-                    autologin = cookie.getValue();
-                    break;
-                }
-            }
-        }
-        if (autologin != null) {
-            String[] parts = autologin.split("-");
-            String name = parts[0];
-            String pwd = parts[1];
-            UserDAO userDAO = new UserDAO();
-            User user = userDAO.queryByNamePwd(name, pwd);
-            if (user.getId() != null) {
-                session.setAttribute("nickname", user.getNickname());
-                session.setAttribute("role", user.getRole().toString());
-                session.setAttribute("userId", user.getId().toString());
-                session.setAttribute("level", user.getLevel());
-            } else {
-                response.sendRedirect("userLogin.jsp ");
-            }
-        }
-    }*/
     //获取所有帖子类型
     ThemeDAO themeDAO = new ThemeDAO();
     ArrayList<Theme> themeList = themeDAO.getAllTheme();
@@ -76,7 +47,7 @@
     </div>
     <div class="blank20"></div>
 </div>
-<%@ include file="common/bottom.txt" %>
+
 </body>
 </html>
 

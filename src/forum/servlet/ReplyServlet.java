@@ -4,7 +4,6 @@ import forum.beans.Post;
 import forum.beans.Reply;
 import forum.beans.User;
 import forum.dao.PostDAO;
-import forum.dao.ReplyDAO;
 import forum.dao.ReplyDAOImpl;
 import forum.dao.UserDAO;
 
@@ -49,13 +48,12 @@ public class ReplyServlet extends HttpServlet {
                 if (replyDAO.insertReply(reply)) {
                     userDAO.increasePostTimes(replyAuthor);
                     //更新用户等级
-                    User user = userDAO.queryByUserId((String) session.getAttribute("userId"));
+                    User user = userDAO.queryByUserId(replyAuthor);
                     session.setAttribute("level", user.getLevel());
                     request.getRequestDispatcher("post?action=displayPost&reply=1&postId=" + postId).forward(request, response);
                 } else {
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
-
                 break;
             }
             case "delete": {

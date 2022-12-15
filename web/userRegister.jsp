@@ -14,7 +14,7 @@
     </div>
     <div id="main">
         <!-- main begin -->
-        <div class="inputform">
+        <div class="input_form">
             <div class="top-bar">
                 <h1>用户注册</h1>
                 <div class="breadcrumbs"></div>
@@ -23,30 +23,39 @@
 
             <form action="user?action=register" method="post"
                   onsubmit="return RegisterCheckPassword()&&AjaxCheckUsername()">
-                昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：<input type="text" name="nickname" id="nickname"
-                                                                placeholder="请输入昵称" required/><br/><br>
-                用&nbsp;户&nbsp;名：<input type="text" id="username" name="username"
-                                          onkeyup="AjaxCheckUsername()"></input>
+                <label for="nickname">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</label>
+                <input type="text" name="nickname" id="nickname"
+                       placeholder="请输入昵称" required/><br/><br>
+                <label for="username">用&nbsp;户&nbsp;名：</label>
+                <input type="text" id="username" name="username" onkeyup="AjaxCheckUsername()"></input>
                 <span id="show"></span><br/><br/>
-                密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" id="password" name="password"></input>
+                <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                <input type="password" id="password" name="password"></input>
                 <span id="showPassword" style="color: red"></span><br/><br/>
-                确认密码：<input type="password" id="passwordCheck" name="password"
-                                onkeydown="document.getElementById('showCheckPassword').innerHTML=''"></input>
+                <label for="passwordCheck">确认密码：</label>
+                <input type="password" id="passwordCheck" name="password"
+                       onkeydown="$('#showCheckPassword').text('')"></input>
                 <span id="showCheckPassword" style="color: red"></span><br/><br/><br/><br/>
-                性&nbsp;&nbsp;&nbsp;别： 男<input type="radio" value="male" name="gender" checked>
-                女<input type="radio" value="female" name="gender"><br>
-                个人简介<textarea name="resume" cols="12" rows="6"></textarea><br/><br/>
+                <label>
+                    性&nbsp;&nbsp;&nbsp;别： 男
+                    <input type="radio" value="male" name="gender" checked>
+                </label>
+                <label>
+                    女
+                    <input type="radio" value="female" name="gender">
+                </label><br>
+                <label for="resume">个人简介</label>
+                <textarea id="resume" name="resume" cols="12" rows="6"></textarea>
+                <br/><br/>
                 <input type="submit" value="提交">
                 <button onclick="history.go(-1)">返回</button>
                 <div id="loginError" style="color: red;font-size: 20px">${requestScope.msg}</div>
                 <br/>
             </form>
         </div>
-        <!--main end -->
     </div>
     <div class="blank20"></div>
-    <div class="blank10"></div>
 </div>
-<%@include file="common/bottom.txt" %>
+
 </body>
 </html>

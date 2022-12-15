@@ -172,6 +172,7 @@ public class UserDAO {
                 user.setNickname(rs.getString("nickname"));
                 user.setGender(rs.getString("gender"));
                 user.setResume(rs.getString("resume"));
+                user.setLevel(rs.getString("level"));
             }
         } catch (SQLException e) {
             System.out.println("根据id查询用户失败");

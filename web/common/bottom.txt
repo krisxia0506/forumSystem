@@ -1,7 +1,0 @@
-<%@page language="java" contentType="text/html;charset=UTF-8"%>
-<div id="footer">
-      <!--版权-->
-          <DIV class="banq">本网站所刊载的信息，不代表本网站观点。使用本网站稿件，务经书面授权。 <BR>
-             未经授权禁止转载、复制及建立镜像，违者将依法追究法律责任。
-            </DIV>
-</div>

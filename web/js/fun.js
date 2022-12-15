@@ -57,8 +57,11 @@ function deleteTheme(themeId) {
     }
 }
 
-function AjaxCheckUsername() {
+function AjaxCheckUsername(username) {
     var name = $("[name=username]").val();
+    if (username === name) {
+        return true
+    }
     var reg = new RegExp("[\\u4E00-\\u9FFF]+", "g");
     var show = $("#show");
     var flag = false;
