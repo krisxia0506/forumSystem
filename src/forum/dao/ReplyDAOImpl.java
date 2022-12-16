@@ -16,7 +16,12 @@ import java.util.ArrayList;
  * @author Xia Jiayi
  */
 public class ReplyDAOImpl implements ReplyDAO {
-
+    /**
+     * 发表回帖
+     *
+     * @param reply 回帖对象
+     * @return 是否发表成功
+     */
     public boolean insertReply(Reply reply) {
         boolean result = false;
         int n = 0;
@@ -41,7 +46,13 @@ public class ReplyDAOImpl implements ReplyDAO {
         return result;
     }
 
-    public ArrayList<Reply> getByPostId(String postId) {
+    /**
+     * 根据帖子id查询回帖
+     *
+     * @param postId 帖子id
+     * @return 回帖列表
+     */
+    public ArrayList<Reply> getReplyByPostId(String postId) {
         Reply reply = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -72,7 +83,13 @@ public class ReplyDAOImpl implements ReplyDAO {
         return replyList;
     }
 
-    public ArrayList<Reply> getByUserId(String userId) {
+    /**
+     * 根据用户id查询回帖
+     *
+     * @param userId 用户id
+     * @return 回帖列表
+     */
+    public ArrayList<Reply> getReplyByUserId(String userId) {
         Reply reply = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -101,6 +118,11 @@ public class ReplyDAOImpl implements ReplyDAO {
         return replyList;
     }
 
+    /**
+     * 查询所有回帖
+     *
+     * @return 回帖列表
+     */
     public ArrayList<Reply> getAll() {
         Reply reply = null;
         Connection conn = null;
@@ -133,7 +155,13 @@ public class ReplyDAOImpl implements ReplyDAO {
         return replyList;
     }
 
-    public boolean deleteById(String id) {
+    /**
+     * 根据回帖id删除回帖
+     *
+     * @param ReplyId 回帖id
+     * @return 是否删除成功
+     */
+    public boolean deleteReplyById(String ReplyId) {
         boolean result = false;
         int n = 0;
         Connection conn = null;
@@ -142,10 +170,10 @@ public class ReplyDAOImpl implements ReplyDAO {
             conn = DBGet.getConnection();
             String sql = "delete from reply where reply_id= ?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setString(1, ReplyId);
             n = ps.executeUpdate();
         } catch (SQLException e1) {
-            System.out.println(e1 + "deleteById");
+            System.out.println(e1 + "deleteReplyById");
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -153,6 +181,11 @@ public class ReplyDAOImpl implements ReplyDAO {
         return result;
     }
 
+    /**
+     * 根据回帖时间获取热门回帖
+     *
+     * @return 回帖列表
+     */
     public ArrayList<Reply> getHotReply() {
         Reply reply = null;
         Connection conn = null;
@@ -174,8 +207,6 @@ public class ReplyDAOImpl implements ReplyDAO {
                 reply = new Reply();
                 reply.setId(rs.getInt("reply_id"));
                 reply.setContent(commenttext);
-                reply.setAuthor(rs.getString("reply_user"));
-                reply.setReplyTime(rs.getString("reply_time"));
                 reply.setPostId(rs.getInt("post_id"));
                 replyList.add(reply);
             }

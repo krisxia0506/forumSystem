@@ -30,7 +30,8 @@
                 <input type="text" id="username" name="username" onkeyup="AjaxCheckUsername()"></input>
                 <span id="show"></span><br/><br/>
                 <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                <input type="password" id="password" name="password"></input>
+                <input type="password" id="password" name="password"
+                       onkeydown="$('#showPassword').text('')"></input>
                 <span id="showPassword" style="color: red"></span><br/><br/>
                 <label for="passwordCheck">确认密码：</label>
                 <input type="password" id="passwordCheck" name="password"

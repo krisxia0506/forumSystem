@@ -19,6 +19,10 @@ public class CollectionDAO {
 
     /**
      * 收藏帖子
+     *
+     * @param userId 用户id
+     * @param postId 帖子id
+     * @return 是否收藏成功
      */
     public boolean collectPost(String userId, String postId) {
         Connection conn = null;
@@ -42,6 +46,10 @@ public class CollectionDAO {
 
     /**
      * 查询是否已收藏
+     *
+     * @param userId 用户id
+     * @param postId 帖子id
+     * @return 是否已收藏
      */
     public boolean isCollected(String userId, String postId) {
         boolean flag = false;
@@ -68,6 +76,10 @@ public class CollectionDAO {
 
     /**
      * 取消收藏
+     *
+     * @param userId 用户id
+     * @param postId 帖子id
+     * @return 是否取消收藏成功
      */
     public boolean cancelCollect(String userId, String postId) {
         Connection conn = null;
@@ -90,6 +102,9 @@ public class CollectionDAO {
 
     /**
      * 根据用户id查询收藏列表
+     *
+     * @param userId 用户id
+     * @return 该用户的收藏列表
      */
     public ArrayList<Collection> getCollectionByUserId(String userId) {
         Connection conn = null;
@@ -109,7 +124,6 @@ public class CollectionDAO {
                 collection.setPostId(rs.getString("post_id"));
                 collection.setDate(rs.getString("date"));
                 collection.setTitle(rs.getString("post_title"));
-
                 collectionList.add(collection);
             }
         } catch (SQLException e1) {

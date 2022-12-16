@@ -27,14 +27,14 @@ public class PostDAO {
         try {
             conn = DBGet.getConnection();
             Statement stmt = conn.createStatement();
-            String sql = "select post_id, post_title, post_content,username post_author, post_time, post_keyword, theme, post_hits from post join user u on u.id = post.post_author order by post_time desc ";
+            String sql = "select post_id, post_title, post_content,username, post_time, post_keyword, theme, post_hits from post join user u on u.id = post.post_author order by post_time desc ";
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 post = new Post();
                 post.setId(rs.getInt("post_id"));
                 post.setTitle(rs.getString("post_title"));
                 post.setContent(rs.getString("post_content"));
-                post.setAuthor(rs.getString("post_author"));
+                post.setAuthor(rs.getString("username"));
                 post.setPostTime(rs.getString("post_time"));
                 post.setKeyword(rs.getString("post_keyword"));
                 post.setHits(rs.getString("post_hits"));
@@ -42,7 +42,7 @@ public class PostDAO {
                 postList.add(post);
             }
         } catch (SQLException e1) {
-            System.out.println("getAllNews" + e1);
+            System.out.println("getAllPost" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -74,7 +74,7 @@ public class PostDAO {
             ps.setString(6, post.getTheme());
             n = ps.executeUpdate();
         } catch (SQLException e1) {
-            System.out.println("insert" + e1);
+            System.out.println("addPost" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -88,7 +88,7 @@ public class PostDAO {
      * 根据ID查询指定帖子
      *
      * @param id 帖子id
-     * @return News
+     * @return 此id的帖子对象
      */
     public Post getById(String id) {
         Post post = null;
@@ -97,7 +97,7 @@ public class PostDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "select post_id, post_title, post_content,nickname post_author, post_time, post_keyword, theme, post_hits from post join user u on u.id = post.post_author where post_id=?";
+            String sql = "select post_id, post_title, post_content,nickname, post_time, post_keyword, theme, post_hits from post join user u on u.id = post.post_author where post_id=?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             rs = ps.executeQuery();
@@ -105,9 +105,8 @@ public class PostDAO {
                 post = new Post();
                 post.setId(rs.getInt("post_id"));
                 post.setTitle(rs.getString("post_title"));
-                String result = rs.getString("post_content").replaceAll("(\\r\\n|\\n|\\n\\r)", "<br/>");
-                post.setContent(result);
-                post.setAuthor(rs.getString("post_author"));
+                post.setContent(rs.getString("post_content"));
+                post.setAuthor(rs.getString("nickname"));
                 post.setPostTime(rs.getString("post_time"));
                 post.setKeyword(rs.getString("post_keyword"));
                 post.setHits(rs.getString("post_hits"));
@@ -136,7 +135,7 @@ public class PostDAO {
             ps.setString(1, id);
             ps.executeUpdate();
         } catch (SQLException e1) {
-            System.out.println("increaseAc" + e1);
+            System.out.println("increaseHits" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -196,10 +195,10 @@ public class PostDAO {
             ps.setString(4, post.getPostTime());
             ps.setString(5, post.getKeyword());
             ps.setString(6, post.getTheme());
-            ps.setString(7, String.valueOf(post.getId()));
+            ps.setInt(7, post.getId());
             n = ps.executeUpdate();
         } catch (SQLException e1) {
-            System.out.println("modify" + e1);
+            System.out.println("modifyPost" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -219,8 +218,6 @@ public class PostDAO {
         boolean result = false;
         Connection conn = null;
         PreparedStatement ps = null;
-        ReplyDAOImpl replyDAO = new ReplyDAOImpl();
-
         try {
             conn = DBGet.getConnection();
             String sql = "DELETE FROM post WHERE post_id = ?";
@@ -262,16 +259,10 @@ public class PostDAO {
                     title = title.substring(0, 18) + "......";
                 }
                 post.setTitle(title);
-                post.setContent(rs.getString("post_content"));
-                post.setAuthor(rs.getString("post_author"));
-                post.setPostTime(rs.getString("post_time"));
-                post.setKeyword(rs.getString("post_keyword"));
-                post.setHits(rs.getString("post_hits"));
-                post.setTheme(rs.getString("theme"));
                 postList.add(post);
             }
         } catch (SQLException e1) {
-            System.out.println("getHotNews" + e1);
+            System.out.println("getHotPost" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -292,7 +283,7 @@ public class PostDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "select * from post where post_keyword like ? or post_title like ? or post_content like ?";
+            String sql = "select * from post join theme t on t.theme_id = post.theme where post_keyword like ? or post_title like ? or post_content like ?";
             ps = conn.prepareStatement(sql);
             keyword = "%" + keyword + "%";
             ps.setString(1, keyword);
@@ -303,16 +294,12 @@ public class PostDAO {
                 post = new Post();
                 post.setId(rs.getInt("post_id"));
                 post.setTitle(rs.getString("post_title"));
-                post.setContent(rs.getString("post_content"));
-                post.setAuthor(rs.getString("post_author"));
                 post.setPostTime(rs.getString("post_time"));
-                post.setKeyword(rs.getString("post_keyword"));
-                post.setHits(rs.getString("post_hits"));
-                post.setTheme(rs.getString("theme"));
+                post.setTheme(rs.getString("theme_title"));
                 postList.add(post);
             }
         } catch (SQLException e1) {
-            System.out.println("getNewsByKeyword" + e1);
+            System.out.println("getPostByKeyword" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -339,7 +326,7 @@ public class PostDAO {
                 count = rs.getInt(1);
             }
         } catch (SQLException e1) {
-            System.out.println("getNewsCount" + e1);
+            System.out.println("getPostCount" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -361,7 +348,7 @@ public class PostDAO {
         PreparedStatement ps = null;
         try {
             conn = DBGet.getConnection();
-            String sql = "select * from post where theme=? order by post_id desc limit ?,?";
+            String sql = "select * from post join theme t on t.theme_id = post.theme where theme=? order by post_id desc limit ?,?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, theme);
             ps.setInt(2, start);
@@ -371,16 +358,12 @@ public class PostDAO {
                 post = new Post();
                 post.setId(rs.getInt("post_id"));
                 post.setTitle(rs.getString("post_title"));
-                post.setContent(rs.getString("post_content"));
-                post.setAuthor(rs.getString("post_author"));
                 post.setPostTime(rs.getString("post_time"));
-                post.setKeyword(rs.getString("post_keyword"));
-                post.setHits(rs.getString("post_hits"));
-                post.setTheme(rs.getString("theme"));
+                post.setTheme(rs.getString("theme_title"));
                 postList.add(post);
             }
         } catch (SQLException e1) {
-            System.out.println("getNewsByPage" + e1);
+            System.out.println("getPostBySCT" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -404,7 +387,7 @@ public class PostDAO {
                 postId = rs.getString("post_id");
             }
         } catch (SQLException e1) {
-            System.out.println("getNewsByPage" + e1);
+            System.out.println("getPostByPage" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -433,16 +416,12 @@ public class PostDAO {
                 post = new Post();
                 post.setId(rs.getInt("post_id"));
                 post.setTitle(rs.getString("post_title"));
-                post.setContent(rs.getString("post_content"));
                 post.setAuthor(rs.getString("post_author"));
                 post.setPostTime(rs.getString("post_time"));
-                post.setKeyword(rs.getString("post_keyword"));
-                post.setHits(rs.getString("post_hits"));
-                post.setTheme(rs.getString("theme"));
                 postList.add(post);
             }
         } catch (SQLException e1) {
-            System.out.println("getNewsByKeyword" + e1);
+            System.out.println("getPostByUserId" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }

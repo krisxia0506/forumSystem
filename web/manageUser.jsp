@@ -27,7 +27,7 @@
                 <table class="listing" cellspacing="0" cellpadding="0">
                     <tr>
                         <th class="first" width="40">序号</th>
-                        <th>用户名</th>
+                        <th>用户账号</th>
                         <th>删除</th>
                     </tr>
                     <c:forEach items="${requestScope.usersList}" var="user" varStatus="status">

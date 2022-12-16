@@ -58,7 +58,7 @@ public class ReplyServlet extends HttpServlet {
             }
             case "delete": {
                 String replyId = request.getParameter("replyId");
-                if (replyDAO.deleteById(replyId)) {
+                if (replyDAO.deleteReplyById(replyId)) {
                     request.getRequestDispatcher("reply?action=manage").forward(request, response);
                 } else {
                     System.out.println("删除回帖失败");
@@ -72,7 +72,7 @@ public class ReplyServlet extends HttpServlet {
                     replyList = replyDAO.getAll();
                 } else {//普通用户
                     String userId = (String) session.getAttribute("userId");
-                    replyList = replyDAO.getByUserId(userId);
+                    replyList = replyDAO.getReplyByUserId(userId);
                 }
                 PostDAO postDAO = new PostDAO();
                 postList = postDAO.getAllPost();

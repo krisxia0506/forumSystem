@@ -12,6 +12,11 @@ import java.util.ArrayList;
  * @author Xia Jiayi
  */
 public class ThemeDAO {
+    /**
+     * 获取所有主题
+     *
+     * @return 所有主题列表
+     */
     public ArrayList<Theme> getAllTheme() {
         Theme theme = null;
         ArrayList<Theme> themeList = new ArrayList<Theme>();
@@ -31,13 +36,19 @@ public class ThemeDAO {
                 themeList.add(theme);
             }
         } catch (SQLException e1) {
-            System.out.println("getAllPostType" + e1);
+            System.out.println("getAllTheme" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
         return themeList;
     }
 
+    /**
+     * 添加主题
+     *
+     * @param theme 主题对象
+     * @return 是否添加成功
+     */
     public boolean addTheme(Theme theme) {
 
         boolean result = false;
@@ -52,7 +63,7 @@ public class ThemeDAO {
             ps.setString(2, theme.getThemeIntroduction());
             n = ps.executeUpdate();
         } catch (SQLException e1) {
-            System.out.println("insert" + e1);
+            System.out.println("addTheme" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -64,8 +75,11 @@ public class ThemeDAO {
 
     /**
      * 根据id删除
+     *
+     * @param themeId 主题id
+     * @return 是否删除成功
      */
-    public boolean deleteThemeById(String id) {
+    public boolean deleteThemeById(String themeId) {
         boolean result = false;
         int n = 0;
         Connection conn = null;
@@ -74,10 +88,10 @@ public class ThemeDAO {
             conn = DBGet.getConnection();
             String sql = "delete from theme where theme_id = ?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setString(1, themeId);
             n = ps.executeUpdate();
         } catch (SQLException e1) {
-            System.out.println("delete" + e1);
+            System.out.println("deleteThemeById" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -89,8 +103,11 @@ public class ThemeDAO {
 
     /**
      * 根据id查询
+     *
+     * @param themeId 主题id
+     * @return 主题对象
      */
-    public Theme getThemeById(String id) {
+    public Theme getThemeById(String themeId) {
         Theme theme = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -99,7 +116,7 @@ public class ThemeDAO {
             conn = DBGet.getConnection();
             String sql = "select * from theme where theme_id = ?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setString(1, themeId);
             rs = ps.executeQuery();
             while (rs.next()) {
                 theme = new Theme();
@@ -108,7 +125,7 @@ public class ThemeDAO {
                 theme.setThemeIntroduction(rs.getString("theme_introduction"));
             }
         } catch (SQLException e1) {
-            System.out.println("getPostTypeById" + e1);
+            System.out.println("getThemeById" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -116,7 +133,10 @@ public class ThemeDAO {
     }
 
     /**
-     * 根据id修改
+     * 修改主题
+     *
+     * @param theme 主题对象
+     * @return 是否修改成功
      */
     public boolean modifyTheme(Theme theme) {
         boolean result = false;
@@ -132,7 +152,7 @@ public class ThemeDAO {
             ps.setInt(3, theme.getId());
             n = ps.executeUpdate();
         } catch (SQLException e1) {
-            System.out.println("update" + e1);
+            System.out.println("modifyTheme" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }
@@ -144,6 +164,8 @@ public class ThemeDAO {
 
     /**
      * 获取热门版块
+     *
+     * @return 热门版块列表
      */
     public ArrayList<Theme> getHotTheme() {
         Theme theme = null;
@@ -171,7 +193,7 @@ public class ThemeDAO {
                 themeList.add(theme);
             }
         } catch (SQLException e1) {
-            System.out.println("getHotPostType" + e1);
+            System.out.println("getHotTheme" + e1);
         } finally {
             DBGet.closeConnection(conn);
         }

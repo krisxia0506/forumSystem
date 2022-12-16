@@ -9,28 +9,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb67749f-9fcc-4ef0-a7e5-6eff1e9e6692" name="变更" comment="ckeditor富文本编辑器&#10;修复Filter的编码问题">
+    <list default="true" id="eb67749f-9fcc-4ef0-a7e5-6eff1e9e6692" name="变更" comment="删除不必要的css布局&#10;添加label标签">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/forum_Web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/forum/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/CollectionDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/CollectionDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/PostDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/PostDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/PostPageDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/PostPageDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/ReplyDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/ReplyDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/ReplyDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/ReplyDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/dao/ThemeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/dao/ThemeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/filter/AutoLoginFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/filter/AutoLoginFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/filter/CheckLoginFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/filter/CheckLoginFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/forum/servlet/PostServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/PostServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/forum/servlet/ReplyServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/forum/servlet/ReplyServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/addPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/addPost.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/addTheme.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/addTheme.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/common/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/common/top.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/displayPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/displayPost.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/js/fun.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/js/fun.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/listPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/listPost.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/manageCollect.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageCollect.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/managePost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/managePost.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/manageReply.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageReply.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/manageTheme.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageTheme.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/manageUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/manageUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/modifyPost.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/modifyPost.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/modifyTheme.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/modifyTheme.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/modifyUser.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/modifyUser.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/userLogin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/userLogin.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/userRegister.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/userRegister.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/userRegisterSuccess.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/userRegisterSuccess.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +103,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;工件&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
@@ -322,7 +325,8 @@
       <workItem from="1670928741844" duration="6530000" />
       <workItem from="1670979024165" duration="15608000" />
       <workItem from="1671021980052" duration="722000" />
-      <workItem from="1671067656215" duration="4381000" />
+      <workItem from="1671067656215" duration="14247000" />
+      <workItem from="1671152418509" duration="452000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1670234117707</created>
@@ -415,7 +419,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671002465105</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="删除不必要的css布局&#10;添加label标签">
+      <created>1671080151197</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1671080151197</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,7 +455,8 @@
     <MESSAGE value="添加昵称" />
     <MESSAGE value="添加自动登陆过滤器&#10;添加登陆状态过滤器" />
     <MESSAGE value="ckeditor富文本编辑器&#10;修复Filter的编码问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="ckeditor富文本编辑器&#10;修复Filter的编码问题" />
+    <MESSAGE value="删除不必要的css布局&#10;添加label标签" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除不必要的css布局&#10;添加label标签" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

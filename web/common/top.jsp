@@ -44,7 +44,7 @@
                         |
                         <li><a href="collect?action=manage">我的收藏</a></li>
                         |
-                        <li><a href="user?action=modifyView">修改用户</a></li>
+                        <li><a href="user?action=modifyView">我的信息</a></li>
                         |
                     </c:otherwise>
                 </c:choose>

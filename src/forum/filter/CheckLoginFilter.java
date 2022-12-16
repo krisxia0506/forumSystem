@@ -22,7 +22,7 @@ public class CheckLoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("CheckLoginFilter运行");
+//        System.out.println("CheckLoginFilter运行");
         servletRequest.setCharacterEncoding("UTF-8");
         servletResponse.setCharacterEncoding("UTF-8");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -30,7 +30,7 @@ public class CheckLoginFilter implements Filter {
         String nickname = (String) request.getSession().getAttribute("nickname");
         String action = request.getParameter("action");
         if (!Objects.equals(action, "displayPostList") && !Objects.equals(action, "displayPost") && nickname == null) {
-            System.out.println("CheckLoginFilter：需要登录跳转登录");
+//            System.out.println("CheckLoginFilter：需要登录跳转登录");
             request.getRequestDispatcher("userLogin.jsp").forward(request, response);
         }
         filterChain.doFilter(request, response);

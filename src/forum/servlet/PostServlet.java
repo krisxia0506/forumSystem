@@ -130,7 +130,7 @@ public class PostServlet extends HttpServlet {
                     //获取帖子详情
                     Post post = postDAO.getById(postId);
                     //获取回帖
-                    ArrayList<Reply> replyList = replyDAO.getByPostId(postId);
+                    ArrayList<Reply> replyList = replyDAO.getReplyByPostId(postId);
                     //获取是否收藏
                     String userId = (String) session.getAttribute("userId");
                     if (userId != null) {
@@ -153,16 +153,20 @@ public class PostServlet extends HttpServlet {
                 String themeId = request.getParameter("themeId");
                 String strPageNo = request.getParameter("pageNo");
 
+
                 if (strPageNo != null) {
                     pageNo = Integer.parseInt(strPageNo);
                 }
                 postList = postPageDAO.getPostByPage(pageNo, pageSize, themeId);
                 //总页数
                 Integer pageCount = postPageDAO.getPageCount(pageSize, themeId);
+
                 request.setAttribute("pageCount", pageCount);
                 request.setAttribute("pageNo", pageNo);
                 request.setAttribute("postList", postList);
-                request.setAttribute("themeId", themeId);
+                if (!postList.isEmpty()) {
+                    request.setAttribute("themeTitle", postList.get(0).getTheme());
+                }
                 request.getRequestDispatcher("listPost.jsp").forward(request, response);
                 break;
             }

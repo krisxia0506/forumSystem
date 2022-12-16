@@ -12,13 +12,13 @@ import java.util.ArrayList;
 public interface ReplyDAO {
     public boolean insertReply(Reply reply);
 
-    public ArrayList<Reply> getByPostId(String postId);
+    public ArrayList<Reply> getReplyByPostId(String postId);
 
-    public ArrayList<Reply> getByUserId(String userId);
+    public ArrayList<Reply> getReplyByUserId(String userId);
 
     public ArrayList<Reply> getAll();
 
-    public boolean deleteById(String id);
+    public boolean deleteReplyById(String id);
 
     public ArrayList<Reply> getHotReply();
 }

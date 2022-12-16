@@ -38,49 +38,57 @@
                     发布帖子
                 </button>
             </div>
-            <div class="table">
-                <table class="listing" cellspacing="0" cellpadding="0">
-                    <tr>
-                        <th class="first" width="40">序号</th>
-                        <th>帖子标题</th>
-                        <c:if test="${sessionScope.role==99}">
-                            <th>发帖人</th>
-                        </c:if>
-                        <th>发布时间</th>
-                        <th style="width: 40px;">修改</th>
-                        <th style="width: 40px;">删除</th>
-                    </tr>
-                    <c:forEach var="post" items="${requestScope.postList}" varStatus="status">
+            <c:if test="${!empty postList}">
+                <div class="table">
+                    <table id="listing" class="listing" cellspacing="0" cellpadding="0">
                         <tr>
-                            <td>${status.count}</td>
-                            <td class="title">
-                                <a href="post?action=displayPost&postId=${post.id}">
-                                        ${post.title}
-                                </a>
-                            </td>
+                            <th class="first" width="40">序号</th>
+                            <th>帖子标题</th>
                             <c:if test="${sessionScope.role==99}">
-                                <td>${post.author}</td>
+                                <th>发帖账号</th>
                             </c:if>
-                            <td class="ntime">${post.postTime}</td>
-                            <td>
-                                <button value="修改" onclick="window.location.href='modifyPost.jsp?id=${post.id}';">修改
-                                </button>
-
-                            </td>
-                            <td>
-                                <button value="删除" onclick="deletePost(${post.id});">删除</button>
-
-                            </td>
+                            <th>发布时间</th>
+                            <th style="width: 40px;">修改</th>
+                            <th style="width: 40px;">删除</th>
                         </tr>
-                    </c:forEach>
-                </table>
-            </div>
+                        <c:forEach var="post" items="${requestScope.postList}" varStatus="status">
+                            <tr>
+                                <td>${status.count}</td>
+                                <td class="title">
+                                    <a href="post?action=displayPost&postId=${post.id}">
+                                            ${post.title}
+                                    </a>
+                                </td>
+                                <c:if test="${sessionScope.role==99}">
+                                    <td>${post.author}</td>
+                                </c:if>
+                                <td class="ntime">${post.postTime}</td>
+                                <td>
+                                    <button value="修改" onclick="window.location.href='modifyPost.jsp?id=${post.id}';">修改
+                                    </button>
+
+                                </td>
+                                <td>
+                                    <button value="删除" onclick="deletePost(${post.id});">删除</button>
+
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+            </c:if>
+            <c:if test="${empty postList}">
+                <div class="no-data">
+                    <p>还没有帖子哦，发个帖子吧</p>
+                </div>
+                <script>
+                    document.getElementById("listing").style.display = "none";
+                </script>
+            </c:if>
         </div>
     </div>
 
     <div class="blank20"></div>
 </div>
-
-
 </body>
 </html>

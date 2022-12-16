@@ -23,7 +23,7 @@ public class AutoLoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("AutoLoginFilter运行");
+//        System.out.println("AutoLoginFilter运行");
         servletRequest.setCharacterEncoding("UTF-8");
         servletResponse.setCharacterEncoding("UTF-8");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -52,7 +52,7 @@ public class AutoLoginFilter implements Filter {
                     session.setAttribute("role", user.getRole().toString());
                     session.setAttribute("userId", user.getId().toString());
                     session.setAttribute("level", user.getLevel());
-                    System.out.println("自动登陆成功，昵称：" + user.getNickname());
+//                    System.out.println("自动登陆成功，昵称：" + user.getNickname());
                 }
             }
         }

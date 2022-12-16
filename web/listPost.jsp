@@ -5,19 +5,10 @@
   Time: 16:37
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="forum.beans.Theme" %>
-<%@ page import="forum.beans.Theme" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:useBean id="postDAO" class="forum.dao.PostDAO" scope="page"/>
 <jsp:useBean id="themeDAO" class="forum.dao.ThemeDAO" scope="page"/>
-
-<%
-    ArrayList<Theme> themeList = themeDAO.getAllTheme();
-    request.setAttribute("themeList", themeList);
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,22 +24,13 @@
     </div>
     <div id="main">
         <div class="post_list">
-            <h1 style="margin: 0 0 20px">贴子列表</h1>
+            <h1 style="margin: 0 0 20px">${requestScope.themeTitle}</h1>
 
             <ul>
                 <c:forEach items="${requestScope.postList}" var="post">
                     <li>
                         <div class="dd_lmbt">
-                            <div class="dd_lm">[
-                                <c:forEach var="theme" items="${themeList}">
-                                    <c:choose>
-                                        <c:when test="${theme.id==post.theme}">
-                                            ${theme.themeTitle}
-                                        </c:when>
-
-                                    </c:choose>
-
-                                </c:forEach>]
+                            <div class="dd_lm">[${post.theme}]
                             </div>
                             <div class="dd_bt">
                                 <a href="post?action=displayPost&postId=${post.id}">${post.title}</a>

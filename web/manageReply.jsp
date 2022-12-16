@@ -32,47 +32,57 @@
                 <div class="breadcrumbs"></div>
             </div>
             <br>
-            <div class="table">
-                <table class="listing" cellpadding="0" cellspacing="0" width="600" border="1">
-                    <tbody>
-                    <tr>
-                        <th class="first" width="200px">帖子标题</th>
-                        <th style="width: 200px">回帖内容</th>
-                        <c:if test="${sessionScope.role==99}">
-                            <th style="width: 200px">回帖人</th>
-                        </c:if>
-
-                        <th style="width: 150px;">回帖时间</th>
-                        <th style="width: 100px;">删除</th>
-                    </tr>
-                    <c:forEach items="${requestScope.replyList}" var="reply">
+            <c:if test="${!empty replyList}">
+                <div class="table">
+                    <table class="listing" cellpadding="0" cellspacing="0" width="600" border="1">
+                        <tbody>
                         <tr>
-                            <td width="250px">
-                                <a href="post?action=displayPost&postId=${reply.postId}">
-                                        ${reply.post.title}
-                                </a>
-                            </td>
-                            <td style="text-align: left;width: 100px;">
-                                <a href="post?action=displayPost&postId=${reply.postId}">
-                                        ${reply.content}
-                                </a>
-                            </td>
+                            <th class="first" width="200px">帖子标题</th>
+                            <th style="width: 200px">回帖内容</th>
                             <c:if test="${sessionScope.role==99}">
-                                <td>${reply.author}</td>
+                                <th style="width: 200px">回帖账号</th>
                             </c:if>
-                            <td>${reply.replyTime}</td>
-                            <td width="10px">
-                                <a href="reply?action=delete&replyId=${reply.id}"
-                                   onclick="return confirm('确定删除？')">
-                                    <i class="iconfont">&#xe74b;</i>
-                                </a>
-                            </td>
-                        </tr>
 
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
+                            <th style="width: 150px;">回帖时间</th>
+                            <th style="width: 100px;">删除</th>
+                        </tr>
+                        <c:forEach items="${requestScope.replyList}" var="reply">
+                            <tr>
+                                <td width="250px">
+                                    <a href="post?action=displayPost&postId=${reply.postId}">
+                                            ${reply.post.title}
+                                    </a>
+                                </td>
+                                <td style="text-align: left;width: 100px;">
+                                    <a href="post?action=displayPost&postId=${reply.postId}">
+                                            ${reply.content}
+                                    </a>
+                                </td>
+                                <c:if test="${sessionScope.role==99}">
+                                    <td>${reply.author}</td>
+                                </c:if>
+                                <td>${reply.replyTime}</td>
+                                <td width="10px">
+                                    <a href="reply?action=delete&replyId=${reply.id}"
+                                       onclick="return confirm('确定删除？')">
+                                        <i class="iconfont">&#xe74b;</i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </c:if>
+            <c:if test="${empty replyList}">
+                <div class="no-data">
+                    <p>还没有回帖哦，去看看帖子吧</p>
+                </div>
+                <script>
+                    document.getElementById("listing").style.display = "none";
+                </script>
+            </c:if>
 
         </div>
     </div>

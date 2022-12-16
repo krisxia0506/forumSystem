@@ -40,7 +40,7 @@ To change this template use File | Settings | File Templates.
                 <input id="nickname" type="text" name="nickname" value="${requestScope.user.nickname}">
                 <br><br>
                 <label for="password">密&nbsp&nbsp&nbsp码：</label>
-                <input id="password" type="password" name="password" value="${requestScope.user.password}">
+                <input id="password" type="password" name="password" onkeydown="$('#showPassword').text('')">
                 <span id="showPassword" style="color: red"></span>
                 <br><br>
                 <label for="passwordCheck">确认密码：</label>

@@ -31,44 +31,52 @@
                 <div class="breadcrumbs"></div>
             </div>
             <br>
-            <div class="table">
-                <table class="listing" cellpadding="0" cellspacing="0" width="600" border="1">
-                    <tbody>
-                    <tr>
-                        <th class="first" width="20px">序号</th>
-                        <th style="width: 200px">帖子标题</th>
-                        <th>收藏时间</th>
-                        <th style="width: 150px;">取消收藏</th>
-                    </tr>
-                    <c:forEach items="${requestScope.collectionList}" var="collection" varStatus="status">
+            <c:if test="${!empty requestScope.collectionList}">
+                <div class="table">
+                    <table class="listing" cellpadding="0" cellspacing="0" width="600" border="1">
+                        <tbody>
                         <tr>
-                            <td>${status.count}</td>
-                            <td width="250px">
-                                <a href="post?action=displayPost&postId=${collection.postId}">
-                                        ${collection.title}
-                                </a>
-                            </td>
-                            <td>${collection.date}</td>
-                            <td width="10px">
-                                <a href="collect?action=delete&postId=${collection.postId}"
-                                   onclick="return confirm('确定取消收藏？')">
-                                    <i class="iconfont">&#xe74b;</i>
-                                </a>
-                            </td>
+                            <th class="first" width="20px">序号</th>
+                            <th style="width: 200px">帖子标题</th>
+                            <th>收藏时间</th>
+                            <th style="width: 150px;">取消收藏</th>
                         </tr>
+                        <c:forEach items="${requestScope.collectionList}" var="collection" varStatus="status">
+                            <tr>
+                                <td>${status.count}</td>
+                                <td width="250px">
+                                    <a href="post?action=displayPost&postId=${collection.postId}">
+                                            ${collection.title}
+                                    </a>
+                                </td>
+                                <td>${collection.date}</td>
+                                <td width="10px">
+                                    <a href="collect?action=delete&postId=${collection.postId}"
+                                       onclick="return confirm('确定取消收藏？')">
+                                        <i class="iconfont">&#xe74b;</i>
+                                    </a>
+                                </td>
+                            </tr>
 
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </c:if>
+            <c:if test="${empty requestScope.collectionList}">
+                <div class="no-data">
+                    <p>还没有回收藏哦，去收藏一个吧</p>
+                </div>
+                <script>
+                    document.getElementById("listing").style.display = "none";
+                </script>
+            </c:if>
 
         </div>
     </div>
 
     <div class="blank20"></div>
 </div>
-
-
 </body>
 </html>
 

@@ -43,5 +43,4 @@ public class PostPageDAO {
         postList = postDAO.getPostBySCT(start, pageSize, postTypeId);
         return postList;
     }
-
 }
