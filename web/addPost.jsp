@@ -36,7 +36,7 @@
                 <h1>发新贴</h1>
             </div>
             <br>
-            <form action="post?action=add" method="post" onsubmit="return CheckAddNews()">
+            <form action="post?action=add" method="post" onsubmit="return CheckAddPost()">
                 <input type="hidden" name="author" value="${sessionScope.userId}"></input><br>
                 标题: <input type="text" name="title" id="title">
                 <br><br>
@@ -63,7 +63,7 @@
 
 </body>
 <script>
-    function CheckAddNews() {
+    function CheckAddPost() {
         var content = CKEDITOR.instances.contentcontent.getData();
         var title = $("#title").val()
         if (title === "" || content === "") {
